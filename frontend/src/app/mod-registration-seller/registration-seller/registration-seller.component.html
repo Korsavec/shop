@@ -126,7 +126,7 @@
       <div class="my-5 w-full">
         <label for="p_shop_name">Название магазина (Латиница)</label><br>
         <input type="text" #shopName  minlength="3" maxlength="30" id="p_shop_name" formControlName="p_shop_name" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Название магазина" required>
-        <button (click)="checkShopName(shopName.value)" [disabled]="disabledButton" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Проверить</button>
+        <button (click)="checkShopName(shopName.value)" [disabled]="disabledButton"  class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Проверить</button>
         <div *ngIf="p_shop_name.errors?.['required']"> Обязательно </div>
         <div *ngIf="p_shop_name.errors?.['minlength']"> Минимальная длина 3 </div>
         <div *ngIf="p_shop_name.errors?.['maxlength']"> Максимальная длина 30 </div>

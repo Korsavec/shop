@@ -35,7 +35,7 @@ export class RegistrationSellerComponent implements OnInit {
   shopNameOkTrue = false
 
 
-  disabledButton = false
+  disabledButton = true
 
 
 
@@ -75,23 +75,11 @@ export class RegistrationSellerComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log('111111111111111')
-    console.log(this.responseServer)
-    console.log('111111111111111')
-
     if (this.storeSellerPersonService.isTokenExpired()) {
-
-      console.log('2222222222222')
-      console.log(this.responseServer)
-      console.log('2222222222222')
 
       this.router.navigate(['/']).then(() => {});
 
     } else {
-
-      console.log('333333333333')
-      console.log(this.responseServer)
-      console.log('33333333333333')
 
       this.loginForm = this.formBuilder.group({
         p_phone: ['', {
@@ -386,11 +374,8 @@ export class RegistrationSellerComponent implements OnInit {
              blur
              submit */
         }]
-      }, {validators: this.matchPassword('p_email1', 'p_email2', 'p_password1', 'p_password2')});
+      }, {validators: this.matchPassword('p_email1', 'p_email2', 'p_password1', 'p_password2', 'p_shop_name')});
     }
-    console.log('4444444444444')
-    console.log(this.responseServer)
-    console.log('444444444444444')
 
   }
 
@@ -439,9 +424,6 @@ export class RegistrationSellerComponent implements OnInit {
   }
 
   get p_shop_name() {
-    console.log('55555555555')
-    console.log(this.responseServer)
-    console.log('55555555555')
     return this.loginForm.controls['p_shop_name'];
   }
 
@@ -499,44 +481,29 @@ export class RegistrationSellerComponent implements OnInit {
 
   // Сверяем два пароля на одинаковость.
   // Сверяем два пароля на одинаковость.
-  public matchPassword(p_email1: any, p_email2: any, p_password1: any, p_password2: any): ValidatorFn {
-
-    console.log('6666666666666')
-    console.log(this.responseServer)
-    console.log('6666666666666')
+  public matchPassword(p_email1: any, p_email2: any, p_password1: any, p_password2: any, p_shop_name: any): ValidatorFn {
 
     return (control: AbstractControl): ValidationErrors | null => {
 
-      console.log('777777777777')
-      console.log(this.responseServer)
-      console.log('77777777777')
+      let shopNameLength = control.get(p_shop_name)?.value;
+
+      this.disabledButton = !(shopNameLength.length > 2 && this.validateService.shopName(shopNameLength));
+
 
       if (this.editMail) {
-        console.log('8888888888888')
-        console.log(this.responseServer)
-        console.log('8888888888888888')
         let mailOne = control.get(p_email1)?.value;
         let mailTwo = control.get(p_email2)?.value;
 
         if (mailOne != mailTwo && (mailOne.length >= 8 && mailTwo.length >= 8)) {
-          console.log('9999999999999')
-          console.log(this.responseServer)
-          console.log('99999999999999')
           return { 'noMatchEmail': true }
         }
       }
 
       else if (this.editPass) {
-        console.log('qqqqqqqqqqqqqq')
-        console.log(this.responseServer)
-        console.log('qqqqqqqqqqqqqqqq')
         let passwordOne = control.get(p_password1)?.value;
         let passwordTwo = control.get(p_password2)?.value;
 
         if (passwordOne != passwordTwo && (passwordOne.length >= 6 && passwordTwo.length >= 6)) {
-          console.log('wwwwwwwwwwwwwwww')
-          console.log(this.responseServer)
-          console.log('wwwwwwwwwwwwwww')
           return { 'noMatchPassword': true }
         }
       }
@@ -549,9 +516,6 @@ export class RegistrationSellerComponent implements OnInit {
 
 
   submit() {
-    console.log('eeeeeeeeeeeeeeeee')
-    console.log(this.responseServer)
-    console.log('eeeeeeeeeeeeeeeeee')
     const person: any = {
       phone: null,
       email: null,
@@ -576,10 +540,6 @@ export class RegistrationSellerComponent implements OnInit {
       innBank: null,
       kppBank: null
     }
-
-    console.log('rrrrrrrrrrrrrrrrr')
-    console.log(this.responseServer)
-    console.log('rrrrrrrrrrrrrrrr')
 
     person.phone = this.p_phone.value;
     person.email = this.p_email1.value;
@@ -609,38 +569,20 @@ export class RegistrationSellerComponent implements OnInit {
     const formData = new FormData()
     formData.append('image', this.passportFile)
     formData.append('registrationSellerPerson', JSON.stringify(person))
-    console.log('tttttttttttttttt')
-    console.log(this.responseServer)
-    console.log('tttttttttttttttt')
     if (this.imageOk) {
-      console.log('yyyyyyyyyyyyyyyy')
-      console.log(this.responseServer)
-      console.log('yyyyyyyyyyyyyyyyy')
       this.httpClientService.registrationSellerPerson(formData).subscribe({
         next: () => {
-          console.log('uuuuuuuuuuuuuuuu')
-          console.log(this.responseServer)
-          console.log('uuuuuuuuuuuuuuuu')
           this.responseServer = false;
 
         },
         error:(err) => {
-          console.log('pppppppppppppppp')
-          console.log(this.responseServer)
-          console.log('pppppppppppppppppp')
           if (err.error.status == 400
             && err.error.message == 'SellerPerson exist') {
-            console.log('aaaaaaaaaaaaaaaaa')
-            console.log(this.responseServer)
-            console.log('aaaaaaaaaaaaaaaaaa')
             this.emailExists = true;
             this.submitForm = true;
             this.responseServer  = true;
 
           } else {
-            console.log('ssssssssssssssssss')
-            console.log(this.responseServer)
-            console.log('ssssssssssssssssss')
             this.responseServer = false;
             this.responseView = false;
           }
@@ -648,15 +590,9 @@ export class RegistrationSellerComponent implements OnInit {
         }
       });
     }
-    console.log('ddddddddddddddddd')
-    console.log(this.responseServer)
-    console.log('dddddddddddddddddd')
   }
 
   changeFieldMail() {
-    console.log('fffffffffffffffff')
-    console.log(this.responseServer)
-    console.log('fffffffffffffff')
     this.emailExists = false
     this.editMail = true;
     this.editPass = false;
@@ -664,28 +600,15 @@ export class RegistrationSellerComponent implements OnInit {
 
 
   changeFieldPass() {
-    console.log('gggggggggggggggg')
-    console.log(this.responseServer)
-    console.log('gggggggggggggggggg')
     this.editMail = false;
     this.editPass = true;
   }
 
   pickedImage(imageInput: any) {
-
-    console.log('hhhhhhhhhhhhhhhh')
-    console.log(this.responseServer)
-    console.log('hhhhhhhhhhhhh')
     if (imageInput.target.files[0]) {
-      console.log('kkkkkkkkkkkkkkkkkkk')
-      console.log(this.responseServer)
-      console.log('kkkkkkkkkkkkkkkk')
       this.passportFile = imageInput.target.files[0]
 
       if (this.passportFile.type.toString() !== 'image/jpeg' && this.passportFile.type.toString() !== 'image/png') {
-        console.log('LLLLLLLLLLLLLLLLLLL')
-        console.log(this.responseServer)
-        console.log('LLLLLLLLLLLLLLLL')
         this.p_img_passport.setErrors({'imageErrorNoCorrect': true});
         this.imageOk = false;
         this.passportFile = null;
@@ -693,27 +616,18 @@ export class RegistrationSellerComponent implements OnInit {
       }
 
       else if (this.passportFile.size > 10485760) {
-        console.log('zzzzzzzzzzzzzzz')
-        console.log(this.responseServer)
-        console.log('zzzzzzzzzzzzzzzzzz')
         this.p_img_passport.setErrors({'imageErrorMB': true});
         this.imageOk = false;
         this.passportFile = null;
       }
 
       else if (this.passportFile.size < 20480) {
-        console.log('xxxxxxxxxxxxxxxxx')
-        console.log(this.responseServer)
-        console.log('xxxxxxxxxxx')
         this.p_img_passport.setErrors({'imageErrorByte': true});
         this.imageOk = false;
         this.passportFile = null;
       }
 
       else {
-        console.log('cccccccccccccccccc')
-        console.log(this.responseServer)
-        console.log('ccccccccccccccc')
         this.imageOk = true;
       }
 
@@ -723,13 +637,7 @@ export class RegistrationSellerComponent implements OnInit {
 
   checkShopName(shopName: string) {
 
-
-
-    // if (this.p_shop_name.errors?.['required'] || this.p_shop_name.errors?.['minlength'] || this.p_shop_name.errors?.['maxlength'] || this.p_shop_name.errors?.['pattern']) {
-    if (this.p_shop_name.status === 'INVALID') {
-
-    } else {
-
+    if (this.p_shop_name.status !== 'INVALID') {
       // В этот блок идём если всё хорошо
 
       this.showShopNameChecked = true;
