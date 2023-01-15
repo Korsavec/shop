@@ -13,78 +13,26 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (request.url.includes(`${this.host}/api/auth/registrationUser`)) {
+
+
+    if (request.url.includes(`${this.host}/api/auth/registrationUser`)
+      || request.url.includes(`${this.host}/api/auth/registrationSellerPerson`)
+      || request.url.includes(`${this.host}/api/auth/confirmEmailUser`)
+      || request.url.includes(`${this.host}/api/auth/confirmEmailSellerPerson`)
+      || request.url.includes(`${this.host}/api/auth/resetPasswordUser`)
+      || request.url.includes(`${this.host}/api/auth/resetPasswordSellerPerson`)
+      || request.url.includes(`${this.host}/api/auth/checkServerTokenUserResetPassword`)
+      || request.url.includes(`${this.host}/api/auth/checkServerTokenSellerPersonResetPassword`)
+      || request.url.includes(`${this.host}/api/auth/newPasswordUser`)
+      || request.url.includes(`${this.host}/api/auth/newPasswordSellerPerson`)
+      || request.url.includes(`${this.host}/api/auth/loginUser`)
+      || request.url.includes(`${this.host}/api/auth/loginSellerPerson`)
+      || request.url.includes(`${this.host}/api/auth/checkShopNameRegistrationSellerPersonRequest`)
+      || request.url.includes(`${this.host}/api/all`)
+      || request.url.includes(`${this.host}/resources/all`)
+      || request.url.includes(`${this.host}/resources/ResourcesGuard/image/**`)) {
       return next.handle(request);
     }
-
-    if (request.url.includes(`${this.host}/api/auth/registrationSellerPerson`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/api/auth/confirmEmailUser`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/api/auth/confirmEmailSellerPerson`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/api/auth/resetPasswordUser`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/api/auth/resetPasswordSellerPerson`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/api/auth/checkServerTokenUserResetPassword`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/api/auth/checkServerTokenSellerPersonResetPassword`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/api/auth/newPasswordUser`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/api/auth/newPasswordSellerPerson`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/api/auth/loginUser`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/api/auth/loginSellerPerson`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/api/auth/checkShopNameRegistrationSellerPersonRequest`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/api/all`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/resources/all`)) {
-      return next.handle(request);
-    }
-
-    if (request.url.includes(`${this.host}/resources/ResourcesGuard/image/**`)) {
-      return next.handle(request);
-    }
-
-
-
-
-
-
-
-
-
 
     // Для auth-user
     if (request.url.includes(`${this.host}/api/AccountGuard/user`)) {

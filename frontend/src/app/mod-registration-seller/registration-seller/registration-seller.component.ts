@@ -479,8 +479,7 @@ export class RegistrationSellerComponent implements OnInit {
     return this.loginForm.controls['p_kpp_bank'];
   }
 
-  // Сверяем два пароля на одинаковость.
-  // Сверяем два пароля на одинаковость.
+  // Сверяем два пароля на одинаковость и проверяем поле p_shop_name для кнопки "Проверить".
   public matchPassword(p_email1: any, p_email2: any, p_password1: any, p_password2: any, p_shop_name: any): ValidatorFn {
 
     return (control: AbstractControl): ValidationErrors | null => {

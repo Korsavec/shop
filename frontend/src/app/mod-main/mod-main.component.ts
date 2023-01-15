@@ -1,15 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-mod-main',
   templateUrl: './mod-main.component.html',
   styleUrls: ['./mod-main.component.css']
 })
-export class ModMainComponent implements OnInit {
+export class ModMainComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

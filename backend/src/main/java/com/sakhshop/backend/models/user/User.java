@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -16,6 +17,9 @@ import java.util.Set;
 @Entity
 @Table(name = "model_users")
 public class User implements Serializable {
+
+  @Serial
+  private static final long serialVersionUID = -7495737734488450424L;
 
   // Это ID пользователя
   @Id
@@ -104,16 +108,13 @@ public class User implements Serializable {
 
   // Ссылка на сущность товара
   @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users", cascade = CascadeType.PERSIST)
-  private Set<Product> products = new LinkedHashSet<>();
+  private transient Set<Product> products = new LinkedHashSet<>();
 
 
   // Сущность активации аккаунта
   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-  private NotActivatedUser notActivatedUser;
+  private transient NotActivatedUser notActivatedUser;
 
-
-  public User() {
-  }
 
   public Long getId() {
     return id;

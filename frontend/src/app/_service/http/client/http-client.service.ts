@@ -3,8 +3,6 @@ import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http"
 import {Observable} from "rxjs";
 import {properties} from "../../../../resources/application.properties";
 
-// const httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' })};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -78,7 +76,6 @@ export class HttpClientService {
 
 
   public loginSellerPerson(sellerPerson: string): Observable<HttpResponse<any> | HttpErrorResponse> {
-    console.log('111111111111111')
     return this.http.post<HttpResponse<any> | HttpErrorResponse>(`${this.host}/api/auth/loginSellerPerson`, sellerPerson,
       {observe: 'response'});
   }

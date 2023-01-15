@@ -6,9 +6,6 @@ import {Injectable} from '@angular/core';
 export class ValidateService {
 
 
-  constructor() { }
-
-
   patternEmail(): string {
     return '^(|(([A-Za-z0-9]{1,25}_)|([A-Za-z0-9]{1,25}-)|([A-Za-z0-9]{1,25}\\.))*[A-Za-z0-9]{1,25}@(([A-Za-z0-9]{1,25}\\.)|([A-Za-z0-9]{1,25}-))*[A-Za-z0-9]{2,25}\\.[a-zA-Z]{2,6})$';
   }

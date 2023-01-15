@@ -10,8 +10,6 @@ export class StoreSellerPersonService {
 
   tokenExpired: boolean = false;
 
-  blocked: boolean = false;
-
 
   constructor() {
     this.setInterval()
@@ -48,10 +46,6 @@ export class StoreSellerPersonService {
 
     window.localStorage.removeItem('auth-seller-person');
 
-    // TODO decodeToken
-    // const decodeToken = this.jwtHelper.decodeToken(this.accessToken.token);
-    // window.sessionStorage.setItem('auth-seller-person', JSON.stringify(decodeToken));
-
     window.localStorage.setItem('auth-seller-person', accessToken);
 
   }
@@ -76,11 +70,6 @@ export class StoreSellerPersonService {
     }
   }
 
-
-
-  public isBlocked() {
-    return this.blocked;
-  }
 
   public removeCount() {
     window.localStorage.removeItem('counterLogin');
