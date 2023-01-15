@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+  shop:
+    image: jackobs/shop:front-V1
+    restart: always
+    ports:
+      - 80:80

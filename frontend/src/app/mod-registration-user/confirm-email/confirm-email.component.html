@@ -1,0 +1,24 @@
+
+<div *ngIf="responseServer; else responseServerFalse">
+
+  <p>Ждём ответ от сервера</p>
+
+</div>
+
+
+<ng-template #responseServerFalse>
+
+  <div *ngIf="responseConfirmMessage; else confirmMessageError">
+    <p>Адрес электронной почты подтверждён</p>
+  </div>
+
+  <ng-template #confirmMessageError>
+    <p>Сервер не отвечает. Попробуйте позже</p>
+  </ng-template>
+
+</ng-template>
+
+
+<br><br>
+
+<a routerLink="/"><b>Главная страница сайта</b></a>

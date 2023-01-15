@@ -1,0 +1,314 @@
+<app-head></app-head>
+
+<br><br><br>
+
+<div *ngIf="submitForm; else submitFormFalse">
+
+  <div class="flex justify-center">
+
+    <form [formGroup]="loginForm" (submit)="submit()" class="p-4 rounded-lg border border-fuchsia-500 ">
+
+      <h1 class="text-center text-xl">Регистрация продавца</h1>
+
+
+
+      <div class="my-5 w-full">
+        <label for="p_phone">Телефон</label><br>
+        <input type="tel" minlength="10" maxlength="10" id="p_phone" formControlName="p_phone" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Телефон" required>
+        <div *ngIf="p_phone.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_phone.errors?.['minLength']"> Минимальная длина 10 </div>
+        <div *ngIf="p_phone.errors?.['maxLength']"> Максимальная длина 10 </div>
+        <div *ngIf="p_phone.errors?.['pattern']"> Некорректный телефон </div>
+      </div>
+
+
+
+
+
+
+      <div class="my-5 w-full">
+        <label for="p_email1">Email</label>
+        <br>
+        <input type="email" (ngModelChange)="changeFieldMail()" minlength="8" maxlength="58" formControlName="p_email1" id="p_email1" class="text-black text-[28px] p-2 rounded w-full border text-sm" placeholder="Email" required>
+        <div *ngIf="p_email1.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_email1.errors?.['minLength']"> Минимальная длина 8 </div>
+        <div *ngIf="p_email1.errors?.['maxLength']"> Максимальная длина 58 </div>
+        <div *ngIf="p_email1.errors?.['pattern']"> Некорректный Email </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_email2">Повторить Email</label>
+        <br>
+        <input type="email" (ngModelChange)="changeFieldMail()" minlength="8" maxlength="58" formControlName="p_email2" id="p_email2" class="text-black text-[28px] p-2 rounded w-full border text-sm" placeholder="Повторить email" required>
+        <div *ngIf="p_email2.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_email2.errors?.['minLength']"> Минимальная длина 8 </div>
+        <div *ngIf="p_email2.errors?.['maxLength']"> Максимальная длина 58 </div>
+        <div *ngIf="p_email2.errors?.['pattern']"> Некорректный Email </div>
+        <div *ngIf="loginForm.hasError('noMatchEmail')">Email не совпадает</div>
+      </div>
+
+
+      <div class="my-5 w-full">
+        <label for="p_password1">Пароль</label><br>
+        <input type="password" (ngModelChange)="changeFieldPass()" minlength="6" maxlength="24" id="p_password1" formControlName="p_password1" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Пароль" required>
+        <div *ngIf="p_password1.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_password1.errors?.['minlength']"> Минимальная длина 6 </div>
+        <div *ngIf="p_password1.errors?.['maxlength']"> Максимальная длина 24 </div>
+        <div *ngIf="p_password1.errors?.['pattern']"> Некорректный пароль </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_password2">Повторить пароль</label><br>
+        <input type="password" (ngModelChange)="changeFieldPass()" minlength="6" maxlength="24" id="p_password2" formControlName="p_password2" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Повторить пароль" required>
+        <div *ngIf="p_password2.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_password2.errors?.['minlength']"> Минимальная длина 6 </div>
+        <div *ngIf="p_password2.errors?.['maxlength']"> Максимальная длина 24 </div>
+        <div *ngIf="p_password2.errors?.['pattern']"> Некорректный пароль </div>
+        <div *ngIf="loginForm.hasError('noMatchPassword')">Пароли не совпадают</div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_surname">Фамилия</label><br>
+        <input type="text" minlength="1" maxlength="45" id="p_surname" formControlName="p_surname" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Фамилия" required>
+        <div *ngIf="p_surname.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_surname.errors?.['minlength']"> Минимальная длина 1 </div>
+        <div *ngIf="p_surname.errors?.['maxlength']"> Максимальная длина 45 </div>
+        <div *ngIf="p_surname.errors?.['pattern']"> Только буквы (кириллица) </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_name">Имя</label><br>
+        <input type="text" minlength="1" maxlength="45" id="p_name" formControlName="p_name" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Имя" required>
+        <div *ngIf="p_name.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_name.errors?.['minlength']"> Минимальная длина 1 </div>
+        <div *ngIf="p_name.errors?.['maxlength']"> Максимальная длина 45 </div>
+        <div *ngIf="p_name.errors?.['pattern']"> Только буквы (кириллица) </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_middle_name">Отчество</label><br>
+        <input type="text" minlength="1" maxlength="45" id="p_middle_name" formControlName="p_middle_name" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Отчество" required>
+        <div *ngIf="p_middle_name.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_middle_name.errors?.['minlength']"> Минимальная длина 1 </div>
+        <div *ngIf="p_middle_name.errors?.['maxlength']"> Максимальная длина 45 </div>
+        <div *ngIf="p_middle_name.errors?.['pattern']"> Только буквы (кириллица) </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_date_birth">Дата рождения</label><br>
+        <input type="date" id="p_date_birth" minlength="10" maxlength="10" formControlName="p_date_birth" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Дата рождения" required>
+        <div *ngIf="p_date_birth.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_date_birth.errors?.['minlength']"> Минимальная длина 10 </div>
+        <div *ngIf="p_date_birth.errors?.['maxlength']"> Максимальная длина 10 </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_number_passport">Номер паспорта</label><br>
+        <input type="text" minlength="10" maxlength="10" id="p_number_passport" formControlName="p_number_passport" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Номер паспорта" required>
+        <div *ngIf="p_number_passport.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_number_passport.errors?.['minlength']"> Минимальная длина 10 </div>
+        <div *ngIf="p_number_passport.errors?.['maxlength']"> Максимальная длина 10 </div>
+        <div *ngIf="p_number_passport.errors?.['pattern']"> Только числа </div>
+      </div>
+
+
+      <div class="my-5 w-full">
+        <label for="p_inn">ИНН</label><br>
+        <input type="text" minlength="12" maxlength="12" id="p_inn" formControlName="p_inn" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="ИНН" required>
+        <div *ngIf="p_inn.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_inn.errors?.['minlength']"> Минимальная длина 12 </div>
+        <div *ngIf="p_inn.errors?.['maxlength']"> Максимальная длина 12 </div>
+        <div *ngIf="p_inn.errors?.['pattern']"> Только числа </div>
+      </div>
+
+
+
+      <div class="my-5 w-full">
+        <label for="p_shop_name">Название магазина (Латиница)</label><br>
+        <input type="text" #shopName  minlength="3" maxlength="30" id="p_shop_name" formControlName="p_shop_name" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Название магазина" required>
+        <button (click)="checkShopName(shopName.value)" [disabled]="disabledButton" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Проверить</button>
+        <div *ngIf="p_shop_name.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_shop_name.errors?.['minlength']"> Минимальная длина 3 </div>
+        <div *ngIf="p_shop_name.errors?.['maxlength']"> Максимальная длина 30 </div>
+        <div *ngIf="p_shop_name.errors?.['pattern']"> Только числа и буквы (кириллица) </div>
+        <div *ngIf="showShopNameChecked">
+
+          <div *ngIf="shopNameCheckedTrue; else shopNameCheckedFalse">
+            Проверяем
+          </div>
+
+          <ng-template #shopNameCheckedFalse>
+
+            <div *ngIf="shopNameOkTrue; else shopNameOkFalse">
+              Имя доступно
+            </div>
+
+            <ng-template #shopNameOkFalse>
+              Имя занято
+            </ng-template>
+
+          </ng-template>
+
+        </div>
+
+
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_img_passport">Копия паспорта 10МБ</label><br>
+        <input type="file" id="p_img_passport" (change)="pickedImage($event)" formControlName="p_img_passport" class="text-[28px] p-2 rounded w-full border text-sm" required>
+        <div *ngIf="p_img_passport.errors?.['imageErrorMB']"> Размер превышает < 10МБ </div>
+        <div *ngIf="p_img_passport.errors?.['imageErrorByte']"> Картинка слишком мола > 20 КБ </div>
+        <div *ngIf="p_region.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_img_passport.errors?.['imageErrorNoCorrect']"> Некорректное изображение </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_region">Регион</label><br>
+        <input type="text" minlength="7" value="Сахалин" maxlength="7" id="p_region" formControlName="p_region" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Регион" readonly required>
+        <div *ngIf="p_region.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_region.errors?.['minlength']"> Минимальная длина 7 </div>
+        <div *ngIf="p_region.errors?.['maxlength']"> Максимальная длина 7 </div>
+        <div *ngIf="p_region.errors?.['pattern']"> Укажите регион </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_city">Город</label><br>
+        <input type="text" minlength="2" maxlength="25" id="p_city" formControlName="p_city" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Город" required>
+        <div *ngIf="p_city.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_city.errors?.['minlength']"> Минимальная длина 2 </div>
+        <div *ngIf="p_city.errors?.['maxlength']"> Максимальная длина 25 </div>
+        <div *ngIf="p_city.errors?.['pattern']"> Только буквы (кириллица) </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_street">Улица</label><br>
+        <input type="text" minlength="2" maxlength="50" id="p_street" formControlName="p_street" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Улица" required>
+        <div *ngIf="p_street.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_street.errors?.['minlength']"> Минимальная длина 2 </div>
+        <div *ngIf="p_street.errors?.['maxlength']"> Максимальная длина 50 </div>
+        <div *ngIf="p_street.errors?.['pattern']"> Только буквы (кириллица) </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_house">Дом</label><br>
+        <input type="text" minlength="1" maxlength="11" id="p_house" formControlName="p_house" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Дом" required>
+        <div *ngIf="p_house.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_house.errors?.['minlength']"> Минимальная длина 1 </div>
+        <div *ngIf="p_house.errors?.['maxlength']"> Максимальная длина 11 </div>
+        <div *ngIf="p_house.errors?.['pattern']"> Только числа, буквы и / </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_building">Корпус</label><br>
+        <input type="text" minlength="1" maxlength="11" id="p_building" formControlName="p_building" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Корпус">
+        <div *ngIf="p_building.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_building.errors?.['minlength']"> Минимальная длина 1 </div>
+        <div *ngIf="p_building.errors?.['maxlength']"> Максимальная длина 11 </div>
+        <div *ngIf="p_building.errors?.['pattern']"> Только числа, буквы и / </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_apartment">Квартира/офис</label><br>
+        <input type="text" minlength="1" maxlength="4" id="p_apartment" formControlName="p_apartment" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Квартира" required>
+        <div *ngIf="p_apartment.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_apartment.errors?.['minlength']"> Минимальная длина 1 </div>
+        <div *ngIf="p_apartment.errors?.['maxlength']"> Максимальная длина 4 </div>
+        <div *ngIf="p_apartment.errors?.['pattern']"> Только числа </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_bank_account">Номер банковского счёта</label><br>
+        <input type="text" minlength="20" maxlength="20" id="p_bank_account" formControlName="p_bank_account" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Номер банковского счёта" required>
+        <div *ngIf="p_bank_account.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_bank_account.errors?.['minlength']"> Минимальная длина 20 </div>
+        <div *ngIf="p_bank_account.errors?.['maxlength']"> Максимальная длина 20 </div>
+        <div *ngIf="p_bank_account.errors?.['pattern']"> Только числа </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_beak_bank">БИК банка</label><br>
+        <input type="text" minlength="9" maxlength="9" id="p_beak_bank" formControlName="p_beak_bank" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="БИК" required>
+        <div *ngIf="p_beak_bank.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_beak_bank.errors?.['minlength']"> Минимальная длина 9 </div>
+        <div *ngIf="p_beak_bank.errors?.['maxlength']"> Максимальная длина 9 </div>
+        <div *ngIf="p_beak_bank.errors?.['pattern']"> Только числа </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_bank_name">Название банка</label><br>
+        <input type="text" minlength="1" maxlength="50" id="p_bank_name" formControlName="p_bank_name" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Название банка" required>
+        <div *ngIf="p_bank_name.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_bank_name.errors?.['minlength']"> Минимальная длина 1 </div>
+        <div *ngIf="p_bank_name.errors?.['maxlength']"> Максимальная длина 50 </div>
+        <div *ngIf="p_bank_name.errors?.['pattern']"> Только числа, буквы </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_correspondent_account">Корреспондентский счёт банка</label><br>
+        <input type="text" minlength="20" maxlength="20" id="p_correspondent_account" formControlName="p_correspondent_account" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Корреспондентский счёт банка" required>
+        <div *ngIf="p_correspondent_account.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_correspondent_account.errors?.['minlength']"> Минимальная длина 20 </div>
+        <div *ngIf="p_correspondent_account.errors?.['maxlength']"> Максимальная длина 20 </div>
+        <div *ngIf="p_correspondent_account.errors?.['pattern']"> Только числа </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_inn_bank">ИНН банка</label><br>
+        <input type="text" minlength="10" maxlength="10" id="p_inn_bank" formControlName="p_inn_bank" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="ИНН банка" required>
+        <div *ngIf="p_inn_bank.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_inn_bank.errors?.['minlength']"> Минимальная длина 10 </div>
+        <div *ngIf="p_inn_bank.errors?.['maxlength']"> Максимальная длина 10 </div>
+        <div *ngIf="p_inn_bank.errors?.['pattern']"> Только числа </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <label for="p_kpp_bank">КПП банка</label><br>
+        <input type="text" minlength="9" maxlength="9" id="p_kpp_bank" formControlName="p_kpp_bank" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="КПП банка" required>
+        <div *ngIf="p_kpp_bank.errors?.['required']"> Обязательно </div>
+        <div *ngIf="p_kpp_bank.errors?.['minlength']"> Минимальная длина 9 </div>
+        <div *ngIf="p_kpp_bank.errors?.['maxlength']"> Максимальная длина 9 </div>
+        <div *ngIf="p_kpp_bank.errors?.['pattern']"> Только числа </div>
+      </div>
+
+      <div class="my-5 w-full">
+        <button type="submit" [disabled]="!loginForm.valid" class="p-2 w-full bg-purple-700 text-white hover:bg-purple-900 rounded">
+          Подать заявку
+        </button>
+        <div class="text-center my-5 w-52" *ngIf="emailExists"> Пользователь с таким адресом электронной почты уже существует </div>
+      </div>
+
+
+    </form>
+
+  </div>
+</div>
+
+
+<ng-template #submitFormFalse>
+
+  <div *ngIf="responseServer; else responseServerFalse">
+    <p>Пытаемся зарегистрироваться. Ждём ответа от сервера</p>
+  </div>
+
+
+  <ng-template #responseServerFalse>
+
+    <div *ngIf="responseView; else responseViewFalse">
+
+      <div>
+        <p>Вы успешно зарегистрировались. Пожалуйста проверьте вашу почту и следуйте инструкции.</p>
+      </div>
+
+
+    </div>
+
+    <ng-template #responseViewFalse>
+      <p>Упс. Что-то пошло не так. Попробуйте позже</p>
+    </ng-template>
+
+
+  </ng-template>
+
+
+</ng-template>
