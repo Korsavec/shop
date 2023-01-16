@@ -1,4 +1,4 @@
-package com.sakhshop.backend.validation.ValidationImges.component;
+package com.sakhshop.backend.validation.images.component;
 
 public class Result {
 

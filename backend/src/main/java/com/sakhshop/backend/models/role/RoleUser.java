@@ -29,8 +29,6 @@ public class RoleUser implements Serializable {
   private RoleEnum roleEnum;
 
 
-  public RoleUser() {}
-
   public Long getId() {
     return id;
   }

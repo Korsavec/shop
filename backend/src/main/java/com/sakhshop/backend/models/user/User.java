@@ -112,9 +112,6 @@ public class User implements Serializable {
   private NotActivatedUser notActivatedUser;
 
 
-  public User() {
-  }
-
   public Long getId() {
     return id;
   }

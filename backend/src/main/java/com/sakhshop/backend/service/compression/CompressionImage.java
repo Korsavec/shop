@@ -19,6 +19,9 @@ import java.util.Iterator;
 
 public class CompressionImage {
 
+    private CompressionImage() {
+    }
+
     // Сжимаем изображение
     // https://www.tutorialspoint.com/java_dip/image_compression_technique.htm
     // https://mkyong.com/java/convert-png-to-jpeg-image-file-in-java/

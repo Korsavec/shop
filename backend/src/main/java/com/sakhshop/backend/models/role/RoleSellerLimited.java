@@ -34,10 +34,6 @@ public class RoleSellerLimited implements Serializable {
     private RoleEnum roleEnum;
 
 
-    public RoleSellerLimited() {
-    }
-
-
     public Long getId() {
         return id;
     }

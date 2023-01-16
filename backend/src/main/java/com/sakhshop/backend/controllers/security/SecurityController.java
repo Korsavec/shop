@@ -27,17 +27,5 @@ public class SecurityController {
     return "{\"PERSON\":\"PERSON текст\" } ";
   }
 
-//  @GetMapping("/seller")
-//  @PreAuthorize("hasRole('USER') or hasRole('SELLER_INDIVIDUAL')")
-//  public String sellerAccess() {
-//    return "{\"SELLER\":\"Board\" } ";
-//  }
-//
-//  @GetMapping("/working")
-//  @PreAuthorize("hasRole('USER') or hasRole('SELLER_LIMITED')")
-//  public String workingAccess() {
-//    return "WORKING Board.";
-//  }
-
 
 }

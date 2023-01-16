@@ -166,13 +166,6 @@ public class Product {
     private Set<SellerLimited> sellerLimiteds = new LinkedHashSet<>();
 
 
-
-
-
-    public Product() {
-    }
-
-
     public Long getId() {
         return id;
     }

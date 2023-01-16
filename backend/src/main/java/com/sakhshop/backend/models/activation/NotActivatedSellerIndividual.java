@@ -28,9 +28,6 @@ public class NotActivatedSellerIndividual {
     @JoinColumn(name = "seller_individual_id")
     private SellerIndividual sellerIndividual;
 
-    public NotActivatedSellerIndividual() {
-    }
-
 
     public Long getId() {
         return id;

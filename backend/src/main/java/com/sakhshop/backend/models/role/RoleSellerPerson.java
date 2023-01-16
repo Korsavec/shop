@@ -30,8 +30,6 @@ public class RoleSellerPerson implements Serializable {
     @Column(name = "name", nullable = false, unique = true, length = 45, insertable = false, updatable = false)
     private RoleEnum roleEnum;
 
-    public RoleSellerPerson() {
-    }
 
     public Long getId() {
         return id;

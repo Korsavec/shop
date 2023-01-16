@@ -56,8 +56,6 @@ public class ResetPasswordSellerPersonController {
 
         limitLogin.addCache(request.getRemoteAddr());
 
-        System.out.println(resetSellerPersonRequest.email());
-
         if (resetSellerPersonRequest.email() != null
                 && !resetSellerPersonRequest.email().equals("")
                 && resetSellerPersonRequest.email().length() >= 8
@@ -76,10 +74,6 @@ public class ResetPasswordSellerPersonController {
             sendEmail.resetPasswordUserAccount(request.getServerName(), urlResetPasswordUserAccount);
 
         }
-
-        System.out.println("1111111111111");
-        System.out.println("1111111111111");
-        System.out.println("1111111111111");
 
         return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),"Ok"), HttpStatus.OK);
 
@@ -123,9 +117,6 @@ public class ResetPasswordSellerPersonController {
 
                 }
 
-                System.out.println("222222222222");
-                System.out.println("222222222222");
-                System.out.println("222222222222");
 
                 return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),"Ok"), HttpStatus.OK);
 
@@ -160,10 +151,6 @@ public class ResetPasswordSellerPersonController {
 
 
         }
-
-        System.out.println("333333333333");
-        System.out.println("333333333333");
-        System.out.println("333333333333");
 
         return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),"Ok"), HttpStatus.OK);
 

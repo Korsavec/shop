@@ -219,11 +219,6 @@ public class SellerPerson implements Serializable {
 
 
 
-
-    public SellerPerson() {
-    }
-
-
     public Long getId() {
         return id;
     }

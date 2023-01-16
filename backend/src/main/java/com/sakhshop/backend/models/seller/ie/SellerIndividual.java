@@ -199,8 +199,6 @@ public class SellerIndividual implements Serializable {
     @OneToOne(mappedBy = "sellerIndividual", cascade = CascadeType.ALL, orphanRemoval = true)
     private NotActivatedSellerIndividual notActivatedSellerIndividual;
 
-    public SellerIndividual() {
-    }
 
     public Long getId() {
         return id;

@@ -31,9 +31,6 @@ public class JwtUtils {
   private int jwtExpirationMsEightHours;
 
 
-  public JwtUtils() {
-  }
-
   private int rememberMe (boolean x) {
 
     if (x) {

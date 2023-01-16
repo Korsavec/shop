@@ -37,11 +37,6 @@ public class Handler {
 
     }
 
-    // Генерируем имя файла на основе хеша md5
-//    public static String generateFileName (MultipartFile multipartFile) throws IOException {
-//        return DigestUtils.md5DigestAsHex(multipartFile.getInputStream());
-//    }
-
 
 
     public static boolean clearExif (Path filePath, String extension) {

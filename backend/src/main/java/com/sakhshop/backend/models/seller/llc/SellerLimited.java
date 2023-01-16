@@ -212,10 +212,6 @@ public class SellerLimited implements Serializable {
     private NotActivatedSellerLimited notActivatedSellerLimited;
 
 
-
-    public SellerLimited() {
-    }
-
     public Long getId() {
         return id;
     }

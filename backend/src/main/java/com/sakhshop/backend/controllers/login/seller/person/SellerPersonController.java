@@ -1,7 +1,6 @@
 package com.sakhshop.backend.controllers.login.seller.person;
 
 import com.sakhshop.backend.models.payload.request.seller.person.LoginSellerPersonRequest;
-import com.sakhshop.backend.models.payload.response.JwtResponse;
 import com.sakhshop.backend.models.payload.response.MessageResponse;
 import com.sakhshop.backend.security.jwt.JwtUtils;
 import com.sakhshop.backend.service.cache.LoginAttemptService;

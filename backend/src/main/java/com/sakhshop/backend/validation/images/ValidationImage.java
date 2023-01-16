@@ -1,12 +1,12 @@
-package com.sakhshop.backend.validation.ValidationImges;
+package com.sakhshop.backend.validation.images;
 
-import com.sakhshop.backend.validation.ValidationImges.component.Result;
+import com.sakhshop.backend.validation.images.component.Result;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static com.sakhshop.backend.validation.ValidationImges.component.ImageScanner.scan;
+import static com.sakhshop.backend.validation.images.component.ImageScanner.scan;
 
 public class ValidationImage {
 

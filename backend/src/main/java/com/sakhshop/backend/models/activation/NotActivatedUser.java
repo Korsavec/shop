@@ -28,8 +28,6 @@ public class NotActivatedUser {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public NotActivatedUser() {
-    }
 
     public Long getId() {
         return id;

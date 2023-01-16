@@ -2,7 +2,10 @@ package com.sakhshop.backend.security;
 
 public class HttpPath {
 
-    public static final String[] API_USER = {
+    private HttpPath() {
+    }
+
+    protected static final String[] API_USER = {
             "/api/auth/registrationUser", //
             "/api/auth/confirmEmailUser", //
             "/api/auth/resetPasswordUser",
@@ -10,11 +13,14 @@ public class HttpPath {
             "/api/auth/newPasswordUser", //
             "/api/auth/loginUser", //
     };
+
+
     public static final String API_SINGLETON_LOGIN_USER_PATH = "/api/auth/loginUser";
     public static final String API_SINGLETON_GUARD_USER_PATH = "/api/AccountGuard/user";
-    public static final String API_SINGLETON_LOGIN_SELLER_PERSON_PATH = "/api/auth/loginSellerPerson";
 
-    public static final String[] API_SELLER_PERSON = {
+//    public static final String API_SINGLETON_LOGIN_SELLER_PERSON_PATH = "/api/auth/loginSellerPerson"
+
+    protected static final String[] API_SELLER_PERSON = {
             "/api/auth/registrationSellerPerson", //
             "/api/auth/confirmEmailSellerPerson", //
             "/api/auth/resetPasswordSellerPerson", //
@@ -23,27 +29,27 @@ public class HttpPath {
             "/api/auth/loginSellerPerson", //
     };
 
-    public static final String[] API_GENERAL_PERSON = {
+    protected static final String[] API_GENERAL_PERSON = {
             "/api/auth/registrationSeller", // Общий для seller
     };
-    public static final String[] API_GENERAL = {
+    protected static final String[] API_GENERAL = {
             "/api/checkShopNameRegistrationSellerPersonRequest",
     };
 
-    public static final String[] API_ACCOUNT_GUARD_USER = {
+    protected static final String[] API_ACCOUNT_GUARD_USER = {
             "/api/AccountGuard/user",
     };
 
-    public static final String[] API_ACCOUNT_GUARD_PERSON = {
+    protected static final String[] API_ACCOUNT_GUARD_PERSON = {
             "/api/AccountGuard/seller",
     };
 
 
-    public static final String[] API_ALL = {
+    protected static final String[] API_ALL = {
             "/api/all"
     };
 
-    public static final String[] API_PASSPORT = {
+    protected static final String[] API_PASSPORT = {
             "/resources/ResourcesGuard/passport/image/**"
     };
 

@@ -16,8 +16,6 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
-//public class JwtAuthenticationEntryPoint extends Http403ForbiddenEntryPoint {
-
 
   @Override
   public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
