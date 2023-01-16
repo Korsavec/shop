@@ -189,8 +189,6 @@ public class SellerLimited implements Serializable {
     @Column(name = "ip_address_first_entrance", length = 39)
     private String ipAddressFirstEntrance;
 
-    // TODO необходимо реализовать, чтобы сохранять IP адрес последнего входа
-    // Это ip адрес с которого был осуществлён последний вход в учётную запись пользователя
     @Column(name = "ip_address_last_entrance", length = 39)
     private String ipAddressLastEntrance;
 

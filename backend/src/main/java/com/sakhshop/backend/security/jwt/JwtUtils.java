@@ -54,7 +54,7 @@ public class JwtUtils {
     try {
       return Jwts.builder()
               .setHeaderParam("typ","JWT")
-              .claim("email", userPrincipal.getEmail())
+              .claim("email", userPrincipal.getUsername())
               .claim("roles", roleList)
               .claim("isEnabled", userPrincipal.isEnabled())
               .claim("isAccountNonLocked", userPrincipal.isAccountNonLocked())

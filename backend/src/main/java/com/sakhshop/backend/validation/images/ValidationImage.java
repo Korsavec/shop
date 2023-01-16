@@ -10,6 +10,9 @@ import static com.sakhshop.backend.validation.images.component.ImageScanner.scan
 
 public class ValidationImage {
 
+    private ValidationImage() {
+    }
+
     public static boolean checkingImage (Path filePath, String extension) {
 
         try {

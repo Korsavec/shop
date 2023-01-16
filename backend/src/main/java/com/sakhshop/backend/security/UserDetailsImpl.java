@@ -108,9 +108,6 @@ public class UserDetailsImpl implements UserDetails, Serializable {
     return id;
   }
 
-  public String getEmail() {
-    return email;
-  }
 
   public void setEmail(String email) {
     this.email = email;
@@ -128,7 +125,7 @@ public class UserDetailsImpl implements UserDetails, Serializable {
     if (isAccountNonLocked() != that.isAccountNonLocked()) return false;
     if (isEnabled() != that.isEnabled()) return false;
     if (!getId().equals(that.getId())) return false;
-    if (!getEmail().equals(that.getEmail())) return false;
+    if (!email.equals(that.email)) return false;
     if (!getPassword().equals(that.getPassword())) return false;
     return getAuthorities().equals(that.getAuthorities());
   }
@@ -136,7 +133,7 @@ public class UserDetailsImpl implements UserDetails, Serializable {
   @Override
   public int hashCode() {
     int result = getId().hashCode();
-    result = 31 * result + getEmail().hashCode();
+    result = 31 * result + email.hashCode();
     result = 31 * result + getPassword().hashCode();
     result = 31 * result + (isAccountNonLocked() ? 1 : 0);
     result = 31 * result + (isEnabled() ? 1 : 0);
