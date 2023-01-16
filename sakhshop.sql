@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Янв 15 2023 г., 10:27
+-- Время создания: Янв 16 2023 г., 16:13
 -- Версия сервера: 8.0.29
 -- Версия PHP: 8.1.11
 
@@ -54,17 +54,6 @@ CREATE TABLE `join_a_seller_person_and_role_seller_person` (
   `role_seller_person_id` bigint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
---
--- Дамп данных таблицы `join_a_seller_person_and_role_seller_person`
---
-
-INSERT INTO `join_a_seller_person_and_role_seller_person` (`seller_person_id`, `role_seller_person_id`) VALUES
-(1, 1),
-(2, 1),
-(3, 1),
-(4, 1),
-(5, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -75,17 +64,6 @@ CREATE TABLE `join_a_user_and_role_user` (
   `user_id` bigint NOT NULL,
   `role_users_id` bigint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Дамп данных таблицы `join_a_user_and_role_user`
---
-
-INSERT INTO `join_a_user_and_role_user` (`user_id`, `role_users_id`) VALUES
-(12, 1),
-(13, 1),
-(14, 1),
-(15, 1),
-(16, 1);
 
 -- --------------------------------------------------------
 
@@ -299,17 +277,6 @@ CREATE TABLE `model_seller_person` (
   `username` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
---
--- Дамп данных таблицы `model_seller_person`
---
-
-INSERT INTO `model_seller_person` (`id`, `account_non_locked`, `apartment`, `approval`, `balance`, `bank_account`, `bank_name`, `beak_bank`, `building`, `city`, `correspondent_account`, `date_birth`, `date_created_seller_person`, `email`, `enabled`, `house`, `img_passport`, `inn`, `inn_bank`, `ip_address_first_entrance`, `ip_address_last_entrance`, `ip_address_reg_confirm`, `ip_address_registration`, `kpp_bank`, `middle_name`, `name`, `number_passport`, `password`, `phone`, `region`, `shop_name`, `street`, `surname`, `token`, `username`) VALUES
-(1, b'1', 3, b'0', '0.00', '44444444444444444444', 'ыыы', 444444444, '33', 'ыыы', '44444444444444444444', '2022-10-14', '2022-10-25 05:41:32.212849', 'aaaaa@aaa.aaa', b'1', '33', '2/67/5d/83/2675d8313f61f97ec4bbf580d228b4bd.jpg', 444444444444, 4444444444, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', 444444444, 'кк', 'кк', 4444444444, '$2a$10$eCxOF8lh.Zp5D9jCnCCHz.qV/fF0BDFvFnbVgFuAwZFOCwKuM68gG', 4444444444, 'Сахалин', 'ыыы', 'ыы', 'ввв', NULL, NULL),
-(2, b'1', 3, b'0', '0.00', '11111111111111111111', 'ыы', 111111111, '3', 'кк', '11111111111111111111', '2022-10-06', '2022-10-25 13:52:03.622850', 'rrr@fggg.gg', b'1', '33', '6/a1/f9/32/6a1f9328999669f2521c529cad4df452.jpg', 111111111111, 1111111111, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', 111111111, 'вв', 'вв', 1111111111, '$2a$10$ZJwEzRw5juE2r1GPdcABqugHEvQEOptM.ff8cinzE/t9.R42G66We', 1111111111, 'Сахалин', 'ааа', 'кк', 'вв', NULL, NULL),
-(3, b'1', 5, b'0', '0.00', '77777777777777777777', 'аа', 777777777, '5', 'пп', '77777777777777777777', '2022-10-13', '2022-10-25 14:29:12.273352', 'gfdfg@fsdfs.fsdf', b'1', '45', '9/77/ac/55/977ac55799d33d9fe51a6fa36c609205.jpg', 777777777777, 7777777777, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', 777777777, 'аа', 'аа', 7777777777, '$2a$10$QE0/Z9/w103LAl7hArk66O0KSgtTaIiBjCtkxK4Ih4hfT3gDX1AV2', 7777777777, 'Сахалин', 'рап', 'пп', 'пп', NULL, NULL),
-(4, b'1', 2, b'0', '0.00', '88888888888888888888', 'орп', 888888888, '65', 'фыфы', '88888888888888888888', '2023-01-12', '2023-01-07 15:19:43.721026', 'ff@ff.ff', b'1', '44', 'e/cf/e6/ea/ecfe6ea6870b51f10799231b8c51c72e.jpg', 888888888888, 8888888888, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', 888888888, 'ф', 'ф', 8888888888, '$2a$10$BD1vTNROkWr60H28Yd.0w.KN8rMIP52ulRy3v/pn.HJ5WqpdzVWAW', 8888888888, 'Сахалин', 'ыыыывваафф', 'фыфы', 'ф', NULL, NULL),
-(5, b'1', 4, b'0', '0.00', '67876345566787634556', 'екекекуе', 678763455, '4', 'пвап', '67876345566787634556', '2023-01-13', '2023-01-07 15:36:34.284253', 'ffw@fwf.ffw', b'1', '4', '8/5e/68/7b/85e687b83e0f07c100267c0cab60c017.jpg', 678763455667, 6787634556, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', 678763455, 'вап', 'павп', 6787634556, '$2a$10$ErpqMwKRmIU8.SJXwgoP8.3ci6xq2f1vkw80c2VeHEzE1t4Di7bqm', 6787634556, 'Сахалин', 'екнкен', 'вап', 'аыва', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -335,17 +302,6 @@ CREATE TABLE `model_users` (
   `token` varchar(45) DEFAULT NULL,
   `username` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Дамп данных таблицы `model_users`
---
-
-INSERT INTO `model_users` (`id`, `account_non_locked`, `date_birth`, `date_created_user`, `email`, `enabled`, `ip_address_first_entrance`, `ip_address_last_entrance`, `ip_address_reg_confirm`, `ip_address_registration`, `middle_name`, `name`, `password`, `phone`, `surname`, `token`, `username`) VALUES
-(12, b'1', NULL, '2023-01-07 11:00:30.918937', 'ddd@ddd.dd', b'1', NULL, NULL, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', NULL, NULL, '$2a$10$ZmMCcp/PSssk.crNJ494IeHYXBvN./XHJ5DPKpUkaLCHe6XcMp88S', NULL, NULL, NULL, NULL),
-(13, b'1', NULL, '2023-01-07 12:12:24.474093', 'qqq@qqqq.qq', b'1', NULL, NULL, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', NULL, NULL, '$2a$10$xVjQzV6sBUjVsh8NT0S0weWpogHIuIoH9YvN42185XUQSv.piF3qq', NULL, NULL, NULL, NULL),
-(14, b'1', NULL, '2023-01-07 12:16:41.804064', 'eee@eee.ee', b'1', NULL, NULL, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', NULL, NULL, '$2a$10$zzhmqvjmd5.bt9HlGEHSNecAnrsUjXFA99yHazNI5IJdSnkLZo8PG', NULL, NULL, NULL, NULL),
-(15, b'1', NULL, '2023-01-07 12:22:01.572887', 'wwww@www.ww', b'1', NULL, NULL, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', NULL, NULL, '$2a$10$92o1F3ewigiDRj6t9t4Z2OpR7eY3GrTMSTAFE6D9MYXmlLd4Cp8FS', NULL, NULL, NULL, NULL),
-(16, b'1', NULL, '2023-01-14 17:03:50.634439', 'yuhnfd@gsd.hjh', b'1', NULL, NULL, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', NULL, NULL, '$2a$10$2VVcrMgvziUbDR8F7dOG1egmzr81yJtCzVevV4LDKxR6j1hCKiXVq', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -386,14 +342,6 @@ CREATE TABLE `not_activated_seller_person` (
   `seller_person_id` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
---
--- Дамп данных таблицы `not_activated_seller_person`
---
-
-INSERT INTO `not_activated_seller_person` (`id`, `active`, `date_deletion_seller_person`, `seller_person_id`) VALUES
-(4, b'1', '2023-01-08 15:19:43.721026', 4),
-(5, b'1', '2023-01-08 15:36:34.284253', 5);
-
 -- --------------------------------------------------------
 
 --
@@ -406,13 +354,6 @@ CREATE TABLE `not_activated_user` (
   `date_deletion_user` datetime(6) DEFAULT NULL,
   `user_id` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Дамп данных таблицы `not_activated_user`
---
-
-INSERT INTO `not_activated_user` (`id`, `active`, `date_deletion_user`, `user_id`) VALUES
-(16, b'1', '2023-01-15 17:03:50.634439', 16);
 
 -- --------------------------------------------------------
 
@@ -552,7 +493,7 @@ CREATE TABLE `seq_a_seller_person` (
 --
 
 INSERT INTO `seq_a_seller_person` (`next_val`) VALUES
-(6);
+(15);
 
 -- --------------------------------------------------------
 
@@ -569,7 +510,7 @@ CREATE TABLE `seq_a_user` (
 --
 
 INSERT INTO `seq_a_user` (`next_val`) VALUES
-(17);
+(36);
 
 -- --------------------------------------------------------
 
@@ -620,7 +561,7 @@ CREATE TABLE `seq_not_activated_seller_person` (
 --
 
 INSERT INTO `seq_not_activated_seller_person` (`next_val`) VALUES
-(6);
+(15);
 
 -- --------------------------------------------------------
 
@@ -637,7 +578,7 @@ CREATE TABLE `seq_not_activated_user` (
 --
 
 INSERT INTO `seq_not_activated_user` (`next_val`) VALUES
-(17);
+(31);
 
 -- --------------------------------------------------------
 

@@ -6,17 +6,12 @@ import com.sakhshop.backend.service.jpa.ServiceJpa;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class SchedulerNotActivatedSellerIndividual implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 277232319713313016L;
+public class SchedulerNotActivatedSellerIndividual {
 
     private final
     ServiceJpa serviceJpa;

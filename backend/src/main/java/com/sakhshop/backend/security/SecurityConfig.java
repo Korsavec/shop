@@ -15,9 +15,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 import static com.sakhshop.backend.security.HttpPath.*;
 
 @Configuration
@@ -26,10 +23,7 @@ import static com.sakhshop.backend.security.HttpPath.*;
     // securedEnabled = true,
     // jsr250Enabled = true,
     prePostEnabled = true)
-public class SecurityConfig implements Serializable {
-
-  @Serial
-  private static final long serialVersionUID = 6230554409309669463L;
+public class SecurityConfig {
 
   private final
   UserDetailsServiceImpl userDetailsService;

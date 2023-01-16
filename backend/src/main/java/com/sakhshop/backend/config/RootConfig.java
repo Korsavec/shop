@@ -12,20 +12,14 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
 
 @Configuration
 @EnableScheduling
-public class RootConfig implements Serializable, WebMvcConfigurer {
-
-    @Serial
-    private static final long serialVersionUID = 394622033088904869L;
+public class RootConfig implements WebMvcConfigurer {
 
     private static final String HTTP_HEADERS = "Access-Control-Allow-Origin";
-
 
     @Value("${sakhshop.app.origins.host}")
     private String originHost;

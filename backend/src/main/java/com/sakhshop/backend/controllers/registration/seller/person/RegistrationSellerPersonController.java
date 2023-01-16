@@ -21,8 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Serial;
-import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -42,10 +40,7 @@ import static java.nio.file.Paths.get;
 
 @RestController
 @RequestMapping("/api/auth")
-public class RegistrationSellerPersonController implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 2980093464421407340L;
+public class RegistrationSellerPersonController {
 
     private final
     ValidationRegExp validationRegExp;

@@ -479,7 +479,8 @@ export class RegistrationSellerComponent implements OnInit {
     return this.loginForm.controls['p_kpp_bank'];
   }
 
-  // Сверяем два пароля на одинаковость и проверяем поле p_shop_name для кнопки "Проверить".
+  // Сверяем два пароля на одинаковость.
+  // Сверяем два пароля на одинаковость.
   public matchPassword(p_email1: any, p_email2: any, p_password1: any, p_password2: any, p_shop_name: any): ValidatorFn {
 
     return (control: AbstractControl): ValidationErrors | null => {
@@ -487,7 +488,6 @@ export class RegistrationSellerComponent implements OnInit {
       let shopNameLength = control.get(p_shop_name)?.value;
 
       this.disabledButton = !(shopNameLength.length > 2 && this.validateService.shopName(shopNameLength));
-
 
       if (this.editMail) {
         let mailOne = control.get(p_email1)?.value;
@@ -636,7 +636,11 @@ export class RegistrationSellerComponent implements OnInit {
 
   checkShopName(shopName: string) {
 
+
+
+
     if (this.p_shop_name.status !== 'INVALID') {
+
       // В этот блок идём если всё хорошо
 
       this.showShopNameChecked = true;
@@ -668,6 +672,7 @@ export class RegistrationSellerComponent implements OnInit {
         })
 
       }, 3000)
+
 
     }
 

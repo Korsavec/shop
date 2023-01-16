@@ -24,18 +24,13 @@ import com.sakhshop.backend.repository.role.RoleUserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
-public class ServiceJpaImpl implements Serializable, ServiceJpa {
+public class ServiceJpaImpl implements ServiceJpa {
 
-
-    @Serial
-    private static final long serialVersionUID = 1983548638084137328L;
 
     private final
     UserRepository userRepository;

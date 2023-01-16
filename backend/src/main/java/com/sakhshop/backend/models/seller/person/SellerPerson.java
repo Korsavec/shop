@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -17,9 +16,6 @@ import java.util.Set;
 @Entity
 @Table(name = "model_seller_person")
 public class SellerPerson implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = -1878097864951107138L;
 
     // Это ID пользователя
     @Id

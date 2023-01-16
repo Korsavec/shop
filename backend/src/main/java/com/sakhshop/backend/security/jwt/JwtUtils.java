@@ -12,8 +12,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
 import java.io.IOException;
-import java.io.Serial;
-import java.io.Serializable;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
@@ -24,10 +22,7 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.*;
 
 @Component
-public class JwtUtils implements Serializable {
-
-  @Serial
-  private static final long serialVersionUID = 183238452388731690L;
+public class JwtUtils {
 
   @Value("${sakhshop.app.jwtExpirationMsOneHour}")
   private int jwtExpirationMsOneHour;
@@ -35,6 +30,9 @@ public class JwtUtils implements Serializable {
   @Value("${sakhshop.app.jwtExpirationMsEightHours}")
   private int jwtExpirationMsEightHours;
 
+
+  public JwtUtils() {
+  }
 
   private int rememberMe (boolean x) {
 

@@ -20,12 +20,11 @@ export class ValidateService {
 
   }
 
-  shopName(token:string): boolean {
+  shopName(shopName:string): boolean {
     const pattern = /^[0-9а-яА-Я]+$/g;
-    return pattern.test(token);
+    return pattern.test(shopName);
 
   }
-
 
 
   patternOnlyLettersNumbersHyphenSlash(): string {

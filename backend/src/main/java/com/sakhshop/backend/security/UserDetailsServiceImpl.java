@@ -10,18 +10,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 import static com.sakhshop.backend.security.HttpPath.API_SINGLETON_GUARD_USER_PATH;
 import static com.sakhshop.backend.security.HttpPath.API_SINGLETON_LOGIN_USER_PATH;
 
 @Transactional
 @Service
-public class UserDetailsServiceImpl implements Serializable, UserDetailsService {
-
-  @Serial
-  private static final long serialVersionUID = -3588662209041923365L;
+public class UserDetailsServiceImpl implements UserDetailsService {
 
   private final
   ServiceJpa serviceJpa;

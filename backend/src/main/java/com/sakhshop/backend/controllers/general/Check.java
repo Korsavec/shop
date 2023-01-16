@@ -11,16 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 @RestController
 @RequestMapping("/api")
-public class Check implements Serializable {
+public class Check {
 
-
-    @Serial
-    private static final long serialVersionUID = 3714706232928833368L;
 
     private final
     ValidationRegExp validationRegExp;

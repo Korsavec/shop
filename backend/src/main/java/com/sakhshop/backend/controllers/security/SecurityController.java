@@ -6,15 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 @RestController
 @RequestMapping("/api/AccountGuard")
-public class SecurityController implements Serializable {
-
-  @Serial
-  private static final long serialVersionUID = -836681115115289669L;
+public class SecurityController {
 
   @GetMapping("/all")
   public String allAccess() {

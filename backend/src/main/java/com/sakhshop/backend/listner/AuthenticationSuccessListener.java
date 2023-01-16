@@ -6,14 +6,8 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.stereotype.Component;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 @Component
-public class AuthenticationSuccessListener implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = -7375381351881182694L;
+public class AuthenticationSuccessListener {
 
     private final
     LoginAttemptService loginAttemptService;

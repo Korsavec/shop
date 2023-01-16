@@ -10,17 +10,14 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.Date;
 
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 
 @Component
-public class JwtAuthenticationEntryPoint implements Serializable, AuthenticationEntryPoint {
+public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
+//public class JwtAuthenticationEntryPoint extends Http403ForbiddenEntryPoint {
 
-  @Serial
-  private static final long serialVersionUID = -5383101233587821186L;
 
   @Override
   public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)

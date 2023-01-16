@@ -6,19 +6,14 @@ import com.google.common.cache.LoadingCache;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
-public class RegistrationAttemptService implements Serializable {
+public class RegistrationAttemptService {
 
     private static final int MAX_ATTEMPT = 3;
-    @Serial
-    private static final long serialVersionUID = -6293213373157616266L;
-
 
     private final LoadingCache<String, Integer> attemptsCache;
 

@@ -12,10 +12,7 @@ import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Handler implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 4753019681189432126L;
+public class Handler {
 
     private Handler() {
     }

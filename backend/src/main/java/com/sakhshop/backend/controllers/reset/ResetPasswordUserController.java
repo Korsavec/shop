@@ -18,16 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/auth")
-public class ResetPasswordUserController implements Serializable {
-
-  @Serial
-  private static final long serialVersionUID = -8695814492489882823L;
+public class ResetPasswordUserController {
 
   @Value("${sakhshop.backend.app.site.domain}")
   String siteDomain;

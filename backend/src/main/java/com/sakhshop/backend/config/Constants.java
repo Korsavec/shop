@@ -1,12 +1,6 @@
 package com.sakhshop.backend.config;
 
-import java.io.Serial;
-import java.io.Serializable;
-
-public class Constants implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 3861748943736002800L;
+public class Constants {
 
     private Constants() {
     }

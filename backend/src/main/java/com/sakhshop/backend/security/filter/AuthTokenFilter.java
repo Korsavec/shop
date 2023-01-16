@@ -15,14 +15,10 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+
 import java.io.IOException;
-import java.io.Serial;
-import java.io.Serializable;
 
-public class AuthTokenFilter extends OncePerRequestFilter implements Serializable {
-
-  @Serial
-  private static final long serialVersionUID = -832736735224971668L;
+public class AuthTokenFilter extends OncePerRequestFilter {
 
   @Autowired
   private JwtUtils jwtUtils;

@@ -11,6 +11,8 @@ export class GeneralStoreService {
 
   jwtHelper = new JwtHelperService();
 
+  constructor() { }
+
 
   public isTokenExpired(typeToken: string): boolean {
 

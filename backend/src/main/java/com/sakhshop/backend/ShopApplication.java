@@ -4,16 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.File;
-import java.io.Serial;
-import java.io.Serializable;
 
 import static com.sakhshop.backend.config.Constants.*;
 
 @SpringBootApplication
-public class ShopApplication implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 5030792938908422399L;
+public class ShopApplication {
 
     public static void main(String[] args) {
 

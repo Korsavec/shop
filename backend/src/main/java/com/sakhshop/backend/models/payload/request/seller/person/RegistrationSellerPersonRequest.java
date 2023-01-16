@@ -8,7 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import java.time.LocalDate;
 
-public record RegistrationSellerPersonRequest (
+public record RegistrationSellerPersonRequest(
         Long phone
         , String email
         , String password

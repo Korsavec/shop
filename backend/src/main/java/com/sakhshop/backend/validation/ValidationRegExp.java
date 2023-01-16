@@ -2,16 +2,11 @@ package com.sakhshop.backend.validation;
 
 import org.springframework.stereotype.Service;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class ValidationRegExp implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = -4233832520556871868L;
+public class ValidationRegExp {
 
     private static final Pattern onlyLetters = Pattern.compile("^[a-zA-Z]+$");
     private static final Pattern onlyLettersCyrillic = Pattern.compile("^[а-яА-я]+$");
@@ -30,6 +25,10 @@ public class ValidationRegExp implements Serializable {
 
     //Pattern RegExp для проверки token-а
     private final static Pattern patternTokenConfirm = Pattern.compile("^([a-z0-9]{8})-([a-z0-9]{4})-([a-z0-9]{4})-([a-z0-9]{4})-([a-z0-9]{12})$");
+
+
+
+
 
     public boolean onlyNumbersRegExp(String phone) {
 

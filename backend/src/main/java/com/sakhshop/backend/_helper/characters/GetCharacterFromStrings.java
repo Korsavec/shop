@@ -1,14 +1,9 @@
 package com.sakhshop.backend._helper.characters;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetCharacterFromStrings implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = -525178239530102579L;
+public class GetCharacterFromStrings {
 
     private GetCharacterFromStrings() {
     }

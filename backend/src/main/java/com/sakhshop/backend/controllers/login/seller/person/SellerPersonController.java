@@ -1,6 +1,7 @@
 package com.sakhshop.backend.controllers.login.seller.person;
 
 import com.sakhshop.backend.models.payload.request.seller.person.LoginSellerPersonRequest;
+import com.sakhshop.backend.models.payload.response.JwtResponse;
 import com.sakhshop.backend.models.payload.response.MessageResponse;
 import com.sakhshop.backend.security.jwt.JwtUtils;
 import com.sakhshop.backend.service.cache.LoginAttemptService;
@@ -16,15 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 @RestController
 @RequestMapping("/api/auth")
-public class SellerPersonController implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 2952390940916233222L;
+public class SellerPersonController {
 
     private final
     AuthenticationManager authenticationManager;

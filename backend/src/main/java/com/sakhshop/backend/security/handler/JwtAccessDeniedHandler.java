@@ -10,17 +10,12 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.Date;
 
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @Component
-public class JwtAccessDeniedHandler implements Serializable, AccessDeniedHandler {
-
-    @Serial
-    private static final long serialVersionUID = -5109241232986793779L;
+public class JwtAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException {

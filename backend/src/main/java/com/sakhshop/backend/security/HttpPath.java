@@ -1,12 +1,6 @@
 package com.sakhshop.backend.security;
 
-import java.io.Serial;
-import java.io.Serializable;
-
-public class HttpPath implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 6699706956241530459L;
+public class HttpPath {
 
     public static final String[] API_USER = {
             "/api/auth/registrationUser", //
@@ -52,4 +46,6 @@ public class HttpPath implements Serializable {
     public static final String[] API_PASSPORT = {
             "/resources/ResourcesGuard/passport/image/**"
     };
+
+
 }

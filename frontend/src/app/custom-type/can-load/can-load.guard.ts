@@ -6,11 +6,9 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class CanLoadGuard implements CanMatch {
-
   canMatch(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return true;
   }
-
 }

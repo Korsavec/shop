@@ -3,16 +3,11 @@ package com.sakhshop.backend.models.activation;
 import com.sakhshop.backend.models.seller.llc.SellerLimited;
 import jakarta.persistence.*;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
 @Table(name = "not_activated_seller_limited")
-public class NotActivatedSellerLimited implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 3312280629316152441L;
+public class NotActivatedSellerLimited {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_not_activated_seller_limited")
@@ -33,6 +28,9 @@ public class NotActivatedSellerLimited implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seller_limited_id")
     private SellerLimited sellerLimited;
+
+    public NotActivatedSellerLimited() {
+    }
 
     public Long getId() {
         return id;

@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.LinkedHashSet;
@@ -31,10 +29,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/auth")
-public class RegistrationUserController implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = -5125661840265439724L;
+public class RegistrationUserController {
 
     private final
     SendEmail sendEmail;

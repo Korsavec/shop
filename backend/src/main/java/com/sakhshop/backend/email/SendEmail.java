@@ -5,14 +5,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 @Service
-public class SendEmail implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = -4801197763130975500L;
+public class SendEmail {
 
     @Value("${sakhshop.backend.app.site.domain}")
     String siteDomain;

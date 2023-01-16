@@ -20,9 +20,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+
 import java.io.IOException;
-import java.io.Serial;
-import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.Objects;
@@ -30,10 +29,7 @@ import java.util.Objects;
 import static org.springframework.http.HttpStatus.*;
 
 @RestControllerAdvice
-public class ExceptionHandling implements Serializable, ErrorController {
-
-    @Serial
-    private static final long serialVersionUID = -3161149653552502805L;
+public class ExceptionHandling implements ErrorController {
 
     private ResponseEntity<HttpResponse> createHttpResponse(HttpStatus httpStatus, String message) {
         return new ResponseEntity<>(new HttpResponse(new Date(), httpStatus.value(), httpStatus,

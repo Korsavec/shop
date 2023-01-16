@@ -6,18 +6,13 @@ import com.sakhshop.backend.models.seller.person.SellerPerson;
 import com.sakhshop.backend.models.user.User;
 import jakarta.persistence.*;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "model_product")
-public class Product implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = -6498565813498790536L;
+public class Product {
 
     // Это ID товара
     @Id
@@ -170,6 +165,12 @@ public class Product implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "seller_limiteds_id", referencedColumnName = "id"))
     private Set<SellerLimited> sellerLimiteds = new LinkedHashSet<>();
 
+
+
+
+
+    public Product() {
+    }
 
 
     public Long getId() {
