@@ -17,6 +17,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
 
+import static com.sakhshop.backend.config.Constants.*;
+
 public class CompressionImage {
 
     private CompressionImage() {
@@ -30,11 +32,11 @@ public class CompressionImage {
 
 
 
-        Path sourcePath = Paths.get(paths + "/" + fileNameTmp + "." + extension);
+        Path sourcePath = Paths.get(paths + SLASH + fileNameTmp + "." + extension);
 
-        String outputPath = paths + "/" + fileNameTmp + ".jpg";
+        String outputPath = paths + SLASH + fileNameTmp + DOT + EXTENSION_JPG;
 
-        if (extension.equals("png")) {
+        if (extension.equals(EXTENSION_PNG)) {
 
             ///////////// Конвертируем изображение png в jpg
 
@@ -63,7 +65,7 @@ public class CompressionImage {
 
             // Сохраняем изображение
             try {
-                ImageIO.write(newBufferedImage, "jpg", target.toFile());
+                ImageIO.write(newBufferedImage, EXTENSION_JPG, target.toFile());
 
 
                 Files.deleteIfExists(sourcePath);
@@ -93,8 +95,7 @@ public class CompressionImage {
 
         try(OutputStream os = new FileOutputStream(compressedImageFile); ImageOutputStream ios = ImageIO.createImageOutputStream(os)) {
 
-            try {
-                Iterator<ImageWriter> writers =  ImageIO.getImageWritersByFormatName("jpg");
+                Iterator<ImageWriter> writers =  ImageIO.getImageWritersByFormatName(EXTENSION_JPG);
                 ImageWriter writer = writers.next();
 
                 writer.setOutput(ios);
@@ -108,10 +109,6 @@ public class CompressionImage {
                 writer.dispose();
 
                 return true;
-
-            } catch (IOException e) {
-                return false;
-            }
 
         } catch (IOException e) {
             return false;
