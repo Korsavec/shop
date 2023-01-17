@@ -32,11 +32,6 @@ public class RegistrationAttemptService {
     }
 
 
-    public void deleteCache(final String key) {
-
-        attemptsCache.invalidate(key);
-    }
-
     public void addCache(final String key) {
 
         AtomicInteger attempts = new AtomicInteger();

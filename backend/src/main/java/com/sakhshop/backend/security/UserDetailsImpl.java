@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails, Serializable {
 
@@ -36,9 +35,8 @@ public class UserDetailsImpl implements UserDetails, Serializable {
 
   public static UserDetailsImpl build(User user) {
 
-    List<GrantedAuthority> authorities = user.getRoleUsers().stream()
-            .map(role -> new SimpleGrantedAuthority(role.getRoleEnum().name()))
-            .collect(Collectors.toList());
+    List<SimpleGrantedAuthority> authorities = user.getRoleUsers().stream()
+            .map(role -> new SimpleGrantedAuthority(role.getRoleEnum().name())).toList();
 
     return new UserDetailsImpl(
             user.getId(),
@@ -52,9 +50,8 @@ public class UserDetailsImpl implements UserDetails, Serializable {
 
   public static UserDetailsImpl build(SellerPerson sellerPerson) {
 
-    List<GrantedAuthority> authorities = sellerPerson.getRoleSellerPersons().stream()
-            .map(role -> new SimpleGrantedAuthority(role.getRoleEnum().name()))
-            .collect(Collectors.toList());
+    List<SimpleGrantedAuthority> authorities = sellerPerson.getRoleSellerPersons().stream()
+            .map(role -> new SimpleGrantedAuthority(role.getRoleEnum().name())).toList();
 
     return new UserDetailsImpl(
             sellerPerson.getId(),

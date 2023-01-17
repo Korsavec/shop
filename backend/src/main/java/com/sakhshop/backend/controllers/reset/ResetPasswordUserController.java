@@ -65,7 +65,7 @@ public class ResetPasswordUserController {
             && resetUserRequest.email().length() <= 58
             && !validationRegExp.emailValidationRegExp(resetUserRequest.email())
             && !limitLogin.isBlocked(request.getRemoteAddr())
-            && serviceJpa.existsByEmailUser(resetUserRequest.email())) {
+            && Boolean.TRUE.equals(serviceJpa.existsByEmailUser(resetUserRequest.email()))) {
 
       // Создаём token для ссылки
       String token = UUID.randomUUID().toString();
