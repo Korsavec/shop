@@ -33,8 +33,7 @@ import java.util.*;
 import static com.sakhshop.backend._helper.Handler.generateFileName;
 import static com.sakhshop.backend._helper.Handler.getExtension;
 import static com.sakhshop.backend._helper.characters.GetCharacterFromStrings.charList;
-import static com.sakhshop.backend.config.Constants.FILE_SYSTEM_PATH_RESOURCES_PASSPORT;
-import static com.sakhshop.backend.config.Constants.FILE_SYSTEM_PATH_TMP_PASSPORT;
+import static com.sakhshop.backend.config.Constants.*;
 import static com.sakhshop.backend.service.compression.CompressionImage.compressionAndConversion;
 import static java.nio.file.Paths.get;
 
@@ -68,7 +67,7 @@ public class RegistrationSellerPersonController {
 
 
     @PostMapping(value = "/registrationSellerPerson", consumes = "multipart/form-data", produces = "application/json")
-    public ResponseEntity<?> registerSellerPerson(@RequestParam(value = "image") MultipartFile multipartFile,
+    public ResponseEntity<MessageResponse> registerSellerPerson(@RequestParam(value = "image") MultipartFile multipartFile,
                                                   @RequestParam(value = "registrationSellerPerson") String registrationSellerPersonRequest,
                                                   HttpServletRequest request) throws IOException {
 
@@ -80,14 +79,14 @@ public class RegistrationSellerPersonController {
         String extension = getExtension(Objects.requireNonNull(multipartFile.getContentType()));
 
         if (Objects.equals(extension, "")) {
-            return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), "OK"));
+            return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), STATIC_OK));
         }
 
         // Генерируем случайное временное имя файла
         String temporaryFileTame = UUID.randomUUID().toString();
 
         // Создаём путь к файлу у которого временное имя
-        String pathFileTmp = FILE_SYSTEM_PATH_TMP_PASSPORT + "/" + temporaryFileTame + "." + extension;
+        String pathFileTmp = FILE_SYSTEM_PATH_TMP_PASSPORT + SLASH + temporaryFileTame + DOT + extension;
 
         // Сохраняем этот файл с временным именем
         Path sourcePathFileTmp = get(pathFileTmp);
@@ -103,19 +102,19 @@ public class RegistrationSellerPersonController {
 
         if (!compressed) {
             // Ошибка сжатия файла
-            return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), "OK"));
+            return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), STATIC_OK));
         }
 
 
         // Строим временный путь к файлу jpg.
-        String pathFileTmpJpg = FILE_SYSTEM_PATH_TMP_PASSPORT + "/" + temporaryFileTame + "." + "jpg";
+        String pathFileTmpJpg = FILE_SYSTEM_PATH_TMP_PASSPORT + SLASH + temporaryFileTame + DOT + EXTENSION_JPG;
 
 
         // Генерируем имя (хеша md5) для уже сжатого файла
         String imageNameHash = generateFileName(pathFileTmpJpg);
         if (imageNameHash.equals("")) {
             // Ошибка получения хеша имени
-            return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), "OK"));
+            return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), STATIC_OK));
         }
 
 
@@ -138,7 +137,7 @@ public class RegistrationSellerPersonController {
 
 
 
-        if (fileBeforeCompressTmp1 > 10485760
+        if (Boolean.TRUE.equals(fileBeforeCompressTmp1 > 10485760
                 || fileAfterCompressionTmp1 < 10240
                 || fileBeforeCompressTmp1 < fileAfterCompressionTmp1
 
@@ -224,7 +223,7 @@ public class RegistrationSellerPersonController {
                 || String.valueOf(value.innBank()).length() != 10
                 || validationRegExp.onlyNumbersRegExp(String.valueOf(value.innBank()))
 
-                || String.valueOf(value.kppBank()).length() != 9
+                || String.valueOf(value.kppBank()).length() != 9)
                 || validationRegExp.onlyNumbersRegExp(String.valueOf(value.kppBank()))
 
 
@@ -232,12 +231,12 @@ public class RegistrationSellerPersonController {
 
             // Так как не прошли фильтр/валидацию то, удаляем временный файл и возвращаем "OK"
             Files.deleteIfExists(of);
-            return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), "OK"));
+            return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), STATIC_OK));
 
         }
 
 
-        if (serviceJpa.existsByEmailSellerPerson(value.email())) {
+        if (Boolean.TRUE.equals(serviceJpa.existsByEmailSellerPerson(value.email()))) {
             return new ResponseEntity<>(new MessageResponse(HttpStatus.BAD_REQUEST.value(),
                     "SellerPerson exist"),
                     HttpStatus.BAD_REQUEST);
@@ -245,13 +244,13 @@ public class RegistrationSellerPersonController {
 
 
         // Строим пути для сохранения файла в конечную точку
-        String pathFileEndPointJpg = FILE_SYSTEM_PATH_RESOURCES_PASSPORT + "/" + group3 + "/" + imageNameHash + "." + "jpg";
+        String pathFileEndPointJpg = FILE_SYSTEM_PATH_RESOURCES_PASSPORT + SLASH + group3 + SLASH + imageNameHash + DOT + EXTENSION_JPG;
 
         // Строим конечный путь где должен хранится файл
-        String pathEndPoint = FILE_SYSTEM_PATH_RESOURCES_PASSPORT + "/" + group3;
+        String pathEndPoint = FILE_SYSTEM_PATH_RESOURCES_PASSPORT + SLASH + group3;
 
         // Относительный путь до файла. Для сохранения в БД
-        String distPath = group3 + "/" + imageNameHash + "." + "jpg";
+        String distPath = group3 + SLASH + imageNameHash + DOT + EXTENSION_JPG;
 
         // Это конечная точка назначение файла
         Path path = get(pathFileEndPointJpg);
@@ -261,7 +260,7 @@ public class RegistrationSellerPersonController {
             // Так как конечный файл существует, то, удаляем временный файл и возвращаем "OK"
             Files.deleteIfExists(of);
 
-            return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), "OK"));
+            return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), STATIC_OK));
 
         }
 
@@ -294,8 +293,8 @@ public class RegistrationSellerPersonController {
         }
 
 
-        if (serviceJpa.existsByImgPassport(path.toString())) {
-            return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), "OK"));
+        if (Boolean.TRUE.equals(serviceJpa.existsByImgPassport(path.toString()))) {
+            return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), STATIC_OK));
         }
 
 
@@ -358,7 +357,7 @@ public class RegistrationSellerPersonController {
         sendEmail.confirmEmailSellerPerson(request.getServerName(), sellerPerson.getToken());
 
 
-        return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), "OK"));
+        return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), STATIC_OK));
 
 
     }
@@ -366,13 +365,13 @@ public class RegistrationSellerPersonController {
 
 
     @PostMapping(value = "/confirmEmailSellerPerson", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> confirmEmail(@RequestBody Token token, HttpServletRequest request) {
+    public ResponseEntity<MessageResponse> confirmEmail(@RequestBody Token token, HttpServletRequest request) {
 
         limitLogin.addCache(request.getRemoteAddr());
 
         if (token.token().length() != 36 || validationRegExp.validationTokenRegExp(token.token()) || limitLogin.isBlocked(request.getRemoteAddr())) {
             return new ResponseEntity<>(new MessageResponse(HttpStatus.BAD_REQUEST.value(),
-                    "OK"),
+                    STATIC_OK),
                     HttpStatus.OK);
         }
 
@@ -380,7 +379,7 @@ public class RegistrationSellerPersonController {
 
         if (sellerPerson.getToken() == null || sellerPerson.getToken().isEmpty()) {
             return new ResponseEntity<>(new MessageResponse(HttpStatus.NOT_FOUND.value(),
-                    "OK"),
+                    STATIC_OK),
                     HttpStatus.OK);
         }
 
@@ -397,7 +396,7 @@ public class RegistrationSellerPersonController {
 
         serviceJpa.saveSellerPerson(sellerPerson);
 
-        return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), "OK"));
+        return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), STATIC_OK));
 
     }
 

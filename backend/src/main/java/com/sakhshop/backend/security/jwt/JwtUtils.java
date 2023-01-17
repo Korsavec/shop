@@ -72,7 +72,7 @@ public class JwtUtils {
 
     try {
       return Jwts.parserBuilder().setSigningKey(getPublicKey()).build().parseClaimsJws(jwtString).getBody().get("email").toString();
-    } catch (NoSuchAlgorithmException | InvalidKeySpecException | IOException e) {
+    } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
       throw new RuntimeException(e);
     }
 
@@ -82,7 +82,7 @@ public class JwtUtils {
 
     try {
       return Jwts.parserBuilder().setSigningKey(getPublicKey()).build().parseClaimsJws(jwtString);
-    } catch (NoSuchAlgorithmException | InvalidKeySpecException | IOException e) {
+    } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
       throw new RuntimeException(e);
     }
 
@@ -90,10 +90,9 @@ public class JwtUtils {
 
 
   //  Конвертируем строковый ключ в PublicKey
-  private PublicKey getPublicKey() throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
+  private PublicKey getPublicKey() throws NoSuchAlgorithmException, InvalidKeySpecException {
 
-    String key = getPublicKeyContent("key/public.pem").replaceAll("\\n", "")
-            .replace("-----BEGIN PUBLIC KEY-----", "").replace("-----END PUBLIC KEY-----", "");
+    String key = getKeyContent("key/public.pem");
 
     X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(key));
 
@@ -106,8 +105,7 @@ public class JwtUtils {
   //  Конвертируем строковый ключ в PrivateKey
   private PrivateKey getPrivateKey() throws NoSuchAlgorithmException, InvalidKeySpecException {
 
-    String key = getPrivateKeyContent("key/private.pem").replaceAll("\\n", "")
-            .replace("-----BEGIN PRIVATE KEY-----", "").replace("-----END PRIVATE KEY-----", "");
+    String key = getKeyContent("key/private.pem");
 
     PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(key));
 
@@ -117,19 +115,7 @@ public class JwtUtils {
   }
 
 
-  public static String getPublicKeyContent(String resourcePath) {
-    Objects.requireNonNull(resourcePath);
-    ClassPathResource resource = new ClassPathResource(resourcePath);
-    try {
-      byte[] bytes = FileCopyUtils.copyToByteArray(resource.getInputStream());
-      return new String(bytes);
-    } catch(IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-
-  public static String getPrivateKeyContent(String resourcePath) {
+  public static String getKeyContent(String resourcePath) {
     Objects.requireNonNull(resourcePath);
     ClassPathResource resource = new ClassPathResource(resourcePath);
     try {
