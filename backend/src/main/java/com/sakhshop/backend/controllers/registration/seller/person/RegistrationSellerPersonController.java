@@ -378,9 +378,7 @@ public class RegistrationSellerPersonController {
         SellerPerson sellerPerson = serviceJpa.findSellerPersonByToken(token.token()).orElse(new SellerPerson());
 
         if (sellerPerson.getToken() == null || sellerPerson.getToken().isEmpty()) {
-            return new ResponseEntity<>(new MessageResponse(HttpStatus.NOT_FOUND.value(),
-                    STATIC_OK),
-                    HttpStatus.OK);
+            return customMessageConfirm();
         }
 
         sellerPerson.setIpAddressRegConfirm(request.getRemoteAddr());

@@ -27,6 +27,9 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import static com.sakhshop.backend.config.Constants.STATIC_OK;
+import static com.sakhshop.backend.config.Constants.customMessageConfirm;
+
 @RestController
 @RequestMapping("/api/auth")
 public class RegistrationUserController {
@@ -73,11 +76,11 @@ public class RegistrationUserController {
                 || validationRegExp.passwordValidationRegExp(registrationUserRequest.password())) {
 
             return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),
-                    "OK"),
+                    STATIC_OK),
                     HttpStatus.OK);
         }
 
-        if (serviceJpa.existsByEmailUser(registrationUserRequest.email())) {
+        if (Boolean.TRUE.equals(serviceJpa.existsByEmailUser(registrationUserRequest.email()))) {
 
             return new ResponseEntity<>(new MessageResponse(HttpStatus.BAD_REQUEST.value(),
                     "User exist"),
@@ -116,7 +119,7 @@ public class RegistrationUserController {
         // Отправляем письмо пользователю
         sendEmail.confirmEmailUser(request.getServerName(), user.getToken());
 
-        return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), "OK"));
+        return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), STATIC_OK));
 
     }
 
@@ -128,16 +131,14 @@ public class RegistrationUserController {
 
         if (token.token().length() != 36 || validationRegExp.validationTokenRegExp(token.token()) || limitLogin.isBlocked(request.getRemoteAddr())) {
             return new ResponseEntity<>(new MessageResponse(HttpStatus.BAD_REQUEST.value(),
-                    "OK"),
+                    STATIC_OK),
                     HttpStatus.OK);
         }
 
         User user = serviceJpa.findUserByToken(token.token()).orElse(new User());
 
         if (user.getToken() == null || user.getToken().isEmpty()) {
-            return new ResponseEntity<>(new MessageResponse(HttpStatus.NOT_FOUND.value(),
-                    "OK"),
-                    HttpStatus.OK);
+            return customMessageConfirm();
         }
 
         user.setIpAddressRegConfirm(request.getRemoteAddr());
@@ -153,7 +154,7 @@ public class RegistrationUserController {
 
         serviceJpa.saveUser(user);
 
-        return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), "OK"));
+        return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), STATIC_OK));
 
     }
 

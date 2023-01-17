@@ -1,5 +1,9 @@
 package com.sakhshop.backend.config;
 
+import com.sakhshop.backend.models.payload.response.MessageResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 public class Constants {
 
     private Constants() {
@@ -17,5 +21,11 @@ public class Constants {
     public static final String EXTENSION_PNG = "png";
     public static final String STATIC_OK = "OK";
     public static final String STATIC_NO = "no";
+
+    public static ResponseEntity<MessageResponse> customMessageConfirm() {
+        return new ResponseEntity<>(new MessageResponse(HttpStatus.NOT_FOUND.value(),
+                STATIC_OK),
+                HttpStatus.OK);
+    }
 
 }
