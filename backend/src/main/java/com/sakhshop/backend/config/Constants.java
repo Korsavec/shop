@@ -16,5 +16,6 @@ public class Constants {
     public static final String EXTENSION_JPG = "jpg";
     public static final String EXTENSION_PNG = "png";
     public static final String STATIC_OK = "OK";
+    public static final String STATIC_NO = "no";
 
 }

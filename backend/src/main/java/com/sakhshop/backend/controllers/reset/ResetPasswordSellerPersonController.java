@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
+import static com.sakhshop.backend.config.Constants.STATIC_NO;
+import static com.sakhshop.backend.config.Constants.STATIC_OK;
+
 @RestController
 @RequestMapping("/api/auth")
 public class ResetPasswordSellerPersonController {
@@ -52,7 +55,7 @@ public class ResetPasswordSellerPersonController {
 
 
     @PostMapping(value = "/resetPasswordSellerPerson", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> resetPassword(@RequestBody ResetSellerPersonRequest resetSellerPersonRequest, HttpServletRequest request) {
+    public ResponseEntity<MessageResponse> resetPassword(@RequestBody ResetSellerPersonRequest resetSellerPersonRequest, HttpServletRequest request) {
 
         limitLogin.addCache(request.getRemoteAddr());
 
@@ -75,14 +78,14 @@ public class ResetPasswordSellerPersonController {
 
         }
 
-        return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),"Ok"), HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),STATIC_OK), HttpStatus.OK);
 
 
     }
 
 
     @PostMapping(value = "/checkServerTokenSellerPersonResetPassword", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> checkServerToken(@RequestBody ResetSellerPersonRequest resetSellerPersonRequest, HttpServletRequest request) {
+    public ResponseEntity<MessageResponse> checkServerToken(@RequestBody ResetSellerPersonRequest resetSellerPersonRequest, HttpServletRequest request) {
 
         limitLogin.addCache(request.getRemoteAddr());
 
@@ -91,14 +94,14 @@ public class ResetPasswordSellerPersonController {
                 || resetSellerPersonRequest.token().length() != 36
                 || limitLogin.isBlocked(request.getRemoteAddr())
                 || validationRegExp.validationTokenRegExp(resetSellerPersonRequest.token())) {
-            return new ResponseEntity<>(new MessageResponse(HttpStatus.BAD_REQUEST.value(),"no"), HttpStatus.OK);
+            return new ResponseEntity<>(new MessageResponse(HttpStatus.BAD_REQUEST.value(),STATIC_NO), HttpStatus.OK);
 
         } else {
 
             SellerPerson sellerPerson = serviceJpa.findSellerPersonByToken(resetSellerPersonRequest.token()).orElse(new SellerPerson());
 
             if (sellerPerson.getEmail() == null || sellerPerson.getEmail().isEmpty()) {
-                return new ResponseEntity<>(new MessageResponse(HttpStatus.BAD_REQUEST.value(),"no"), HttpStatus.OK);
+                return new ResponseEntity<>(new MessageResponse(HttpStatus.BAD_REQUEST.value(),STATIC_NO), HttpStatus.OK);
             } else {
 
 
@@ -118,7 +121,7 @@ public class ResetPasswordSellerPersonController {
                 }
 
 
-                return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),"Ok"), HttpStatus.OK);
+                return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),STATIC_OK), HttpStatus.OK);
 
 
             }
@@ -130,7 +133,7 @@ public class ResetPasswordSellerPersonController {
 
 
     @PostMapping(value = "/newPasswordSellerPerson", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> newPassword(@RequestBody ResetSellerPersonRequest resetSellerPersonRequest, HttpServletRequest request) {
+    public ResponseEntity<MessageResponse> newPassword(@RequestBody ResetSellerPersonRequest resetSellerPersonRequest, HttpServletRequest request) {
 
         limitLogin.addCache(request.getRemoteAddr());
 
@@ -152,7 +155,7 @@ public class ResetPasswordSellerPersonController {
 
         }
 
-        return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),"Ok"), HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),STATIC_OK), HttpStatus.OK);
 
 
     }
