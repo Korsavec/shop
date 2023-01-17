@@ -59,7 +59,7 @@ public class RegistrationUserController {
     }
 
     @PostMapping(value = "/registrationUser", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> registerUser(@RequestBody RegistrationUserRequest registrationUserRequest, HttpServletRequest request) {
+    public ResponseEntity<MessageResponse> registerUser(@RequestBody RegistrationUserRequest registrationUserRequest, HttpServletRequest request) {
 
         limitLogin.addCache(request.getRemoteAddr());
 
@@ -122,7 +122,7 @@ public class RegistrationUserController {
 
 
     @PostMapping(value = "/confirmEmailUser", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> confirmEmail(@RequestBody Token token, HttpServletRequest request) {
+    public ResponseEntity<MessageResponse> confirmEmail(@RequestBody Token token, HttpServletRequest request) {
 
         limitLogin.addCache(request.getRemoteAddr());
 
