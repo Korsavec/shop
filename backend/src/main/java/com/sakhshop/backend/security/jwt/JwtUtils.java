@@ -89,7 +89,7 @@ public class JwtUtils {
   }
 
 
-//  Конвертируем строковый ключ в PublicKey
+  //  Конвертируем строковый ключ в PublicKey
   private PublicKey getPublicKey() throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
 
     String key = getPublicKeyContent("key/public.pem").replaceAll("\\n", "")
@@ -103,7 +103,7 @@ public class JwtUtils {
   }
 
 
-//  Конвертируем строковый ключ в PrivateKey
+  //  Конвертируем строковый ключ в PrivateKey
   private PrivateKey getPrivateKey() throws NoSuchAlgorithmException, InvalidKeySpecException {
 
     String key = getPrivateKeyContent("key/private.pem").replaceAll("\\n", "")

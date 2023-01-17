@@ -37,16 +37,16 @@ public class UserDetailsImpl implements UserDetails, Serializable {
   public static UserDetailsImpl build(User user) {
 
     List<GrantedAuthority> authorities = user.getRoleUsers().stream()
-        .map(role -> new SimpleGrantedAuthority(role.getRoleEnum().name()))
-        .collect(Collectors.toList());
+            .map(role -> new SimpleGrantedAuthority(role.getRoleEnum().name()))
+            .collect(Collectors.toList());
 
     return new UserDetailsImpl(
-        user.getId(),
-        user.getEmail(),
-        user.getPassword(),
-        user.isAccountNonLocked(),
-        user.isEnabled(),
-        authorities);
+            user.getId(),
+            user.getEmail(),
+            user.getPassword(),
+            user.isAccountNonLocked(),
+            user.isEnabled(),
+            authorities);
 
   }
 
