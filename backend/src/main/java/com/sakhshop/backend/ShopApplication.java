@@ -1,5 +1,7 @@
 package com.sakhshop.backend;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,26 +12,28 @@ import static com.sakhshop.backend.config.Constants.*;
 @SpringBootApplication
 public class ShopApplication {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ShopApplication.class);
+
     public static void main(String[] args) {
 
         SpringApplication.run(ShopApplication.class, args);
 
         if(new File(FILE_SYSTEM_PATH_RESOURCES_PASSPORT).mkdirs()) {
-            System.out.println("Create directory FILE_SYSTEM_PATH_RESOURCES ok");
+            LOGGER.info("Create directory FILE_SYSTEM_PATH_RESOURCES ok");
         } else {
-            System.err.println("Create directory FILE_SYSTEM_PATH_RESOURCES Exists");
+            LOGGER.info("Create directory FILE_SYSTEM_PATH_RESOURCES Exists");
         }
 
         if(new File(FILE_SYSTEM_PATH_TMP_PASSPORT).mkdirs()) {
-            System.out.println("Create directory FILE_SYSTEM_PATH_TMP_PASSPORT ok");
+            LOGGER.info("Create directory FILE_SYSTEM_PATH_TMP_PASSPORT ok");
         } else {
-            System.err.println("Create directory FILE_SYSTEM_PATH_TMP_PASSPORT Exists");
+            LOGGER.info("Create directory FILE_SYSTEM_PATH_TMP_PASSPORT Exists");
         }
 
         if(new File(FILE_SYSTEM_PATH_TMP_TEST).mkdirs()) {
-            System.out.println("Create directory FILE_SYSTEM_PATH_TMP_TEST ok");
+            LOGGER.info("Create directory FILE_SYSTEM_PATH_TMP_TEST ok");
         } else {
-            System.err.println("Create directory FILE_SYSTEM_PATH_TMP_TEST Exists");
+            LOGGER.info("Create directory FILE_SYSTEM_PATH_TMP_TEST Exists");
         }
 
     }

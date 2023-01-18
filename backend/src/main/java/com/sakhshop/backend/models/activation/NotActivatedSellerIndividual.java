@@ -3,11 +3,16 @@ package com.sakhshop.backend.models.activation;
 import com.sakhshop.backend.models.seller.ie.SellerIndividual;
 import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
 @Table(name = "not_activated_seller_individual")
-public class NotActivatedSellerIndividual {
+public class NotActivatedSellerIndividual implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 286858327683597343L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_not_activated_seller_individual")

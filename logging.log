@@ -1,0 +1,119 @@
+2023-01-19T00:02:50.303+11:00  INFO 18920 --- [main] com.sakhshop.backend.ShopApplication     : Starting ShopApplication using Java 17.0.2 with PID 18920 (D:\Project\SakhShop\shop\backend\target\classes started by Korsavec in D:\Project\SakhShop\shop)
+2023-01-19T00:02:50.308+11:00 DEBUG 18920 --- [main] com.sakhshop.backend.ShopApplication     : Running with Spring Boot v3.0.1, Spring v6.0.3
+2023-01-19T00:02:50.309+11:00  INFO 18920 --- [main] com.sakhshop.backend.ShopApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-01-19T00:02:50.698+11:00  INFO 18920 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-19T00:02:50.753+11:00  INFO 18920 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 10 JPA repository interfaces.
+2023-01-19T00:02:51.095+11:00  INFO 18920 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-01-19T00:02:51.101+11:00  INFO 18920 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-19T00:02:51.101+11:00  INFO 18920 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.4]
+2023-01-19T00:02:51.154+11:00  INFO 18920 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-19T00:02:51.155+11:00  INFO 18920 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 819 ms
+2023-01-19T00:02:51.239+11:00  INFO 18920 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-19T00:02:51.262+11:00  INFO 18920 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.6.Final
+2023-01-19T00:02:51.351+11:00  WARN 18920 --- [main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2023-01-19T00:02:51.417+11:00  INFO 18920 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-19T00:02:51.500+11:00  INFO 18920 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@340c5fb6
+2023-01-19T00:02:51.502+11:00  INFO 18920 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-19T00:02:51.512+11:00  INFO 18920 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-01-19T00:02:51.512+11:00  WARN 18920 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-01-19T00:02:52.153+11:00  INFO 18920 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-19T00:02:52.670+11:00 DEBUG 18920 --- [main] c.s.b.security.filter.AuthTokenFilter    : Filter 'authTokenFilter' configured for use
+2023-01-19T00:02:52.927+11:00  INFO 18920 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3049dcac, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a20332b, org.springframework.security.web.context.SecurityContextHolderFilter@303a484e, org.springframework.security.web.header.HeaderWriterFilter@2f726cf4, org.springframework.web.filter.CorsFilter@1f43cab7, org.springframework.security.web.authentication.logout.LogoutFilter@7127f04b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3b9d85c2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@65e4eba5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2cf6b6e6, org.springframework.security.web.session.SessionManagementFilter@70c6c6a7, org.springframework.security.web.access.ExceptionTranslationFilter@57e83608, org.springframework.security.web.access.intercept.AuthorizationFilter@723aa04]
+2023-01-19T00:02:53.070+11:00  INFO 18920 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-01-19T00:02:53.077+11:00  INFO 18920 --- [main] com.sakhshop.backend.ShopApplication     : Started ShopApplication in 3.033 seconds (process running for 3.398)
+2023-01-19T00:02:53.079+11:00  INFO 18920 --- [main] com.sakhshop.backend.ShopApplication     : Create directory FILE_SYSTEM_PATH_RESOURCES Exists
+2023-01-19T00:02:53.079+11:00  INFO 18920 --- [main] com.sakhshop.backend.ShopApplication     : Create directory FILE_SYSTEM_PATH_TMP_PASSPORT Exists
+2023-01-19T00:02:53.079+11:00  INFO 18920 --- [main] com.sakhshop.backend.ShopApplication     : Create directory FILE_SYSTEM_PATH_TMP_TEST Exists
+2023-01-19T00:05:33.520+11:00  INFO 18920 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-19T00:05:33.521+11:00  INFO 18920 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-19T00:05:33.526+11:00  INFO 18920 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-01-19T00:05:37.530+11:00  INFO 1364 --- [main] com.sakhshop.backend.ShopApplication     : Starting ShopApplication using Java 17.0.2 with PID 1364 (D:\Project\SakhShop\shop\backend\target\classes started by Korsavec in D:\Project\SakhShop\shop)
+2023-01-19T00:05:37.532+11:00 DEBUG 1364 --- [main] com.sakhshop.backend.ShopApplication     : Running with Spring Boot v3.0.1, Spring v6.0.3
+2023-01-19T00:05:37.533+11:00  INFO 1364 --- [main] com.sakhshop.backend.ShopApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-01-19T00:05:37.922+11:00  INFO 1364 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-19T00:05:37.978+11:00  INFO 1364 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 10 JPA repository interfaces.
+2023-01-19T00:05:38.324+11:00  INFO 1364 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-01-19T00:05:38.330+11:00  INFO 1364 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-19T00:05:38.331+11:00  INFO 1364 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.4]
+2023-01-19T00:05:38.384+11:00  INFO 1364 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-19T00:05:38.385+11:00  INFO 1364 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 825 ms
+2023-01-19T00:05:38.472+11:00  INFO 1364 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-19T00:05:38.496+11:00  INFO 1364 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.6.Final
+2023-01-19T00:05:38.582+11:00  WARN 1364 --- [main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2023-01-19T00:05:38.650+11:00  INFO 1364 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-19T00:05:38.735+11:00  INFO 1364 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3a3ad8e7
+2023-01-19T00:05:38.736+11:00  INFO 1364 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-19T00:05:38.747+11:00  INFO 1364 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-01-19T00:05:38.747+11:00  WARN 1364 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-01-19T00:05:39.396+11:00  INFO 1364 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-19T00:05:39.931+11:00 DEBUG 1364 --- [main] c.s.b.security.filter.AuthTokenFilter    : Filter 'authTokenFilter' configured for use
+2023-01-19T00:05:40.189+11:00  INFO 1364 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6f78c132, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a4bee4e, org.springframework.security.web.context.SecurityContextHolderFilter@4700db93, org.springframework.security.web.header.HeaderWriterFilter@159e9629, org.springframework.web.filter.CorsFilter@3e3cd6fe, org.springframework.security.web.authentication.logout.LogoutFilter@1e470a51, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6aa7d7a0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4c3125ff, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7127f04b, org.springframework.security.web.session.SessionManagementFilter@57d8d8e2, org.springframework.security.web.access.ExceptionTranslationFilter@50c99398, org.springframework.security.web.access.intercept.AuthorizationFilter@4290fcd7]
+2023-01-19T00:05:40.343+11:00  INFO 1364 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-01-19T00:05:40.350+11:00  INFO 1364 --- [main] com.sakhshop.backend.ShopApplication     : Started ShopApplication in 3.071 seconds (process running for 3.399)
+2023-01-19T00:05:40.351+11:00  INFO 1364 --- [main] com.sakhshop.backend.ShopApplication     : Create directory FILE_SYSTEM_PATH_RESOURCES Exists
+2023-01-19T00:05:40.352+11:00  INFO 1364 --- [main] com.sakhshop.backend.ShopApplication     : Create directory FILE_SYSTEM_PATH_TMP_PASSPORT Exists
+2023-01-19T00:05:40.352+11:00  INFO 1364 --- [main] com.sakhshop.backend.ShopApplication     : Create directory FILE_SYSTEM_PATH_TMP_TEST Exists
+2023-01-19T00:10:06.597+11:00  INFO 1364 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-19T00:10:06.598+11:00  INFO 1364 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-19T00:10:06.603+11:00  INFO 1364 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-01-19T00:10:20.190+11:00  INFO 2428 --- [main] com.sakhshop.backend.ShopApplication     : Starting ShopApplication using Java 17.0.2 with PID 2428 (D:\Project\SakhShop\shop\backend\target\classes started by Korsavec in D:\Project\SakhShop\shop)
+2023-01-19T00:10:20.191+11:00 DEBUG 2428 --- [main] com.sakhshop.backend.ShopApplication     : Running with Spring Boot v3.0.1, Spring v6.0.3
+2023-01-19T00:10:20.192+11:00  INFO 2428 --- [main] com.sakhshop.backend.ShopApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-01-19T00:10:20.581+11:00  INFO 2428 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-19T00:10:20.636+11:00  INFO 2428 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 10 JPA repository interfaces.
+2023-01-19T00:10:20.977+11:00  INFO 2428 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-01-19T00:10:20.983+11:00  INFO 2428 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-19T00:10:20.983+11:00  INFO 2428 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.4]
+2023-01-19T00:10:21.035+11:00  INFO 2428 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-19T00:10:21.035+11:00  INFO 2428 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 818 ms
+2023-01-19T00:10:21.117+11:00  INFO 2428 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-19T00:10:21.141+11:00  INFO 2428 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.6.Final
+2023-01-19T00:10:21.226+11:00  WARN 2428 --- [main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2023-01-19T00:10:21.296+11:00  INFO 2428 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-19T00:10:21.377+11:00  INFO 2428 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3a16984c
+2023-01-19T00:10:21.379+11:00  INFO 2428 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-19T00:10:21.388+11:00  INFO 2428 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-01-19T00:10:21.389+11:00  WARN 2428 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-01-19T00:10:22.017+11:00  INFO 2428 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-19T00:10:22.522+11:00 DEBUG 2428 --- [main] c.s.b.security.filter.AuthTokenFilter    : Filter 'authTokenFilter' configured for use
+2023-01-19T00:10:22.771+11:00  INFO 2428 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5a503cf0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@14c1cba6, org.springframework.security.web.context.SecurityContextHolderFilter@2f726cf4, org.springframework.security.web.header.HeaderWriterFilter@50c99398, org.springframework.web.filter.CorsFilter@1dad01fe, org.springframework.security.web.authentication.logout.LogoutFilter@5add0cc0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4700db93, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@560e1459, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6f78c132, org.springframework.security.web.session.SessionManagementFilter@4a66949a, org.springframework.security.web.access.ExceptionTranslationFilter@20673498, org.springframework.security.web.access.intercept.AuthorizationFilter@7806db3f]
+2023-01-19T00:10:22.916+11:00  INFO 2428 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-01-19T00:10:22.924+11:00  INFO 2428 --- [main] com.sakhshop.backend.ShopApplication     : Started ShopApplication in 2.991 seconds (process running for 3.389)
+2023-01-19T00:10:22.925+11:00  INFO 2428 --- [main] com.sakhshop.backend.ShopApplication     : Create directory FILE_SYSTEM_PATH_RESOURCES Exists
+2023-01-19T00:10:22.926+11:00  INFO 2428 --- [main] com.sakhshop.backend.ShopApplication     : Create directory FILE_SYSTEM_PATH_TMP_PASSPORT Exists
+2023-01-19T00:10:22.926+11:00  INFO 2428 --- [main] com.sakhshop.backend.ShopApplication     : Create directory FILE_SYSTEM_PATH_TMP_TEST Exists
+2023-01-19T00:11:16.074+11:00  INFO 2428 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-19T00:11:16.075+11:00  INFO 2428 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-19T00:11:16.080+11:00  INFO 2428 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-01-19T00:11:36.780+11:00  INFO 10696 --- [main] com.sakhshop.backend.ShopApplication     : Starting ShopApplication using Java 17.0.2 with PID 10696 (D:\Project\SakhShop\shop\backend\target\classes started by Korsavec in D:\Project\SakhShop\shop)
+2023-01-19T00:11:36.782+11:00 DEBUG 10696 --- [main] com.sakhshop.backend.ShopApplication     : Running with Spring Boot v3.0.1, Spring v6.0.3
+2023-01-19T00:11:36.783+11:00  INFO 10696 --- [main] com.sakhshop.backend.ShopApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-01-19T00:11:37.202+11:00  INFO 10696 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-19T00:11:37.262+11:00  INFO 10696 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54 ms. Found 10 JPA repository interfaces.
+2023-01-19T00:11:37.615+11:00  INFO 10696 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-01-19T00:11:37.621+11:00  INFO 10696 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-19T00:11:37.622+11:00  INFO 10696 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.4]
+2023-01-19T00:11:37.675+11:00  INFO 10696 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-19T00:11:37.675+11:00  INFO 10696 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 863 ms
+2023-01-19T00:11:37.762+11:00  INFO 10696 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-19T00:11:37.785+11:00  INFO 10696 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.6.Final
+2023-01-19T00:11:37.869+11:00  WARN 10696 --- [main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2023-01-19T00:11:37.937+11:00  INFO 10696 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-19T00:11:38.022+11:00  INFO 10696 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@677cc4e8
+2023-01-19T00:11:38.024+11:00  INFO 10696 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-19T00:11:38.034+11:00  INFO 10696 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-01-19T00:11:38.034+11:00  WARN 10696 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-01-19T00:11:38.689+11:00  INFO 10696 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-19T00:11:39.205+11:00 DEBUG 10696 --- [main] c.s.b.security.filter.AuthTokenFilter    : Filter 'authTokenFilter' configured for use
+2023-01-19T00:11:39.463+11:00  INFO 10696 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7f680a9a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a33d655, org.springframework.security.web.context.SecurityContextHolderFilter@2b592f17, org.springframework.security.web.header.HeaderWriterFilter@29f72685, org.springframework.web.filter.CorsFilter@e91b4f4, org.springframework.security.web.authentication.logout.LogoutFilter@4a66949a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@46c7c593, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6a4c4261, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@526a1b51, org.springframework.security.web.session.SessionManagementFilter@4d2bcca8, org.springframework.security.web.access.ExceptionTranslationFilter@7a925ac4, org.springframework.security.web.access.intercept.AuthorizationFilter@4c3125ff]
+2023-01-19T00:11:39.610+11:00  INFO 10696 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-01-19T00:11:39.620+11:00  INFO 10696 --- [main] com.sakhshop.backend.ShopApplication     : Started ShopApplication in 3.105 seconds (process running for 3.465)
+2023-01-19T00:11:39.622+11:00  INFO 10696 --- [main] com.sakhshop.backend.ShopApplication     : Create directory FILE_SYSTEM_PATH_RESOURCES Exists
+2023-01-19T00:11:39.622+11:00  INFO 10696 --- [main] com.sakhshop.backend.ShopApplication     : Create directory FILE_SYSTEM_PATH_TMP_PASSPORT Exists
+2023-01-19T00:11:39.622+11:00  INFO 10696 --- [main] com.sakhshop.backend.ShopApplication     : Create directory FILE_SYSTEM_PATH_TMP_TEST Exists
+2023-01-19T00:12:59.581+11:00  INFO 10696 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-19T00:12:59.582+11:00  INFO 10696 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-01-19T00:12:59.583+11:00  INFO 10696 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-01-19T00:14:56.962+11:00  INFO 10696 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-19T00:14:56.964+11:00  INFO 10696 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-19T00:14:56.968+11:00  INFO 10696 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

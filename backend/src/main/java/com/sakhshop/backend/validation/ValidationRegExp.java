@@ -16,7 +16,6 @@ public class ValidationRegExp {
 
     private static final Pattern patternEmail = Pattern.compile("^(|(([A-Za-z0-9]{1,25}_)|([A-Za-z0-9]{1,25}-)|([A-Za-z0-9]{1,25}\\.))*[A-Za-z0-9]{1,25}@(([A-Za-z0-9]{1,25}\\.)|([A-Za-z0-9]{1,25}-))*[A-Za-z0-9]{2,25}\\.[a-zA-Z]{2,6})$");
 
-
     private static final Pattern patternPassword = Pattern.compile("^[0-9a-zA-Z@#$]+$");
 
     private static final Pattern patternDate = Pattern.compile("^(0[1-9]|[12]\\d|3[01])[- /.](0[1-9]|1[012])[- /.](19|20|29)\\d\\d$");

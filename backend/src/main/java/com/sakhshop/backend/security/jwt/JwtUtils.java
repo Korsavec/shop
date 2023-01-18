@@ -2,8 +2,6 @@ package com.sakhshop.backend.security.jwt;
 
 import com.sakhshop.backend.security.UserDetailsImpl;
 import io.jsonwebtoken.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.core.Authentication;
@@ -24,8 +22,6 @@ import static com.sakhshop.backend.config.Constants.STATIC_EMAIL;
 
 @Component
 public class JwtUtils {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(JwtUtils.class);
 
   @Value("${sakhshop.app.jwtExpirationMsOneHour}")
   private int jwtExpirationMsOneHour;
@@ -66,7 +62,6 @@ public class JwtUtils {
               .signWith(getPrivateKey(), SignatureAlgorithm.RS512)
               .compact();
     } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-      LOGGER.error("error message");
       throw new JwtException(e.toString());
     }
 
