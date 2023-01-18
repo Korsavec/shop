@@ -8,13 +8,13 @@ import java.util.regex.Pattern;
 @Service
 public class ValidationRegExp {
 
-    private static final Pattern onlyLetters = Pattern.compile("^[a-zA-Z]+$");
     private static final Pattern onlyLettersCyrillic = Pattern.compile("^[а-яА-Я]+$");
     private static final Pattern onlyNumbers = Pattern.compile("^\\d+$");
-    private static final Pattern onlyLettersAndNumbers = Pattern.compile("^[0-9a-zA-Z]+$");
+
     private static final Pattern onlyLettersCyrillicAndNumbers = Pattern.compile("^[0-9а-яА-Я]+$");
 
-    private static final Pattern patternEmail = Pattern.compile("^(|(([A-Za-z0-9]{1,25}_)|([A-Za-z0-9]{1,25}-)|([A-Za-z0-9]{1,25}\\.))*[A-Za-z0-9]{1,25}@(([A-Za-z0-9]{1,25}\\.)|([A-Za-z0-9]{1,25}-))*[A-Za-z0-9]{2,25}\\.[a-zA-Z]{2,6})$");
+//    ^(|(([A-Za-z0-9]{1,25}_)|([A-Za-z0-9]{1,25}-)|([A-Za-z0-9]{1,25}\\.))*[A-Za-z0-9]{1,25}@(([A-Za-z0-9]{1,25}\\.)|([A-Za-z0-9]{1,25}-))*[A-Za-z0-9]{2,25}\\.[a-zA-Z]{2,6})$
+    private static final Pattern patternEmail = Pattern.compile("^[\\w.-]*@[\\w-]*+.+\\w$");
 
     private static final Pattern patternPassword = Pattern.compile("^[0-9a-zA-Z@#$]+$");
 
@@ -52,12 +52,6 @@ public class ValidationRegExp {
         return !matcherPassword.matches();
     }
 
-    public boolean onlyLettersRegExp(String username) {
-
-        Matcher matcherPassword = onlyLetters.matcher(username);
-
-        return !matcherPassword.matches();
-    }
 
     public boolean onlyLettersCyrillic(String username) {
 
@@ -85,13 +79,6 @@ public class ValidationRegExp {
 
     }
 
-
-    public boolean validationOnlyLettersAndNumbersRegExp(String token) {
-
-        Matcher matcher = onlyLettersAndNumbers.matcher(token);
-
-        return !matcher.matches();
-    }
 
     public boolean onlyLettersCyrillicAndNumbersRegExp(String token) {
 

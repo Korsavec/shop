@@ -2,6 +2,10 @@ package com.sakhshop.backend.security;
 
 public class HttpPath {
 
+    public static final String API_SINGLETON_LOGIN_USER = "/api/auth/loginUser";
+    public static final String API_SINGLETON_GUARD_USER = "/api/AccountGuard/user";
+
+
     private HttpPath() {
     }
 
@@ -11,12 +15,9 @@ public class HttpPath {
             "/api/auth/resetPasswordUser",
             "/api/auth/checkServerTokenUserResetPassword", //
             "/api/auth/newPasswordUser", //
-            "/api/auth/loginUser", //
+            API_SINGLETON_LOGIN_USER, //
     };
 
-
-    public static final String API_SINGLETON_LOGIN_USER_PATH = "/api/auth/loginUser";
-    public static final String API_SINGLETON_GUARD_USER_PATH = "/api/AccountGuard/user";
 
 //    public static final String API_SINGLETON_LOGIN_SELLER_PERSON_PATH = "/api/auth/loginSellerPerson"
 
@@ -37,7 +38,7 @@ public class HttpPath {
     };
 
     protected static final String[] API_ACCOUNT_GUARD_USER = {
-            "/api/AccountGuard/user",
+            API_SINGLETON_GUARD_USER,
     };
 
     protected static final String[] API_ACCOUNT_GUARD_PERSON = {
@@ -52,6 +53,7 @@ public class HttpPath {
     protected static final String[] API_PASSPORT = {
             "/resources/ResourcesGuard/passport/image/**"
     };
+
 
 
 }
