@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class SendEmail {
 
-    @Value("${sakhshop.backend.app.site.domain}")
-    String siteDomain;
+    @Value("${sakhshop.app.main.site.domain.user}")
+    String siteDomainUser;
+
+    @Value("${sakhshop.app.main.site.domain.seller}")
+    String siteDomainSeller;
 
     private final
     JavaMailSender javaMailSender;
@@ -25,7 +28,7 @@ public class SendEmail {
 
     public final void confirmEmailUser(String serverName, final String token){
 
-        String path = siteDomain + "/registrationUser/confirmEmailUser/" + token;
+        String path = siteDomainUser + "/registration/confirmEmail/" + token;
 
         SimpleMailMessage msg = new SimpleMailMessage();
 
@@ -38,9 +41,9 @@ public class SendEmail {
         javaMailSender.send(msg);
     }
 
-    public final void confirmEmailSellerPerson(String serverName, final String token){
+    public final void confirmEmailSeller(String serverName, final String token){
 
-        String path = siteDomain + "/registrationSeller/confirmEmailSellerPerson/" + token;
+        String path = siteDomainSeller + "/registration/confirmEmail/" + token;
 
         SimpleMailMessage msg = new SimpleMailMessage();
 
@@ -55,15 +58,28 @@ public class SendEmail {
 
 
 
-    public final void resetPasswordUserAccount(String serverName, final String urlResetPasswordUserAccount){
+    public final void resetPasswordUser(String serverName, final String urlResetPasswordUserAccount){
 
         SimpleMailMessage msg = new SimpleMailMessage();
 
         msg.setTo(email); // Кому
         msg.setFrom(email); // от кого
 
-        msg.setSubject("Сброс пароля на сайте " + serverName);
-        msg.setText("Для сброса пароля пройдите по ссылке "+ urlResetPasswordUserAccount);
+        msg.setSubject("Сброс пароля пользователя на сайте " + serverName);
+        msg.setText("Для сброса пароля пользователя пройдите по ссылке "+ urlResetPasswordUserAccount);
+
+        javaMailSender.send(msg);
+    }
+
+    public final void resetPasswordSeller(String serverName, final String urlResetPasswordUserAccount){
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+
+        msg.setTo(email); // Кому
+        msg.setFrom(email); // от кого
+
+        msg.setSubject("Сброс пароля продавца на сайте " + serverName);
+        msg.setText("Для сброса пароля продавца пройдите по ссылке "+ urlResetPasswordUserAccount);
 
         javaMailSender.send(msg);
     }

@@ -22,7 +22,7 @@ public class SecurityController {
   }
 
   @GetMapping(value = "/seller", produces = "application/json")
-  @PreAuthorize("hasRole('SELLER_PERSON')")
+  @PreAuthorize("hasRole('SELLER')")
   public String sellerAccess() {
     return "{\"PERSON\":\"PERSON текст\" } ";
   }

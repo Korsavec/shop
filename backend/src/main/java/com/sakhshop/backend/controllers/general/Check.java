@@ -1,6 +1,6 @@
 package com.sakhshop.backend.controllers.general;
 
-import com.sakhshop.backend.models.payload.request.seller.person.CheckShopNameRegistrationSellerPersonRequest;
+import com.sakhshop.backend.models.payload.request.seller.CheckShopName;
 import com.sakhshop.backend.models.payload.response.MessageResponse;
 import com.sakhshop.backend.service.jpa.ServiceJpa;
 import com.sakhshop.backend.validation.ValidationRegExp;
@@ -28,15 +28,15 @@ public class Check {
     }
 
 
-    @PostMapping(value = "/checkShopNameRegistrationSellerPersonRequest", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<MessageResponse> checkShopName(@RequestBody CheckShopNameRegistrationSellerPersonRequest checkShopNameRegistrationSellerPersonRequest) {
+    @PostMapping(value = "/checkShopName", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<MessageResponse> checkShopName(@RequestBody CheckShopName checkShopName) {
 
-        if (checkShopNameRegistrationSellerPersonRequest.shopName().length() > 30
-                || checkShopNameRegistrationSellerPersonRequest.shopName().length() < 3
-                || validationRegExp.onlyLettersCyrillicAndNumbersRegExp(checkShopNameRegistrationSellerPersonRequest.shopName())) {
+        if (checkShopName.shopName().length() > 30
+                || checkShopName.shopName().length() < 3
+                || validationRegExp.onlyLettersCyrillicAndNumbersRegExp(checkShopName.shopName())) {
             return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),"no"), HttpStatus.OK);
 
-        } else if (Boolean.FALSE.equals(serviceJpa.existsByShopNameSellerPerson(checkShopNameRegistrationSellerPersonRequest.shopName()))) {
+        } else if (Boolean.FALSE.equals(serviceJpa.existsByShopNameSeller(checkShopName.shopName()))) {
             return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),"no"), HttpStatus.OK);
 
         } else {

@@ -12,24 +12,13 @@
 
       <div class="grid grid-cols-2 gap-4" *ngIf="closeLogin">
         <a routerLink="/login" >Войти</a>
-        <a routerLink="/registrationUser" >Регистрация</a>
+        <a routerLink="/registration" >Регистрация</a>
       </div>
 
       <div class="grid grid-cols-2 gap-4" *ngIf="isShowUserAccount">
-        <a routerLink="/user" >Кабинет</a>
+        <a routerLink="/dashboard" >Кабинет</a>
         <a routerLink="/" (click)="logOut()" >Выход</a>
       </div>
-
-    <div class="grid grid-cols-2 gap-4" *ngIf="isShowSellerAccount">
-      <a routerLink="/sellerPerson" >Кабинет продавца</a>
-      <a routerLink="/" (click)="logOut()" >Выход</a>
-    </div>
-
-    <div class="grid grid-cols-2 gap-4" *ngIf="isShowUserAndSellerAccount">
-      <a routerLink="/sellerPerson" >Кабинет продавца</a>
-      <a routerLink="/user" >Кабинет пользователя</a>
-      <a routerLink="/" (click)="logOut()" >Выход</a>
-    </div>
 
 
   </div>

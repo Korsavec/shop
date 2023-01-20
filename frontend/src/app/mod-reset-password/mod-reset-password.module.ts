@@ -5,23 +5,15 @@ import {ModResetPasswordRoutingModule} from './mod-reset-password-routing.module
 import {ModResetPasswordComponent} from './mod-reset-password.component';
 import {ModMainModule} from "../mod-main/mod-main.module";
 import {ReactiveFormsModule} from "@angular/forms";
-import {ResetPasswordUserComponent} from './reset-password-user/reset-password-user.component';
-import {NewPasswordUserComponent} from './new-password-user/new-password-user.component';
-import {
-  ResetPasswordSellerPersonComponent
-} from './reset-password-seller-person/reset-password-seller-person.component';
-import {NewPasswordSellerPersonComponent} from './new-password-seller-person/new-password-seller-person.component';
 import {ResetComponent} from './reset/reset.component';
+import {NewPasswordComponent} from './new-password/new-password.component';
 
 
 @NgModule({
   declarations: [
     ModResetPasswordComponent,
-    ResetPasswordUserComponent,
-    NewPasswordUserComponent,
-    ResetPasswordSellerPersonComponent,
-    NewPasswordSellerPersonComponent,
-    ResetComponent
+    ResetComponent,
+    NewPasswordComponent,
   ],
   imports: [
     CommonModule,

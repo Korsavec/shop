@@ -66,20 +66,15 @@ public class SecurityConfig {
             .authorizeHttpRequests()
             .requestMatchers(API_USER).permitAll()
 
-
-            .requestMatchers(API_SELLER_PERSON).permitAll()
-
             .requestMatchers(API_GENERAL).permitAll()
 
-            .requestMatchers(API_GENERAL_PERSON).permitAll()
+            .requestMatchers(API_SELLER).permitAll()
 
-            .requestMatchers(API_ALL).permitAll()
-
-            .requestMatchers(API_PASSPORT).permitAll()
+            .requestMatchers(API_GUARD_PASSPORT).permitAll()
 
             .requestMatchers(API_ACCOUNT_GUARD_USER).permitAll()
 
-            .requestMatchers(API_ACCOUNT_GUARD_PERSON).permitAll()
+            .requestMatchers(API_ACCOUNT_GUARD_SELLER).permitAll()
 
             .anyRequest().authenticated();
 

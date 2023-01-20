@@ -1,0 +1,52 @@
+/* mochiy-pop-one-regular - latin */
+@font-face {
+  font-family: 'Mochiy_Pop_One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('assets/fonts/font/mochiy-pop-one.eot'); /* IE9 Compat Modes */
+  src: local(''),
+  url('assets/fonts/font/mochiy-pop-one.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('assets/fonts/font/mochiy-pop-one.woff2') format('woff2'), /* Super Modern Browsers */
+  url('assets/fonts/font/mochiy-pop-one.woff') format('woff'), /* Modern Browsers */
+  url('assets/fonts/font/mochiy-pop-one.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('assets/fonts/font/mochiy-pop-one.svg#MochiyPopOne') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'g-icons';
+  src:  url('assets/fonts/icon/g-icons.eot?fvntyd');
+  src:  url('assets/fonts/icon/g-icons.eot?fvntyd#iefix') format('embedded-opentype'),
+  url('assets/fonts/icon/g-icons.ttf?fvntyd') format('truetype'),
+  url('assets/fonts/icon/g-icons.woff?fvntyd') format('woff'),
+  url('assets/fonts/icon/g-icons.svg?fvntyd#g-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'g-icons', serif !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-search:before {
+  content: "\e900";
+}
+.icon-shopping_cart:before {
+  content: "\e901";
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

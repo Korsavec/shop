@@ -1,6 +1,6 @@
 package com.sakhshop.backend.security;
 
-import com.sakhshop.backend.models.seller.person.SellerPerson;
+import com.sakhshop.backend.models.seller.person.Seller;
 import com.sakhshop.backend.models.user.User;
 import com.sakhshop.backend.service.jpa.ServiceJpa;
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,8 +38,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     } else {
 
-      SellerPerson sellerPerson = serviceJpa.findSellerPersonByEmail(email).orElseThrow(() -> new UsernameNotFoundException("no"));
-      return UserDetailsImpl.build(sellerPerson);
+      Seller seller = serviceJpa.findSellerByEmail(email).orElseThrow(() -> new UsernameNotFoundException("no"));
+      return UserDetailsImpl.build(seller);
 
     }
 

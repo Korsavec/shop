@@ -1,6 +1,6 @@
 package com.sakhshop.backend.security;
 
-import com.sakhshop.backend.models.seller.person.SellerPerson;
+import com.sakhshop.backend.models.seller.person.Seller;
 import com.sakhshop.backend.models.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -48,17 +48,17 @@ public class UserDetailsImpl implements UserDetails, Serializable {
 
   }
 
-  public static UserDetailsImpl build(SellerPerson sellerPerson) {
+  public static UserDetailsImpl build(Seller seller) {
 
-    List<SimpleGrantedAuthority> authorities = sellerPerson.getRoleSellerPersons().stream()
+    List<SimpleGrantedAuthority> authorities = seller.getSellerRoles().stream()
             .map(role -> new SimpleGrantedAuthority(role.getRoleEnum().name())).toList();
 
     return new UserDetailsImpl(
-            sellerPerson.getId(),
-            sellerPerson.getEmail(),
-            sellerPerson.getPassword(),
-            sellerPerson.isAccountNonLocked(),
-            sellerPerson.isEnabled(),
+            seller.getId(),
+            seller.getEmail(),
+            seller.getPassword(),
+            seller.isAccountNonLocked(),
+            seller.isEnabled(),
             authorities);
 
   }

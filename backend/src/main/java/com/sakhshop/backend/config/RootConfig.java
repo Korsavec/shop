@@ -13,7 +13,7 @@ import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @EnableScheduling
@@ -22,7 +22,7 @@ public class RootConfig implements WebMvcConfigurer {
     private static final String HTTP_HEADERS = "Access-Control-Allow-Origin";
 
     @Value("${sakhshop.app.origins.host}")
-    private String originHost;
+    private String[] originHost;
 
     @Bean
     public CorsFilter corsFilter() {
@@ -35,7 +35,8 @@ public class RootConfig implements WebMvcConfigurer {
 
         corsConfiguration.setMaxAge(3600L);
 
-        corsConfiguration.setAllowedOrigins(Collections.singletonList(originHost));
+//        corsConfiguration.setAllowedOrigins(Collections.singletonList(originHost))
+        corsConfiguration.setAllowedOrigins(List.of(originHost));
 
         corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", HTTP_HEADERS, "Content-Type",
                 "Accept", "Token", "Authorization", "Origin, Accept", "X-Requested-With",

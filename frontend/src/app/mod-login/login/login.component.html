@@ -1,29 +1,40 @@
 <app-head></app-head>
 
-<br>
-<br>
-
+<br><br><br>
 
 <div class="flex justify-center">
 
-  <div class="p-4 rounded-lg border border-fuchsia-500 ">
+  <form [formGroup]="loginForm" (submit)="submit()" class="p-4 rounded-lg border border-fuchsia-500 ">
 
-    <h1 class="text-center text-xl">Войти как</h1>
+    <h1 class="text-center text-xl">Вход пользователя</h1>
 
     <div class="my-5 w-full">
-      <button (click)="goUser()" class="p-2 w-full bg-purple-700 text-white hover:bg-purple-900 rounded">
-        пользователь
+      <label for="email">Адрес электронной почты</label>
+      <br>
+      <input type="email" (ngModelChange)="deleteErrorMessage()" minlength="8" maxlength="45" formControlName="email" id="email" class="text-black text-[28px] p-2 rounded w-full border text-sm" placeholder="Адрес электронной почты" required>
+      <div *ngIf="email.errors?.['required']"> Email обязательно </div>
+      <div *ngIf="email.errors?.['pattern']"> Некорректный Email </div>
+    </div>
+
+    <div class="my-5 w-full">
+      <label for="password">Пароль</label>
+      <input type="password" (ngModelChange)="deleteErrorMessage()" minlength="6" maxlength="24" formControlName="password" id="password" class="text-[28px] p-2 rounded w-full border text-sm" placeholder="Пароль" required>
+      <div *ngIf="password.errors?.['required']"> Пароль обязательно </div>
+      <div *ngIf="password.errors?.['minlength']"> Минимальная длина </div>
+      <div *ngIf="password.errors?.['maxlength']"> Максимальная длина </div>
+      <div *ngIf="password.errors?.['pattern']"> Некорректный пароль </div>
+    </div>
+
+    <input type="checkbox" formControlName="checkbox"> Запомнить меня на 8 часов
+
+    <div class="my-5 w-full">
+      <button type="submit" [disabled]="!loginForm.valid" class="p-2 w-full bg-purple-700 text-white hover:bg-purple-900 rounded">
+        Войти
       </button>
     </div>
 
-
-    <div class="my-5 w-full">
-      <button (click)="goSellerPerson()" class="p-2 w-full bg-purple-700 text-white hover:bg-purple-900 rounded">
-        продавец
-      </button>
-    </div>
-
-
-  </div>
+    <div class="text-center my-5 w-52">{{errorMessage}}</div>
+    <a routerLink="/resetPassword" class="text-blue-700">Забыл пароль?</a>
+  </form>
 
 </div>

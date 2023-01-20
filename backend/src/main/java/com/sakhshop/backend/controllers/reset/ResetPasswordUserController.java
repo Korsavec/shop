@@ -2,7 +2,7 @@ package com.sakhshop.backend.controllers.reset;
 
 import com.sakhshop.backend.email.SendEmail;
 import com.sakhshop.backend.models.activation.NotActivatedUser;
-import com.sakhshop.backend.models.payload.request.seller.person.ResetUserRequest;
+import com.sakhshop.backend.models.payload.request.seller.ResetUserRequest;
 import com.sakhshop.backend.models.payload.response.MessageResponse;
 import com.sakhshop.backend.models.user.User;
 import com.sakhshop.backend.service.cache.LoginAttemptService;
@@ -27,7 +27,7 @@ import static com.sakhshop.backend.config.Constants.STATIC_OK;
 @RequestMapping("/api/auth")
 public class ResetPasswordUserController {
 
-  @Value("${sakhshop.backend.app.site.domain}")
+  @Value("${sakhshop.app.main.site.domain.user}")
   String siteDomain;
 
   public final
@@ -72,8 +72,8 @@ public class ResetPasswordUserController {
 
       serviceJpa.updateTokenByEmailUser(token, resetUserRequest.email());
 
-      String urlResetPasswordUserAccount = siteDomain + "/resetPassword/newPasswordUser/" + token;
-      sendEmail.resetPasswordUserAccount(request.getServerName(), urlResetPasswordUserAccount);
+      String urlResetPasswordUser = siteDomain + "/resetPassword/newPassword/" + token;
+      sendEmail.resetPasswordUser(request.getServerName(), urlResetPasswordUser);
 
     }
     return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),STATIC_OK), HttpStatus.OK);
@@ -82,7 +82,7 @@ public class ResetPasswordUserController {
   }
 
 
-  @PostMapping(value = "/checkServerTokenUserResetPassword", consumes = "application/json", produces = "application/json")
+  @PostMapping(value = "/checkTokenUserResetPassword", consumes = "application/json", produces = "application/json")
   public ResponseEntity<MessageResponse> checkServerToken(@RequestBody ResetUserRequest resetUserRequest, HttpServletRequest request) {
 
     limitLogin.addCache(request.getRemoteAddr());

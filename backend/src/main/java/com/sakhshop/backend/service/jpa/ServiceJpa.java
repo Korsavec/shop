@@ -1,15 +1,11 @@
 package com.sakhshop.backend.service.jpa;
 
 import com.sakhshop.backend.enam.RoleEnum;
-import com.sakhshop.backend.models.activation.NotActivatedSellerIndividual;
-import com.sakhshop.backend.models.activation.NotActivatedSellerLimited;
-import com.sakhshop.backend.models.activation.NotActivatedSellerPerson;
+import com.sakhshop.backend.models.activation.NotActivatedSeller;
 import com.sakhshop.backend.models.activation.NotActivatedUser;
-import com.sakhshop.backend.models.role.RoleSellerPerson;
+import com.sakhshop.backend.models.role.RoleSeller;
 import com.sakhshop.backend.models.role.RoleUser;
-import com.sakhshop.backend.models.seller.ie.SellerIndividual;
-import com.sakhshop.backend.models.seller.llc.SellerLimited;
-import com.sakhshop.backend.models.seller.person.SellerPerson;
+import com.sakhshop.backend.models.seller.person.Seller;
 import com.sakhshop.backend.models.user.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,54 +16,6 @@ import java.util.Optional;
 @Service
 @Transactional(readOnly = true)
 public interface ServiceJpa {
-
-
-    // >>>>>>>>>>>>>>>>>>>> SellerIndividual <<<<<<<<<<<<<<<<<<<<
-
-
-
-
-    // NotActivatedSellerIndividual >>>>>>>>>>>>>>>>>>>>>>>>>>>
-    Iterable<NotActivatedSellerIndividual> findAllDateDeletionSellerIndividual();
-    @Transactional
-    void deleteAllSellerIndividual(Iterable<NotActivatedSellerIndividual> entityList);
-
-
-
-    // SellerIndividual >>>>>>>>>>>>>>>>>>>>>>>>>>>
-    List<SellerIndividual> findAllByIdSellerIndividual(Iterable<Long> entityList);
-    @Transactional
-    void deleteListSellerIndividual(Iterable<SellerIndividual> entityList);
-
-
-
-
-
-
-    // >>>>>>>>>>>>>>>>>>>> SellerLimited <<<<<<<<<<<<<<<<<<<<
-
-
-
-
-
-
-    // NotActivatedSellerLimited >>>>>>>>>>>>>>>>>>>>>>>>>>>
-    Iterable<NotActivatedSellerLimited> findAllDateDeletionSellerLimited();
-    @Transactional
-    void deleteAllSellerLimited(Iterable<NotActivatedSellerLimited> entityList);
-
-
-
-    // SellerLimited >>>>>>>>>>>>>>>>>>>>>>>>>>>
-    List<SellerLimited> findAllByIdSellerLimited(Iterable<Long> entityList);
-    @Transactional
-    void deleteListSellerLimited(Iterable<SellerLimited> entityList);
-
-
-
-
-
-
 
 
     // >>>>>>>>>>>>>>>>>>>> User <<<<<<<<<<<<<<<<<<<<
@@ -112,49 +60,49 @@ public interface ServiceJpa {
 
 
 
-    // >>>>>>>>>>>>>>>>>>>> SellerPerson <<<<<<<<<<<<<<<<<<<<
+    // >>>>>>>>>>>>>>>>>>>> Seller <<<<<<<<<<<<<<<<<<<<
 
 
 
 
 
-    // NotActivatedSellerPerson >>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // NotActivatedSeller >>>>>>>>>>>>>>>>>>>>>>>>>>>
     @Transactional
-    void deleteAllSellerPerson(Iterable<NotActivatedSellerPerson> entityList);
-    Iterable<NotActivatedSellerPerson> findAllDateDeletionSellerPerson();
+    void deleteAllSeller(Iterable<NotActivatedSeller> entityList);
+    Iterable<NotActivatedSeller> findAllDateDeletionSeller();
 
 
-    // RoleSellerPerson >>>>>>>>>>>>>>>>>>>>>>>>>>>
-    RoleSellerPerson findByRoleEnumSellerPerson(RoleEnum roleEnum);
+    // RoleSeller >>>>>>>>>>>>>>>>>>>>>>>>>>>
+    RoleSeller findByRoleEnumSeller(RoleEnum roleEnum);
 
 
 
-    List<SellerPerson> findAllByIdSellerPerson(Iterable<Long> entityList);
+    List<Seller> findAllByIdSeller(Iterable<Long> entityList);
     @Transactional
-    void deleteListSellerPerson(Iterable<SellerPerson> entityList);
+    void deleteListSeller(Iterable<Seller> entityList);
 
 
 
 
-    Optional<SellerPerson> findSellerPersonByEmail(String email);
+    Optional<Seller> findSellerByEmail(String email);
     Boolean existsByPhone(Long phone);
-    Optional<SellerPerson> findSellerPersonByToken (String token);
-    Boolean existsByEmailSellerPerson(String email);
+    Optional<Seller> findSellerByToken (String token);
+    Boolean existsByEmailSeller(String email);
     @Transactional
-    void updateTokenByEmailSellerPerson(String token, String email);
+    void updateTokenByEmailSeller(String token, String email);
 
 
-    Boolean existsByNumberPassportSellerPerson(Long numberPassport);
-    Boolean existsByInnSellerPerson(Long inn);
-    Boolean existsByShopNameSellerPerson(String shopName);
+    Boolean existsByNumberPassportSeller(Long numberPassport);
+    Boolean existsByInnSeller(Long inn);
+    Boolean existsByShopNameSeller(String shopName);
     Boolean existsByImgPassport(String imgPassport);
     Boolean existsByBankAccount(String bankAccount);
     Boolean existsByBeakBank(int beakBank);
 
     @Transactional
-    void updatePasswordTokenByEmailSellerPerson(String token, String password, String email);
+    void updatePasswordTokenByEmailSeller(String token, String password, String email);
 
     @Transactional
-    void saveSellerPerson(SellerPerson sellerPerson);
+    void saveSeller(Seller seller);
 
 }

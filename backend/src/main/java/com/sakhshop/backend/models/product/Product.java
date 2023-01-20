@@ -1,8 +1,6 @@
 package com.sakhshop.backend.models.product;
 
-import com.sakhshop.backend.models.seller.ie.SellerIndividual;
-import com.sakhshop.backend.models.seller.llc.SellerLimited;
-import com.sakhshop.backend.models.seller.person.SellerPerson;
+import com.sakhshop.backend.models.seller.person.Seller;
 import com.sakhshop.backend.models.user.User;
 import jakarta.persistence.*;
 
@@ -149,26 +147,12 @@ public class Product implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"))
     private Set<User> users = new LinkedHashSet<>();
 
-    // Это таблица связей ManyToMany Product и SellerPerson
+    // Это таблица связей ManyToMany Product и Seller
     @ManyToMany(cascade = {CascadeType.MERGE})
-    @JoinTable(name = "join_product_seller_persons",
+    @JoinTable(name = "join_product_sellers",
             joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "seller_persons_id", referencedColumnName = "id"))
-    private Set<SellerPerson> sellerPersons = new LinkedHashSet<>();
-
-    // Это таблица связей ManyToMany Product и Individual
-    @ManyToMany(cascade = {CascadeType.MERGE})
-    @JoinTable(name = "join_product_seller_individuals",
-            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "individuals_id", referencedColumnName = "id"))
-    private Set<SellerIndividual> sellerIndividuals = new LinkedHashSet<>();
-
-    // Это таблица связей ManyToMany Product и SellerLimited
-    @ManyToMany(cascade = {CascadeType.MERGE})
-    @JoinTable(name = "join_product_seller_limiteds",
-            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "seller_limiteds_id", referencedColumnName = "id"))
-    private Set<SellerLimited> sellerLimiteds = new LinkedHashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "sellers_id", referencedColumnName = "id"))
+    private Set<Seller> sellers = new LinkedHashSet<>();
 
 
     public Long getId() {
@@ -395,29 +379,14 @@ public class Product implements Serializable {
         this.users = users;
     }
 
-    public Set<SellerPerson> getSellerPersons() {
-        return sellerPersons;
+    public Set<Seller> getSellers() {
+        return sellers;
     }
 
-    public void setSellerPersons(Set<SellerPerson> sellerPersons) {
-        this.sellerPersons = sellerPersons;
+    public void setSellers(Set<Seller> sellers) {
+        this.sellers = sellers;
     }
 
-    public Set<SellerIndividual> getSellerIndividuals() {
-        return sellerIndividuals;
-    }
-
-    public void setSellerIndividuals(Set<SellerIndividual> sellerIndividuals) {
-        this.sellerIndividuals = sellerIndividuals;
-    }
-
-    public Set<SellerLimited> getSellerLimiteds() {
-        return sellerLimiteds;
-    }
-
-    public void setSellerLimiteds(Set<SellerLimited> sellerLimiteds) {
-        this.sellerLimiteds = sellerLimiteds;
-    }
 
 
     @Override
@@ -453,9 +422,8 @@ public class Product implements Serializable {
         if (!getBullet5().equals(product.getBullet5())) return false;
         if (!getDateCreatedProduct().equals(product.getDateCreatedProduct())) return false;
         if (!getUsers().equals(product.getUsers())) return false;
-        if (!getSellerPersons().equals(product.getSellerPersons())) return false;
-        if (!getSellerIndividuals().equals(product.getSellerIndividuals())) return false;
-        return getSellerLimiteds().equals(product.getSellerLimiteds());
+        if (!getSellers().equals(product.getSellers())) return false;
+        return getSellers().equals(product.getSellers());
     }
 
     @Override
@@ -488,9 +456,7 @@ public class Product implements Serializable {
         result = 31 * result + (int) (getProductCreatorId() ^ (getProductCreatorId() >>> 32));
         result = 31 * result + (isModified() ? 1 : 0);
         result = 31 * result + getUsers().hashCode();
-        result = 31 * result + getSellerPersons().hashCode();
-        result = 31 * result + getSellerIndividuals().hashCode();
-        result = 31 * result + getSellerLimiteds().hashCode();
+        result = 31 * result + getSellers().hashCode();
         return result;
     }
 }
