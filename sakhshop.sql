@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Янв 20 2023 г., 20:27
+-- Время создания: Янв 22 2023 г., 21:16
 -- Версия сервера: 8.0.29
 -- Версия PHP: 8.1.11
 
@@ -24,6 +24,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `join_a_admin_and_role_admin`
+--
+
+CREATE TABLE `join_a_admin_and_role_admin` (
+  `admin_id` bigint NOT NULL,
+  `role_admin_id` bigint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `join_a_admin_and_role_admin`
+--
+
+INSERT INTO `join_a_admin_and_role_admin` (`admin_id`, `role_admin_id`) VALUES
+(1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `join_a_seller_and_role_seller`
 --
 
@@ -37,7 +55,7 @@ CREATE TABLE `join_a_seller_and_role_seller` (
 --
 
 INSERT INTO `join_a_seller_and_role_seller` (`seller_id`, `role_seller_id`) VALUES
-(6, 1);
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -55,10 +73,8 @@ CREATE TABLE `join_a_user_and_role_user` (
 --
 
 INSERT INTO `join_a_user_and_role_user` (`user_id`, `role_users_id`) VALUES
-(2, 1),
-(3, 1),
-(4, 1),
-(5, 1);
+(1, 1),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -81,6 +97,30 @@ CREATE TABLE `join_product_users` (
   `product_id` bigint NOT NULL,
   `users_id` bigint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `model_admin`
+--
+
+CREATE TABLE `model_admin` (
+  `id` bigint NOT NULL,
+  `email` varchar(58) NOT NULL,
+  `name` varchar(25) DEFAULT NULL,
+  `password` varchar(65) NOT NULL,
+  `phone` bigint DEFAULT NULL,
+  `account_non_locked` bit(1) NOT NULL,
+  `enabled` bit(1) NOT NULL,
+  `token` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `model_admin`
+--
+
+INSERT INTO `model_admin` (`id`, `email`, `name`, `password`, `phone`, `account_non_locked`, `enabled`, `token`) VALUES
+(1, 'gennadij.777@gmail.com', 'genSakh', '$2a$10$u.k5t7XQgrC5r39MqmcWtuNurji9d2umB6CP.0Kp7v7ZtfOvLwmZ.', 79242852535, b'1', b'1', NULL);
 
 -- --------------------------------------------------------
 
@@ -167,7 +207,7 @@ CREATE TABLE `model_seller` (
 --
 
 INSERT INTO `model_seller` (`id`, `account_non_locked`, `apartment`, `approval`, `balance`, `bank_account`, `bank_name`, `beak_bank`, `building`, `city`, `correspondent_account`, `date_birth`, `date_created_seller`, `email`, `enabled`, `house`, `img_passport`, `inn`, `inn_bank`, `ip_address_first_entrance`, `ip_address_last_entrance`, `ip_address_reg_confirm`, `ip_address_registration`, `kpp_bank`, `middle_name`, `name`, `number_passport`, `password`, `phone`, `region`, `shop_name`, `street`, `surname`, `token`, `username`) VALUES
-(6, b'1', 4, b'0', '0.00', '11111111111111111111', 'ваыавы', 111111111, '4', 'ваыва', '11111111111111111111', '2023-01-03', '2023-01-20 13:32:33.543011', 'ddd@ddd.dd', b'1', '4', '1/8f/89/58/18f89586989d5d0c8e1be28bd4b68cde.jpg', 111111111111, 1111111111, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', 111111111, 'авпвп', 'вапвп', 1111111111, '$2a$10$BYdPG4A697ga5SmIvHsRbu3JjG5DX6Kn53NvwyQpKmc.h1v2C51KS', 1111111111, 'Сахалин', 'впавп', 'ыва', 'павп', NULL, NULL);
+(1, b'1', 4, b'0', '0.00', '11111111111111111111', 'аывавы', 111111111, '4', 'вап', '11111111111111111111', '2023-01-20', '2023-01-22 20:37:54.981865', 'fsdfs@fs.sd', b'1', '4', 'f/59/35/24/f593524d2163e29d18a28e189ce08977.jpg', 111111111111, 1111111111, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', 111111111, 'ыыпа', 'впа', 1111111111, '$2a$10$pLmwreMXDrbPhfJLudG4l.uHezl6zppQ7Ri.I82PFfQ8.FmMCjYaa', 1111111111, 'Сахалин', 'аваыа', 'вап', 'вап', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -200,10 +240,8 @@ CREATE TABLE `model_users` (
 --
 
 INSERT INTO `model_users` (`id`, `account_non_locked`, `date_birth`, `date_created_user`, `email`, `enabled`, `ip_address_first_entrance`, `ip_address_last_entrance`, `ip_address_reg_confirm`, `ip_address_registration`, `middle_name`, `name`, `password`, `phone`, `surname`, `token`, `username`) VALUES
-(2, b'1', NULL, '2023-01-20 13:53:29.240647', 'ddd@ddd.dd', b'1', NULL, NULL, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', NULL, NULL, '$2a$10$oeC4dYFF9eFhnKeC7a0PBOo6BAFKUxCfSFgv8GOM1jGzyqRPTj4cm', NULL, NULL, NULL, NULL),
-(3, b'1', NULL, '2023-01-20 13:55:19.296370', 'gdfgdf@sdfs.fds', b'1', NULL, NULL, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', NULL, NULL, '$2a$10$KhOqYcuOblpWk0GrFym2q.cqi5HCmQxX9k1qkFFmg3EBZT9GZ0szS', NULL, NULL, '84640db9-8920-47e7-aa30-e10e1e9d4ecd', NULL),
-(4, b'1', NULL, '2023-01-20 14:50:04.839513', 'www@www.www', b'1', NULL, NULL, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', NULL, NULL, '$2a$10$L.oi8ZZmIVi1LmjQTyIdm.w032ZeUGuMJVd6YNT20Fdnnzn3Suf2e', NULL, NULL, NULL, NULL),
-(5, b'1', NULL, '2023-01-20 17:41:19.134796', 'tutut@rerw.er', b'1', NULL, NULL, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', NULL, NULL, '$2a$10$yGWqcWSbMuggbcSk0Lsna.70LPgR/5g8FpiEXHrKvUBQReZ7OD3i6', NULL, NULL, NULL, NULL);
+(1, b'1', NULL, '2023-01-22 20:35:15.064832', 'fddfsfds@sfsdf.df', b'1', NULL, NULL, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', NULL, NULL, '$2a$10$I.t7rQ/qnv8cE1dST.KZkewEYPg3RFnyjJvMHODWMyxsJ/8Nb2Ka.', NULL, NULL, NULL, NULL),
+(2, b'1', NULL, '2023-01-22 20:59:50.459678', 'ggsdg@sdf.df', b'1', NULL, NULL, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', NULL, NULL, '$2a$10$jBo/pLTlRut4Zxm1MOb2aOq3R1VHKIlepzeiBVYyut5/EVumTNs0a', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -223,7 +261,7 @@ CREATE TABLE `not_activated_seller` (
 --
 
 INSERT INTO `not_activated_seller` (`id`, `active`, `date_deletion_seller`, `seller_id`) VALUES
-(6, b'1', '2023-01-21 13:32:33.543011', 6);
+(1, b'1', '2023-01-23 20:37:54.981865', 1);
 
 -- --------------------------------------------------------
 
@@ -243,10 +281,26 @@ CREATE TABLE `not_activated_user` (
 --
 
 INSERT INTO `not_activated_user` (`id`, `active`, `date_deletion_user`, `user_id`) VALUES
-(2, b'1', '2023-01-21 13:53:29.240647', 2),
-(3, b'1', '2023-01-21 13:55:19.296370', 3),
-(4, b'1', '2023-01-21 14:50:04.839513', 4),
-(5, b'1', '2023-01-21 17:41:19.134796', 5);
+(1, b'1', '2023-01-23 20:35:15.064832', 1),
+(2, b'1', '2023-01-23 20:59:50.459678', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `role_admin`
+--
+
+CREATE TABLE `role_admin` (
+  `id` bigint NOT NULL,
+  `name` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `role_admin`
+--
+
+INSERT INTO `role_admin` (`id`, `name`) VALUES
+(1, 'ROLE_ADMIN');
 
 -- --------------------------------------------------------
 
@@ -287,6 +341,23 @@ INSERT INTO `role_user` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `seq_a_admin`
+--
+
+CREATE TABLE `seq_a_admin` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `seq_a_admin`
+--
+
+INSERT INTO `seq_a_admin` (`next_val`) VALUES
+(1);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `seq_a_product`
 --
 
@@ -316,7 +387,7 @@ CREATE TABLE `seq_a_seller` (
 --
 
 INSERT INTO `seq_a_seller` (`next_val`) VALUES
-(7);
+(2);
 
 -- --------------------------------------------------------
 
@@ -333,7 +404,7 @@ CREATE TABLE `seq_a_user` (
 --
 
 INSERT INTO `seq_a_user` (`next_val`) VALUES
-(6);
+(3);
 
 -- --------------------------------------------------------
 
@@ -350,7 +421,7 @@ CREATE TABLE `seq_not_activated_seller` (
 --
 
 INSERT INTO `seq_not_activated_seller` (`next_val`) VALUES
-(7);
+(2);
 
 -- --------------------------------------------------------
 
@@ -367,7 +438,24 @@ CREATE TABLE `seq_not_activated_user` (
 --
 
 INSERT INTO `seq_not_activated_user` (`next_val`) VALUES
-(6);
+(3);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `seq_role_admin`
+--
+
+CREATE TABLE `seq_role_admin` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `seq_role_admin`
+--
+
+INSERT INTO `seq_role_admin` (`next_val`) VALUES
+(1);
 
 -- --------------------------------------------------------
 
@@ -408,6 +496,13 @@ INSERT INTO `seq_role_user` (`next_val`) VALUES
 --
 
 --
+-- Индексы таблицы `join_a_admin_and_role_admin`
+--
+ALTER TABLE `join_a_admin_and_role_admin`
+  ADD PRIMARY KEY (`admin_id`,`role_admin_id`),
+  ADD KEY `FKet0lqfx6kkl2jv0e8eci5pxvc` (`role_admin_id`);
+
+--
 -- Индексы таблицы `join_a_seller_and_role_seller`
 --
 ALTER TABLE `join_a_seller_and_role_seller`
@@ -434,6 +529,17 @@ ALTER TABLE `join_product_sellers`
 ALTER TABLE `join_product_users`
   ADD PRIMARY KEY (`product_id`,`users_id`),
   ADD KEY `FKb6e1q4cvqmgyr309x2anll6y0` (`users_id`);
+
+--
+-- Индексы таблицы `model_admin`
+--
+ALTER TABLE `model_admin`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UK_9hn5ivkklwgix4bh00pcdgk4b` (`email`),
+  ADD UNIQUE KEY `UK_6w9vauy50gqirr4pvee69iw29` (`email`,`phone`),
+  ADD UNIQUE KEY `UK_nh9cvnuv8o4ddmfnxvc5vocdp` (`name`),
+  ADD UNIQUE KEY `UK_lvl2v1degmvosnxu2qf6vxidj` (`phone`),
+  ADD UNIQUE KEY `UK_9kvi70khfdn1bw4hqa0eot90i` (`token`);
 
 --
 -- Индексы таблицы `model_product`
@@ -483,6 +589,13 @@ ALTER TABLE `not_activated_user`
   ADD KEY `FKritv6ns7er9rvanshaaevgxa` (`user_id`);
 
 --
+-- Индексы таблицы `role_admin`
+--
+ALTER TABLE `role_admin`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UK_ly8tds7h2m1bfstn7yb5592gs` (`name`);
+
+--
 -- Индексы таблицы `role_seller`
 --
 ALTER TABLE `role_seller`
@@ -499,6 +612,13 @@ ALTER TABLE `role_user`
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
+
+--
+-- Ограничения внешнего ключа таблицы `join_a_admin_and_role_admin`
+--
+ALTER TABLE `join_a_admin_and_role_admin`
+  ADD CONSTRAINT `FKet0lqfx6kkl2jv0e8eci5pxvc` FOREIGN KEY (`role_admin_id`) REFERENCES `role_admin` (`id`),
+  ADD CONSTRAINT `FKpr7sd7bvusj4y5ioc1m1e2wvu` FOREIGN KEY (`admin_id`) REFERENCES `model_admin` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `join_a_seller_and_role_seller`
