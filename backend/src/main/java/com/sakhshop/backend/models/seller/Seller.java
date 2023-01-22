@@ -1,4 +1,4 @@
-package com.sakhshop.backend.models.seller.person;
+package com.sakhshop.backend.models.seller;
 
 import com.sakhshop.backend.models.activation.NotActivatedSeller;
 import com.sakhshop.backend.models.product.Product;

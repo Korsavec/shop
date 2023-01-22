@@ -4,7 +4,7 @@ import com.sakhshop.backend.email.SendEmail;
 import com.sakhshop.backend.models.activation.NotActivatedSeller;
 import com.sakhshop.backend.models.payload.request.seller.ResetSellerRequest;
 import com.sakhshop.backend.models.payload.response.MessageResponse;
-import com.sakhshop.backend.models.seller.person.Seller;
+import com.sakhshop.backend.models.seller.Seller;
 import com.sakhshop.backend.service.cache.LoginAttemptService;
 import com.sakhshop.backend.service.jpa.ServiceJpa;
 import com.sakhshop.backend.validation.ValidationRegExp;

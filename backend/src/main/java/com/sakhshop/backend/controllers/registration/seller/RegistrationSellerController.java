@@ -7,7 +7,7 @@ import com.sakhshop.backend.models.activation.NotActivatedSeller;
 import com.sakhshop.backend.models.payload.request.seller.RegistrationSellerRequest;
 import com.sakhshop.backend.models.payload.response.MessageResponse;
 import com.sakhshop.backend.models.role.RoleSeller;
-import com.sakhshop.backend.models.seller.person.Seller;
+import com.sakhshop.backend.models.seller.Seller;
 import com.sakhshop.backend.models.token.Token;
 import com.sakhshop.backend.service.cache.LoginAttemptService;
 import com.sakhshop.backend.service.jpa.ServiceJpa;

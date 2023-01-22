@@ -1,7 +1,7 @@
 package com.sakhshop.backend.security;
 
 import com.sakhshop.backend.models.admin.Admin;
-import com.sakhshop.backend.models.seller.person.Seller;
+import com.sakhshop.backend.models.seller.Seller;
 import com.sakhshop.backend.models.user.User;
 import com.sakhshop.backend.service.jpa.ServiceJpa;
 import jakarta.servlet.http.HttpServletRequest;

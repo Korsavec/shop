@@ -1,6 +1,6 @@
 package com.sakhshop.backend.models.activation;
 
-import com.sakhshop.backend.models.seller.person.Seller;
+import com.sakhshop.backend.models.seller.Seller;
 import jakarta.persistence.*;
 
 import java.io.Serial;

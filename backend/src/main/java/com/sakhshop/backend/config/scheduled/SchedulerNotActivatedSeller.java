@@ -1,7 +1,7 @@
 package com.sakhshop.backend.config.scheduled;
 
 import com.sakhshop.backend.models.activation.NotActivatedSeller;
-import com.sakhshop.backend.models.seller.person.Seller;
+import com.sakhshop.backend.models.seller.Seller;
 import com.sakhshop.backend.service.jpa.ServiceJpa;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

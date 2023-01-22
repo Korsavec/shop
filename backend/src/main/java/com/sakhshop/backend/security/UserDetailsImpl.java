@@ -1,7 +1,7 @@
 package com.sakhshop.backend.security;
 
 import com.sakhshop.backend.models.admin.Admin;
-import com.sakhshop.backend.models.seller.person.Seller;
+import com.sakhshop.backend.models.seller.Seller;
 import com.sakhshop.backend.models.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

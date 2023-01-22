@@ -1,6 +1,6 @@
 package com.sakhshop.backend.models.product;
 
-import com.sakhshop.backend.models.seller.person.Seller;
+import com.sakhshop.backend.models.seller.Seller;
 import com.sakhshop.backend.models.user.User;
 import jakarta.persistence.*;
 

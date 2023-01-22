@@ -7,7 +7,7 @@ import com.sakhshop.backend.models.admin.Admin;
 import com.sakhshop.backend.models.role.RoleAdmin;
 import com.sakhshop.backend.models.role.RoleSeller;
 import com.sakhshop.backend.models.role.RoleUser;
-import com.sakhshop.backend.models.seller.person.Seller;
+import com.sakhshop.backend.models.seller.Seller;
 import com.sakhshop.backend.models.user.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
