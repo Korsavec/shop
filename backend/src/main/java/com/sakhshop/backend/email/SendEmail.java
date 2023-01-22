@@ -84,5 +84,18 @@ public class SendEmail {
         javaMailSender.send(msg);
     }
 
+    public final void resetPasswordAdmin(String serverName, final String urlResetPasswordUserAccount){
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+
+        msg.setTo(email); // Кому
+        msg.setFrom(email); // от кого
+
+        msg.setSubject("Сброс пароля администратора на сайте " + serverName);
+        msg.setText("Для сброса пароля администратора пройдите по ссылке "+ urlResetPasswordUserAccount);
+
+        javaMailSender.send(msg);
+    }
+
 
 }

@@ -15,3 +15,7 @@ INSERT INTO `role_seller` (`id`, `name`) VALUES ('1', 'ROLE_SELLER');
 
 
 
+INSERT INTO `role_admin` (`id`, `name`) VALUES ('1', 'ROLE_ADMIN');
+
+
+

@@ -1,8 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: ["./src/**/*.{html,ts}",],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'Mochiy-Pop-One': ['Mochiy_Pop_One']
+      }
+    },
+    screens: {
+      '2xl': '1536px',
+    },
+    container: {
+      center: true,
+    },
   },
   plugins: [],
 }

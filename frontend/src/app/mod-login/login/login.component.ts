@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ValidateService} from "../../_service/validation/validate.service";
-import {HttpClientService} from "../../_service/http/client/http-client.service";
-import {GeneralStoreService} from "../../_service/general/general-store.service";
-import {LocalStoreService} from "../../_service/store/local-store.service";
+import {GeneralService} from "../../_service/general/general.service";
+import {HttpRequestService} from "../../_service/http-request/http-request.service";
+import {LocalStorageService} from "../../_service/local-storage/local-storage.service";
 
 
 @Component({
@@ -12,20 +12,20 @@ import {LocalStoreService} from "../../_service/store/local-store.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
   loginForm:FormGroup = this.formBuilder.group({email: [''],password: [''], checkbox: ['']});
 
   errorMessage!: string;
 
   constructor(private validateService: ValidateService, private formBuilder: FormBuilder, private router: Router,
-              private httpClientService: HttpClientService, private localStoreService: LocalStoreService,
-              private generalStoreService: GeneralStoreService) {
+              private httpRequestService: HttpRequestService, private localStorageService: LocalStorageService,
+              private generalService: GeneralService) {
   }
 
   ngOnInit(): void {
 
-    if (this.localStoreService.isTokenExpired()) {
+    if (this.localStorageService.isTokenExpired()) {
 
       this.router.navigate(['/']).then(() => {});
 
@@ -78,23 +78,23 @@ export class LoginComponent implements OnInit{
 
 
     // Проверяем на блокировку пользователя при многократной ошибке входа
-    if (this.localStoreService.getStoreItem('counterLogin') == '10') {
+    if (this.localStorageService.getStorageItem('counterLogin') == '10') {
       this.errorMessage = 'Что-то пошло не так. Попробуйте позе';
-      this.generalStoreService.isBlockedLogin();
+      this.generalService.isBlockedLogin();
     } else {
-      this.httpClientService.login(this.loginForm.value).subscribe({
+      this.httpRequestService.login(this.loginForm.value).subscribe({
         next: data => {
 
           let responseData:any;
 
           responseData = data;
 
-          this.localStoreService.saveJwt(responseData.body.message);
-          this.localStoreService.removeCount()
-          this.gotoMessage();
+          this.localStorageService.saveJwt(responseData.body.message);
+          this.localStorageService.removeCount()
+          this.goToPage();
         },
         error: err => {
-          this.generalStoreService.isBlockedLogin();
+          this.generalService.isBlockedLogin();
           this.errorMessage = err.error.message;
         }
       });
@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit{
     this.errorMessage = ''
   }
 
-  gotoMessage() {
+  goToPage() {
     this.router.navigate(['/']).then(() => {});
   }
 

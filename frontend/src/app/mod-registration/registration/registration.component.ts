@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {ValidateService} from "../../_service/validation/validate.service";
-import {HttpClientService} from "../../_service/http/client/http-client.service";
 import {Router} from "@angular/router";
-import {LocalStoreService} from "../../_service/store/local-store.service";
+import {HttpRequestService} from "../../_service/http-request/http-request.service";
+import {LocalStorageService} from "../../_service/local-storage/local-storage.service";
 
 @Component({
   selector: 'app-registration',
@@ -29,13 +29,13 @@ export class RegistrationComponent implements OnInit {
 
 
   constructor(private validateService: ValidateService, private formBuilder: FormBuilder,
-              private httpClientService: HttpClientService, private router: Router,
-              private localStoreService: LocalStoreService) {
+              private httpRequestService: HttpRequestService, private router: Router,
+              private localStorageService: LocalStorageService) {
   }
 
   ngOnInit(): void {
 
-    if (this.localStoreService.isTokenExpired()) {
+    if (this.localStorageService.isTokenExpired()) {
 
       this.router.navigate(['/']).then(() => {});
 
@@ -148,7 +148,7 @@ export class RegistrationComponent implements OnInit {
     this.submitForm = false;
 
 
-    this.httpClientService.registration(user).subscribe({
+    this.httpRequestService.registration(user).subscribe({
       next: () => {
 
         this.responseServer = false;

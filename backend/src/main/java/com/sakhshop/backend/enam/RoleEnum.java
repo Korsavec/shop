@@ -1,6 +1,6 @@
 package com.sakhshop.backend.enam;
 
 public enum RoleEnum {
-  ROLE_USER, ROLE_SELLER
+  ROLE_USER, ROLE_SELLER, ROLE_ADMIN
 
 }

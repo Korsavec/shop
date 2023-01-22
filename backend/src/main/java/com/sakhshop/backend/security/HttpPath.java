@@ -8,6 +8,16 @@ public class HttpPath {
     public static final String API_SINGLETON_GUARD_USER = "/api/AccountGuard/user";
 
 
+    public static final String API_SINGLETON_LOGIN_SELLER = "/api/auth/loginSeller";
+    public static final String API_SINGLETON_GUARD_SELLER = "/api/AccountGuard/seller";
+
+
+    public static final String API_SINGLETON_LOGIN_ADMIN = "/api/auth/loginAdmin";
+    public static final String API_SINGLETON_GUARD_ADMIN = "/api/AccountGuard/admin";
+
+
+
+
     private HttpPath() {
     }
 
@@ -26,7 +36,14 @@ public class HttpPath {
             "/api/auth/resetPasswordSeller",
             "/api/auth/checkTokenSellerResetPassword",
             "/api/auth/newPasswordSeller",
-            "/api/auth/loginSeller",
+            API_SINGLETON_LOGIN_SELLER,
+    };
+
+    protected static final String[] API_ADMIN = {
+            "/api/auth/resetPasswordAdmin",
+            "/api/auth/checkTokenAdminResetPassword",
+            "/api/auth/newPasswordAdmin",
+            API_SINGLETON_LOGIN_ADMIN
     };
 
 
@@ -40,7 +57,11 @@ public class HttpPath {
     };
 
     protected static final String[] API_ACCOUNT_GUARD_SELLER = {
-            "/api/AccountGuard/seller",
+            API_SINGLETON_GUARD_SELLER,
+    };
+
+    protected static final String[] API_ACCOUNT_GUARD_ADMIN = {
+            API_SINGLETON_GUARD_ADMIN,
     };
 
     protected static final String[] API_GUARD_PASSPORT = {

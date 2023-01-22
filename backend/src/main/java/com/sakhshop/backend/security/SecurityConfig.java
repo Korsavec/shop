@@ -76,6 +76,10 @@ public class SecurityConfig {
 
             .requestMatchers(API_ACCOUNT_GUARD_SELLER).permitAll()
 
+            .requestMatchers(API_ADMIN).permitAll()
+
+            .requestMatchers(API_ACCOUNT_GUARD_ADMIN).permitAll()
+
             .anyRequest().authenticated();
 
     return http.build();

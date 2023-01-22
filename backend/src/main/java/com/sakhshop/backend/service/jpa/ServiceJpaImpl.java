@@ -3,14 +3,18 @@ package com.sakhshop.backend.service.jpa;
 import com.sakhshop.backend.enam.RoleEnum;
 import com.sakhshop.backend.models.activation.NotActivatedSeller;
 import com.sakhshop.backend.models.activation.NotActivatedUser;
+import com.sakhshop.backend.models.admin.Admin;
+import com.sakhshop.backend.models.role.RoleAdmin;
 import com.sakhshop.backend.models.role.RoleSeller;
 import com.sakhshop.backend.models.role.RoleUser;
 import com.sakhshop.backend.models.seller.person.Seller;
 import com.sakhshop.backend.models.user.User;
+import com.sakhshop.backend.repository.AdminRepository;
 import com.sakhshop.backend.repository.SellerRepository;
 import com.sakhshop.backend.repository.UserRepository;
 import com.sakhshop.backend.repository.activated.NotActivatedSellerRepository;
 import com.sakhshop.backend.repository.activated.NotActivatedUserRepository;
+import com.sakhshop.backend.repository.role.RoleAdminRepository;
 import com.sakhshop.backend.repository.role.RoleSellerRepository;
 import com.sakhshop.backend.repository.role.RoleUserRepository;
 import org.springframework.stereotype.Service;
@@ -42,13 +46,22 @@ public class ServiceJpaImpl implements ServiceJpa {
     private final
     NotActivatedSellerRepository notActivatedSellerRepository;
 
-    public ServiceJpaImpl(UserRepository userRepository, RoleUserRepository roleUserRepository, SellerRepository sellerRepository, NotActivatedUserRepository notActivatedUserRepository, RoleSellerRepository roleSellerRepository, NotActivatedSellerRepository notActivatedSellerRepository ) {
+
+    private final
+    AdminRepository adminRepository;
+
+    private final
+    RoleAdminRepository roleAdminRepository;
+
+    public ServiceJpaImpl(UserRepository userRepository, RoleUserRepository roleUserRepository, SellerRepository sellerRepository, NotActivatedUserRepository notActivatedUserRepository, RoleSellerRepository roleSellerRepository, NotActivatedSellerRepository notActivatedSellerRepository, AdminRepository adminRepository, RoleAdminRepository roleAdminRepository) {
         this.userRepository = userRepository;
         this.roleUserRepository = roleUserRepository;
         this.sellerRepository = sellerRepository;
         this.notActivatedUserRepository = notActivatedUserRepository;
         this.roleSellerRepository = roleSellerRepository;
         this.notActivatedSellerRepository = notActivatedSellerRepository;
+        this.adminRepository = adminRepository;
+        this.roleAdminRepository = roleAdminRepository;
     }
 
 
@@ -88,7 +101,7 @@ public class ServiceJpaImpl implements ServiceJpa {
         userRepository.deleteAll(entityList);
     }
     @Override
-    public Optional<User> findUserByEmailUser(String email) {
+    public Optional<User> findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
     @Override
@@ -225,6 +238,50 @@ public class ServiceJpaImpl implements ServiceJpa {
     public void saveSeller(Seller seller) {
         sellerRepository.save(seller);
     }
+
+
+
+
+
+
+    // >>>>>>>>>>>>>>>>>>>> Admin <<<<<<<<<<<<<<<<<<<<
+
+
+
+
+
+
+    @Override
+    public RoleAdmin findByRoleEnumAdmin(RoleEnum roleEnum) {
+        return roleAdminRepository.findByRoleEnum(roleEnum);
+    }
+
+    @Override
+    public Optional<Admin> findAdminByEmail(String email) {
+        return adminRepository.findAdminByEmail(email);
+    }
+
+
+    @Override
+    public Optional<Admin> findAdminByToken(String token) {
+        return adminRepository.findAdminByToken(token);
+    }
+
+    @Override
+    public Boolean existsByEmailAdmin(String email) {
+        return adminRepository.existsByEmail(email);
+    }
+
+    @Override
+    public void updateTokenByEmailAdmin(String token, String email) {
+        adminRepository.updateTokenByEmail(token, email);
+    }
+
+    @Override
+    public void updatePasswordTokenByEmailAdmin(String token, String password, String email) {
+        adminRepository.updatePasswordTokenByEmail(token, password, email);
+    }
+
 
 
 }

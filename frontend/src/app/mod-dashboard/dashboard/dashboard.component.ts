@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClientService} from "../../_service/http/client/http-client.service";
 import {Router} from "@angular/router";
-import {LocalStoreService} from "../../_service/store/local-store.service";
+import {HttpRequestService} from "../../_service/http-request/http-request.service";
+import {LocalStorageService} from "../../_service/local-storage/local-storage.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,13 +12,13 @@ export class DashboardComponent implements OnInit {
 
   message:string = '';
 
-  constructor(private httpClientService: HttpClientService, private localStoreService: LocalStoreService, private router: Router) { }
+  constructor(private httpRequestService: HttpRequestService, private localStorageService: LocalStorageService, private router: Router) { }
 
   ngOnInit(): void {
 
-    if (this.localStoreService.isTokenExpired()) {
+    if (this.localStorageService.isTokenExpired()) {
 
-      this.httpClientService.userTestGetText().subscribe({
+      this.httpRequestService.userTestGetText().subscribe({
         next: data => {
 
           let responseData:any = data;

@@ -4,6 +4,7 @@ import com.sakhshop.backend.enam.RoleEnum;
 import com.sakhshop.backend.models.seller.person.Seller;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -11,6 +12,9 @@ import java.util.Set;
 @Entity
 @Table(name = "role_seller")
 public class RoleSeller implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -1907579475572757576L;
 
     // Это ID Роле
     @Id

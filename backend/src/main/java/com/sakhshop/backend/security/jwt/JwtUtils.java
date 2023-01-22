@@ -67,6 +67,28 @@ public class JwtUtils {
 
   }
 
+  public String generateJwtTokenAdmin(Authentication authentication, boolean rememberMeFor) {
+
+    UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+
+    List<String> roleList = new ArrayList<>();
+    userPrincipal.getAuthorities().forEach(grantedAuthority -> roleList.add(grantedAuthority.getAuthority().replace("ROLE_", "")));
+
+    try {
+      return Jwts.builder()
+              .setHeaderParam("typ","JWT")
+              .claim("email", userPrincipal.getUsername())
+              .claim("roles", roleList)
+              .setIssuedAt(new Date())
+              .setExpiration(new Date(new Date().getTime() + rememberMe(rememberMeFor)))
+              .signWith(getPrivateKey(), SignatureAlgorithm.RS512)
+              .compact();
+    } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+      throw new JwtException(e.toString());
+    }
+
+  }
+
   public String getUserEmailFromJwtToken(String jwtString) {
 
     try {

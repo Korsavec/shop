@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {ValidateService} from "../../_service/validation/validate.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {HttpClientService} from "../../_service/http/client/http-client.service";
-import {LocalStoreService} from "../../_service/store/local-store.service";
 import {switchMap} from "rxjs";
+import {HttpRequestService} from "../../_service/http-request/http-request.service";
+import {LocalStorageService} from "../../_service/local-storage/local-storage.service";
 
 @Component({
   selector: 'app-new-password',
@@ -27,12 +27,12 @@ export class NewPasswordComponent implements OnInit {
 
 
   constructor(private validateService: ValidateService, private formBuilder: FormBuilder, private router: Router,
-              private httpClientService: HttpClientService, private route: ActivatedRoute,
-              private localStoreService: LocalStoreService) { }
+              private httpRequestService: HttpRequestService, private route: ActivatedRoute,
+              private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
 
-    if (this.localStoreService.isTokenExpired()) {
+    if (this.localStorageService.isTokenExpired()) {
 
       this.router.navigate(['/']).then(() => {});
 
@@ -43,7 +43,7 @@ export class NewPasswordComponent implements OnInit {
       ).subscribe(data => this.token = data);
 
 
-      this.httpClientService.checkTokenUserResetPassword(this.token).subscribe({
+      this.httpRequestService.checkTokenUserResetPassword(this.token).subscribe({
         next: data => {
 
           let responseData:any;
@@ -140,7 +140,7 @@ export class NewPasswordComponent implements OnInit {
 
     this.submitForm = false;
 
-    this.httpClientService.newPassword(userPassword).subscribe({
+    this.httpRequestService.newPassword(userPassword).subscribe({
       next: () => {
         this.responseServer = false;
         this.responseView = true;

@@ -1,16 +1,22 @@
 package com.sakhshop.backend.security;
 
+import com.sakhshop.backend.models.admin.Admin;
 import com.sakhshop.backend.models.seller.person.Seller;
 import com.sakhshop.backend.models.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class UserDetailsImpl implements UserDetails, Serializable {
+
+  @Serial
+  private static final long serialVersionUID = -7738653823823379657L;
 
   private final Long id;
 
@@ -62,6 +68,43 @@ public class UserDetailsImpl implements UserDetails, Serializable {
             authorities);
 
   }
+
+
+  public static UserDetailsImpl build(Admin admin) {
+
+    List<SimpleGrantedAuthority> authorities = admin.getAdminRoles().stream()
+            .map(role -> new SimpleGrantedAuthority(role.getRoleEnum().name())).toList();
+
+    return new UserDetailsImpl(
+            admin.getId(),
+            admin.getEmail(),
+            admin.getPassword(),
+            admin.isAccountNonLocked(),
+            admin.isEnabled(),
+            authorities);
+
+  }
+
+
+  // Возвращаю простой объект
+  public static UserDetailsImpl buildEmpty() {
+
+    List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+    return new UserDetailsImpl(
+            0L,
+            "",
+            "",
+            false,
+            false,
+            authorities);
+
+  }
+
+
+
+
+
 
 
   @Override

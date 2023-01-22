@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ValidateService} from "../../_service/validation/validate.service";
-import {HttpClientService} from "../../_service/http/client/http-client.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {switchMap} from "rxjs";
-import {LocalStoreService} from "../../_service/store/local-store.service";
+import {HttpRequestService} from "../../_service/http-request/http-request.service";
+import {LocalStorageService} from "../../_service/local-storage/local-storage.service";
 
 @Component({
   selector: 'app-confirm-email',
@@ -18,13 +18,13 @@ export class ConfirmEmailComponent implements OnInit{
 
   public responseConfirmMessage!: boolean;
 
-  constructor(private validateService: ValidateService, private httpClientService: HttpClientService, private route: ActivatedRoute,
-              private router: Router, private localStoreService: LocalStoreService) { }
+  constructor(private validateService: ValidateService, private httpRequestService: HttpRequestService, private route: ActivatedRoute,
+              private router: Router, private localStorageService: LocalStorageService) { }
 
 
   ngOnInit() {
 
-    if (this.localStoreService.isTokenExpired()) {
+    if (this.localStorageService.isTokenExpired()) {
 
       this.router.navigate(['/']).then(() => {});
 
@@ -38,7 +38,7 @@ export class ConfirmEmailComponent implements OnInit{
 
       if (this.validateService.patternToken(this.token)) {
 
-        this.httpClientService.confirmEmail(this.token).subscribe({
+        this.httpRequestService.confirmEmail(this.token).subscribe({
 
           next: () => {
 

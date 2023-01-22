@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GeneralStoreService} from "../../_service/general/general-store.service";
+import {GeneralService} from "../../_service/general/general.service";
 
 @Component({
   selector: 'app-head',
@@ -12,12 +12,12 @@ export class HeadComponent implements OnInit {
 
   isShowSellerAccount: boolean = false;
 
-  constructor(private generalStoreService: GeneralStoreService) {
+  constructor(private generalService: GeneralService) {
   }
 
   ngOnInit(): void {
 
-    this.isShowSellerAccount = this.generalStoreService.isTokenExpired('auth-seller')
+    this.isShowSellerAccount = this.generalService.isTokenExpired('auth-seller')
     this.closeLogin = !this.isShowSellerAccount;
 
   }
@@ -28,7 +28,7 @@ export class HeadComponent implements OnInit {
     this.closeLogin = true;
     this.isShowSellerAccount = false;
 
-    this.generalStoreService.removeStoreItem('auth-seller');
+    this.generalService.removeStorageItem('auth-seller');
   }
 
 }

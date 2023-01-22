@@ -3,6 +3,8 @@ package com.sakhshop.backend.service.jpa;
 import com.sakhshop.backend.enam.RoleEnum;
 import com.sakhshop.backend.models.activation.NotActivatedSeller;
 import com.sakhshop.backend.models.activation.NotActivatedUser;
+import com.sakhshop.backend.models.admin.Admin;
+import com.sakhshop.backend.models.role.RoleAdmin;
 import com.sakhshop.backend.models.role.RoleSeller;
 import com.sakhshop.backend.models.role.RoleUser;
 import com.sakhshop.backend.models.seller.person.Seller;
@@ -41,7 +43,7 @@ public interface ServiceJpa {
     List<User> findAllByIdUser(Iterable<Long> entityList);
     @Transactional
     void deleteListUser(Iterable<User> entityList);
-    Optional<User> findUserByEmailUser(String email);
+    Optional<User> findUserByEmail(String email);
     Optional<User> findUserByToken (String token);
     Boolean existsByEmailUser(String email);
 
@@ -104,5 +106,47 @@ public interface ServiceJpa {
 
     @Transactional
     void saveSeller(Seller seller);
+
+
+
+
+
+
+
+    // >>>>>>>>>>>>>>>>>>>> Admin <<<<<<<<<<<<<<<<<<<<
+
+
+
+
+
+
+
+
+
+
+    // RoleAdmin >>>>>>>>>>>>>>>>>>>>>>>>>>>
+    RoleAdmin findByRoleEnumAdmin(RoleEnum roleEnum);
+
+
+
+    // Admin >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+    Optional<Admin> findAdminByEmail(String email);
+    Optional<Admin> findAdminByToken (String token);
+    Boolean existsByEmailAdmin(String email);
+
+    @Transactional
+    void updateTokenByEmailAdmin(String token, String email);
+
+    @Transactional
+    void updatePasswordTokenByEmailAdmin(String token, String password, String email);
+
+
+
+
+
+
+
 
 }

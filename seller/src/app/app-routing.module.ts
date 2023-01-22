@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CanLoadGuard} from "./custom-type/can-load/can-load.guard";
-import {CustomPreloadStrategy} from "./custom-type/preloading/custom-preload-strategy";
+import {CanLoadGuard} from "./_custom-type/can-load/can-load.guard";
+import {CustomPreloadStrategy} from "./_custom-type/preloading/custom-preload-strategy";
 
 const routes: Routes = [
 

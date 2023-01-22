@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {AuthInterceptor} from "./_helper/auth.interceptor";
+import {AuthInterceptor} from "./_helper/auth-interceptor/auth.interceptor";
 
 @NgModule({
   declarations: [

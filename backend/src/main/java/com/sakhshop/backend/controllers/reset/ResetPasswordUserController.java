@@ -2,7 +2,7 @@ package com.sakhshop.backend.controllers.reset;
 
 import com.sakhshop.backend.email.SendEmail;
 import com.sakhshop.backend.models.activation.NotActivatedUser;
-import com.sakhshop.backend.models.payload.request.seller.ResetUserRequest;
+import com.sakhshop.backend.models.payload.request.user.ResetUserRequest;
 import com.sakhshop.backend.models.payload.response.MessageResponse;
 import com.sakhshop.backend.models.user.User;
 import com.sakhshop.backend.service.cache.LoginAttemptService;
