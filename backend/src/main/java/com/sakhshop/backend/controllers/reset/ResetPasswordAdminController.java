@@ -64,12 +64,12 @@ public class ResetPasswordAdminController {
                 && resetAdminRequest.email().length() <= 58
                 && !validationRegExp.emailValidationRegExp(resetAdminRequest.email())
                 && !limitLogin.isBlocked(request.getRemoteAddr())
-                && Boolean.TRUE.equals(serviceJpa.existsByEmailAdmin(resetAdminRequest.email()))) {
+                && Boolean.TRUE.equals(serviceJpa.existsAdminByEmail(resetAdminRequest.email()))) {
 
             // Создаём token для ссылки
             String token = UUID.randomUUID().toString();
 
-            serviceJpa.updateTokenByEmailAdmin(token, resetAdminRequest.email());
+            serviceJpa.updateAdminTokenByEmail(token, resetAdminRequest.email());
 
             String urlResetPasswordAdmin = siteDomain + "/resetPassword/newPassword/" + token;
             sendEmail.resetPasswordAdmin(request.getServerName(), urlResetPasswordAdmin);
@@ -129,7 +129,7 @@ public class ResetPasswordAdminController {
 
             if (admin.getToken() != null && !admin.getToken().isEmpty()) {
 
-                serviceJpa.updatePasswordTokenByEmailAdmin(null, encoder.encode(resetAdminRequest.password()), admin.getEmail());
+                serviceJpa.updateAdminPasswordTokenByEmail(null, encoder.encode(resetAdminRequest.password()), admin.getEmail());
             }
 
 

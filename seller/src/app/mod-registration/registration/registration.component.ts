@@ -63,8 +63,8 @@ export class RegistrationComponent implements OnInit {
       , p_beak_bank: ['']
       , p_bank_name: ['']
       , p_correspondent_account: ['']
-      , inn_bank: ['']
-      , kpp_bank: ['']
+      , p_inn_bank: ['']
+      , p_kpp_bank: ['']
     });
 
 

@@ -18,6 +18,11 @@ const routes: Routes = [
   {
     path: 'resetPassword', loadChildren: () => import('./mod-reset-password/mod-reset-password.module').then(m => m.ModResetPasswordModule),
     data: {preload: true}, canMatch: [CanLoadGuard]
+  },
+
+  {
+    path: '**', loadChildren: () => import('./mod-error/mod-error.module').then(m => m.ModErrorModule),
+    data: {preload: true}, canMatch: [CanLoadGuard]
   }
 
 ];

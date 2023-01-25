@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleAdminRepository extends JpaRepository<RoleAdmin, Long> {
 
-    RoleAdmin findByRoleEnum(RoleEnum roleEnum);
+    RoleAdmin findRoleAdminByRoleEnum(RoleEnum roleEnum);
 
 }

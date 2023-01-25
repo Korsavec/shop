@@ -9,11 +9,33 @@ public class Constants {
     private Constants() {
     }
 
+
+
     private static final String ENVIRONMENT_USER_HOM = "user.home";
 
-    public static final String FILE_SYSTEM_PATH_RESOURCES_PASSPORT = System.getProperty(ENVIRONMENT_USER_HOM) + "/sakhshop/resources/passport";
-    public static final String FILE_SYSTEM_PATH_TMP_PASSPORT = System.getProperty(ENVIRONMENT_USER_HOM) + "/sakhshop/tmp/passport";
-    public static final String FILE_SYSTEM_PATH_TMP_TEST = System.getProperty(ENVIRONMENT_USER_HOM) + "/sakhshop/tmp/test";
+
+
+    public static final String ENVIRONMENT_PATH_PASSPORT_LOGISTICS_COMPANY =
+            System.getProperty(ENVIRONMENT_USER_HOM) + "/sakhshop/resources/passport/logistics/company";
+    public static final String ENVIRONMENT_PATH_PASSPORT_LOGISTICS_PERSON =
+            System.getProperty(ENVIRONMENT_USER_HOM) + "/sakhshop/resources/passport/logistics/person";
+    public static final String ENVIRONMENT_PATH_PASSPORT_SELLER =
+            System.getProperty(ENVIRONMENT_USER_HOM) + "/sakhshop/resources/passport/seller";
+
+
+
+
+    public static final String ENVIRONMENT_PATH_TMP_PASSPORT_COMPANY =
+            System.getProperty(ENVIRONMENT_USER_HOM) + "/sakhshop/tmp/passport/logistics/company";
+    public static final String ENVIRONMENT_PATH_TMP_PASSPORT_PERSON =
+            System.getProperty(ENVIRONMENT_USER_HOM) + "/sakhshop/tmp/passport/logistics/person";
+    public static final String ENVIRONMENT_PATH_TMP_PASSPORT_SELLER =
+            System.getProperty(ENVIRONMENT_USER_HOM) + "/sakhshop/tmp/passport/seller";
+
+
+
+
+
 
     public static final String SLASH = "/";
     public static final String DOT = ".";

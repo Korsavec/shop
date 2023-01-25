@@ -1,20 +1,26 @@
 package com.sakhshop.backend.service.jpa;
 
 import com.sakhshop.backend.enam.RoleEnum;
+import com.sakhshop.backend.models.activation.NotActivatedLogisticsCompany;
 import com.sakhshop.backend.models.activation.NotActivatedSeller;
 import com.sakhshop.backend.models.activation.NotActivatedUser;
 import com.sakhshop.backend.models.admin.Admin;
+import com.sakhshop.backend.models.logistics.company.LogisticsCompany;
 import com.sakhshop.backend.models.role.RoleAdmin;
+import com.sakhshop.backend.models.role.RoleLogisticsCompany;
 import com.sakhshop.backend.models.role.RoleSeller;
 import com.sakhshop.backend.models.role.RoleUser;
 import com.sakhshop.backend.models.seller.Seller;
 import com.sakhshop.backend.models.user.User;
 import com.sakhshop.backend.repository.AdminRepository;
+import com.sakhshop.backend.repository.LogisticsCompanyRepository;
 import com.sakhshop.backend.repository.SellerRepository;
 import com.sakhshop.backend.repository.UserRepository;
+import com.sakhshop.backend.repository.activated.NotActivatedLogisticsCompanyRepository;
 import com.sakhshop.backend.repository.activated.NotActivatedSellerRepository;
 import com.sakhshop.backend.repository.activated.NotActivatedUserRepository;
 import com.sakhshop.backend.repository.role.RoleAdminRepository;
+import com.sakhshop.backend.repository.role.RoleLogisticsCompanyRepository;
 import com.sakhshop.backend.repository.role.RoleSellerRepository;
 import com.sakhshop.backend.repository.role.RoleUserRepository;
 import org.springframework.stereotype.Service;
@@ -28,41 +34,37 @@ import java.util.Optional;
 public class ServiceJpaImpl implements ServiceJpa {
 
 
-    private final
-    UserRepository userRepository;
-
-    private final
-    RoleUserRepository roleUserRepository;
-
-    private final
-    SellerRepository sellerRepository;
-
-    private final
-    NotActivatedUserRepository notActivatedUserRepository;
-
-    private final
-    RoleSellerRepository roleSellerRepository;
-
-    private final
-    NotActivatedSellerRepository notActivatedSellerRepository;
+    private final AdminRepository adminRepository;
+    private final SellerRepository sellerRepository;
+    private final UserRepository userRepository;
+    private final LogisticsCompanyRepository logisticsCompanyRepository;
 
 
-    private final
-    AdminRepository adminRepository;
+    private final RoleAdminRepository roleAdminRepository;
+    private final RoleSellerRepository roleSellerRepository;
+    private final RoleUserRepository roleUserRepository;
+    private final RoleLogisticsCompanyRepository roleLogisticsCompanyRepository;
 
-    private final
-    RoleAdminRepository roleAdminRepository;
 
-    public ServiceJpaImpl(UserRepository userRepository, RoleUserRepository roleUserRepository, SellerRepository sellerRepository, NotActivatedUserRepository notActivatedUserRepository, RoleSellerRepository roleSellerRepository, NotActivatedSellerRepository notActivatedSellerRepository, AdminRepository adminRepository, RoleAdminRepository roleAdminRepository) {
-        this.userRepository = userRepository;
-        this.roleUserRepository = roleUserRepository;
-        this.sellerRepository = sellerRepository;
-        this.notActivatedUserRepository = notActivatedUserRepository;
-        this.roleSellerRepository = roleSellerRepository;
-        this.notActivatedSellerRepository = notActivatedSellerRepository;
+
+    private final NotActivatedSellerRepository notActivatedSellerRepository;
+    private final NotActivatedUserRepository notActivatedUserRepository;
+    private final NotActivatedLogisticsCompanyRepository notActivatedLogisticsCompanyRepository;
+
+    public ServiceJpaImpl(AdminRepository adminRepository, SellerRepository sellerRepository, UserRepository userRepository, LogisticsCompanyRepository logisticsCompanyRepository, RoleAdminRepository roleAdminRepository, RoleSellerRepository roleSellerRepository, RoleUserRepository roleUserRepository, RoleLogisticsCompanyRepository roleLogisticsCompanyRepository, NotActivatedSellerRepository notActivatedSellerRepository, NotActivatedUserRepository notActivatedUserRepository, NotActivatedLogisticsCompanyRepository notActivatedLogisticsCompanyRepository) {
         this.adminRepository = adminRepository;
+        this.sellerRepository = sellerRepository;
+        this.userRepository = userRepository;
+        this.logisticsCompanyRepository = logisticsCompanyRepository;
         this.roleAdminRepository = roleAdminRepository;
+        this.roleSellerRepository = roleSellerRepository;
+        this.roleUserRepository = roleUserRepository;
+        this.roleLogisticsCompanyRepository = roleLogisticsCompanyRepository;
+        this.notActivatedSellerRepository = notActivatedSellerRepository;
+        this.notActivatedUserRepository = notActivatedUserRepository;
+        this.notActivatedLogisticsCompanyRepository = notActivatedLogisticsCompanyRepository;
     }
+
 
 
     // >>>>>>>>>>>>>>>>>>>> User <<<<<<<<<<<<<<<<<<<<
@@ -72,65 +74,70 @@ public class ServiceJpaImpl implements ServiceJpa {
 
 
     // NotActivatedUser >>>>>>>>>>>>>>>>>>>>>>>>>>>
-    @Override
-    public Iterable<NotActivatedUser> findAllDateDeletionUser() {
-        return notActivatedUserRepository.findAll();
-    }
+
     @Override
     @Transactional
     public void deleteAllUser(Iterable<NotActivatedUser> entityList) {
         notActivatedUserRepository.deleteAll(entityList);
     }
 
+    @Override
+    public Iterable<NotActivatedUser> findAllDateDeletionUser() {
+        return notActivatedUserRepository.findAll();
+    }
 
     // RoleUser >>>>>>>>>>>>>>>>>>>>>>>>>>>
-    @Override
-    public RoleUser findByRoleEnumUser(RoleEnum roleEnum) {
-        return roleUserRepository.findByRoleEnum(roleEnum);
-    }
 
+    @Override
+    public RoleUser findRoleUserByRoleEnum(RoleEnum roleEnum) {
+        return roleUserRepository.findRoleUserByRoleEnum(roleEnum);
+    }
 
     // User >>>>>>>>>>>>>>>>>>>>>>>>>>>
-    @Override
-    public List<User> findAllByIdUser(Iterable<Long> entityList) {
-        return userRepository.findAllById(entityList);
-    }
+
     @Override
     @Transactional
     public void deleteListUser(Iterable<User> entityList) {
         userRepository.deleteAll(entityList);
     }
+
+    @Override
+    public Boolean existsUserByEmail(String email) {
+        return userRepository.existsUserByEmail(email);
+    }
+
+    @Override
+    public List<User> findAllUserById(Iterable<Long> entityList) {
+        return userRepository.findAllById(entityList);
+    }
+
     @Override
     public Optional<User> findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
+
     @Override
     public Optional<User> findUserByToken(String token) {
         return userRepository.findUserByToken(token);
     }
-    @Override
-    public Boolean existsByEmailUser(String email) {
-        return userRepository.existsByEmail(email);
-    }
 
-    @Transactional
-    @Override
-    public void updateTokenByEmailUser(String token, String email) {
-        userRepository.updateTokenByEmail(token, email);
-    }
-    @Transactional
-    @Override
-    public void updatePasswordTokenByEmailUser(String token, String password, String email) {
-        userRepository.updatePasswordTokenByEmail(token, password, email);
-    }
     @Override
     @Transactional
     public void saveUser(User user) {
         userRepository.save(user);
     }
 
+    @Transactional
+    @Override
+    public void updateUserPasswordTokenByEmail(String token, String password, String email) {
+        userRepository.updateUserPasswordTokenByEmail(token, password, email);
+    }
 
-
+    @Transactional
+    @Override
+    public void updateUserTokenByEmail(String token, String email) {
+        userRepository.updateUserTokenByEmail(token, email);
+    }
 
 
 
@@ -143,6 +150,7 @@ public class ServiceJpaImpl implements ServiceJpa {
 
 
     // NotActivatedSeller >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
     @Override
     @Transactional
     public void deleteAllSeller(Iterable<NotActivatedSeller> entityList) {
@@ -153,26 +161,64 @@ public class ServiceJpaImpl implements ServiceJpa {
         return notActivatedSellerRepository.findAll();
     }
 
-
-
-
     // RoleSeller >>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     @Override
-    public RoleSeller findByRoleEnumSeller(RoleEnum roleEnum) {
-        return roleSellerRepository.findByRoleEnum(roleEnum);
+    public RoleSeller findRoleSellerByRoleEnum(RoleEnum roleEnum) {
+        return roleSellerRepository.findRoleSellerByRoleEnum(roleEnum);
     }
-
 
     // Seller >>>>>>>>>>>>>>>>>>>>>>>>>>>
-    @Override
-    public List<Seller> findAllByIdSeller(Iterable<Long> entityList) {
-        return sellerRepository.findAllById(entityList);
-    }
+
     @Override
     @Transactional
     public void deleteListSeller(Iterable<Seller> entityList) {
         sellerRepository.deleteAll(entityList);
+    }
+
+    @Override
+    public Boolean existsSellerByBankAccount(String bankAccount) {
+        return sellerRepository.existsSellerByBankAccount(bankAccount);
+    }
+
+    @Override
+    public Boolean existsSellerByBeakBank(int beakBank) {
+        return sellerRepository.existsSellerByBeakBank(beakBank);
+    }
+
+    @Override
+    public Boolean existsSellerByEmail(String email) {
+        return sellerRepository.existsSellerByEmail(email);
+    }
+
+    @Override
+    public Boolean existsSellerByImgPassport(String imgPassport) {
+        return sellerRepository.existsSellerByImgPassport(imgPassport);
+    }
+
+    @Override
+    public Boolean existsSellerByInn(Long inn) {
+        return sellerRepository.existsSellerByInn(inn);
+    }
+
+    @Override
+    public Boolean existsSellerByNumberPassport(Long numberPassport) {
+        return sellerRepository.existsSellerByNumberPassport(numberPassport);
+    }
+
+    @Override
+    public Boolean existsSellerByPhone(Long phone) {
+        return sellerRepository.existsSellerByPhone(phone);
+    }
+
+    @Override
+    public Boolean existsSellerByShopName(String shopName) {
+        return sellerRepository.existsSellerByShopName(shopName);
+    }
+
+    @Override
+    public List<Seller> findAllSellerById(Iterable<Long> entityList) {
+        return sellerRepository.findAllById(entityList);
     }
 
     @Override
@@ -181,57 +227,8 @@ public class ServiceJpaImpl implements ServiceJpa {
     }
 
     @Override
-    public Boolean existsByPhone(Long phone) {
-        return sellerRepository.existsByPhone(phone);
-    }
-
-    @Override
     public Optional<Seller> findSellerByToken(String token) {
         return sellerRepository.findSellerByToken(token);
-    }
-
-    @Override
-    public Boolean existsByEmailSeller(String email) {
-        return sellerRepository.existsByEmail(email);
-    }
-
-    @Override
-    public void updateTokenByEmailSeller(String token, String email) {
-        sellerRepository.updateTokenByEmail(token, email);
-    }
-
-    @Override
-    public Boolean existsByNumberPassportSeller(Long numberPassport) {
-        return sellerRepository.existsByNumberPassport(numberPassport);
-    }
-    @Override
-    public Boolean existsByInnSeller(Long inn) {
-        return sellerRepository.existsByInn(inn);
-    }
-    @Override
-    public Boolean existsByShopNameSeller(String shopName) {
-        return sellerRepository.existsByShopName(shopName);
-    }
-
-    @Override
-    public Boolean existsByImgPassport(String imgPassport) {
-        return sellerRepository.existsByImgPassport(imgPassport);
-    }
-
-    @Override
-    public Boolean existsByBankAccount(String bankAccount) {
-        return sellerRepository.existsByBankAccount(bankAccount);
-    }
-
-    @Override
-    public Boolean existsByBeakBank(int beakBank) {
-        return sellerRepository.existsByBeakBank(beakBank);
-    }
-
-
-    @Override
-    public void updatePasswordTokenByEmailSeller(String token, String password, String email) {
-        sellerRepository.updatePasswordTokenByEmail(token, password, email);
     }
 
     @Override
@@ -239,6 +236,15 @@ public class ServiceJpaImpl implements ServiceJpa {
         sellerRepository.save(seller);
     }
 
+    @Override
+    public void updateSellerPasswordTokenByEmail(String token, String password, String email) {
+        sellerRepository.updateSellerPasswordTokenByEmail(token, password, email);
+    }
+
+    @Override
+    public void updateSellerTokenByEmail(String token, String email) {
+        sellerRepository.updateSellerTokenByEmail(token, email);
+    }
 
 
 
@@ -250,10 +256,18 @@ public class ServiceJpaImpl implements ServiceJpa {
 
 
 
+    // RoleAdmin >>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     @Override
-    public RoleAdmin findByRoleEnumAdmin(RoleEnum roleEnum) {
-        return roleAdminRepository.findByRoleEnum(roleEnum);
+    public RoleAdmin findRoleAdminByRoleEnum(RoleEnum roleEnum) {
+        return roleAdminRepository.findRoleAdminByRoleEnum(roleEnum);
+    }
+
+    // // Admin >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Override
+    public Boolean existsAdminByEmail(String email) {
+        return adminRepository.existsAdminByEmail(email);
     }
 
     @Override
@@ -261,27 +275,120 @@ public class ServiceJpaImpl implements ServiceJpa {
         return adminRepository.findAdminByEmail(email);
     }
 
-
     @Override
     public Optional<Admin> findAdminByToken(String token) {
         return adminRepository.findAdminByToken(token);
     }
 
     @Override
-    public Boolean existsByEmailAdmin(String email) {
-        return adminRepository.existsByEmail(email);
+    public void updateAdminPasswordTokenByEmail(String token, String password, String email) {
+        adminRepository.updateAdminPasswordTokenByEmail(token, password, email); // ++++++++++++++++++
     }
 
     @Override
-    public void updateTokenByEmailAdmin(String token, String email) {
-        adminRepository.updateTokenByEmail(token, email);
+    public void updateAdminTokenByEmail(String token, String email) {
+        adminRepository.updateAdminTokenByEmail(token, email);
+    }
+
+
+
+
+
+    // >>>>>>>>>>>>>>>>>>>> LogisticsCompany <<<<<<<<<<<<<<<<<<<<
+
+
+
+
+
+    // NotActivatedUser >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Override
+    public void deleteAllLogisticsCompany(Iterable<NotActivatedLogisticsCompany> entityList) {
+        notActivatedLogisticsCompanyRepository.deleteAll(entityList);
     }
 
     @Override
-    public void updatePasswordTokenByEmailAdmin(String token, String password, String email) {
-        adminRepository.updatePasswordTokenByEmail(token, password, email);
+    public Iterable<NotActivatedLogisticsCompany> findAllDateDeletionLogisticsCompany() {
+        return notActivatedLogisticsCompanyRepository.findAll();
     }
 
+    // RoleLogisticsCompany >>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+    @Override
+    public RoleLogisticsCompany findRoleLogisticsCompanyByRoleEnum(RoleEnum roleEnum) {
+        return roleLogisticsCompanyRepository.findRoleLogisticsCompanyByRoleEnum(roleEnum);
+    }
+
+    // LogisticsCompany >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Override
+    public void deleteListLogisticsCompany(Iterable<LogisticsCompany> entityList) {
+        logisticsCompanyRepository.deleteAll(entityList);
+    }
+
+    @Override
+    public Boolean existsLogisticsCompanyByBankAccount(String bankAccount) {
+        return logisticsCompanyRepository.existsLogisticsCompanyByBankAccount(bankAccount);
+    }
+
+    @Override
+    public Boolean existsLogisticsCompanyByBeakBank(int beakBank) {
+        return logisticsCompanyRepository.existsLogisticsCompanyByBeakBank(beakBank);
+    }
+
+    @Override
+    public Boolean existsLogisticsCompanyByEmail(String email) {
+        return logisticsCompanyRepository.existsLogisticsCompanyByEmail(email);
+    }
+
+    @Override
+    public Boolean existsLogisticsCompanyByImgPassport(String imgPassport) {
+        return logisticsCompanyRepository.existsLogisticsCompanyByImgPassport(imgPassport);
+    }
+
+    @Override
+    public Boolean existsLogisticsCompanyByInn(Long inn) {
+        return logisticsCompanyRepository.existsLogisticsCompanyByInn(inn);
+    }
+
+    @Override
+    public Boolean existsLogisticsCompanyByNumberPassport(Long numberPassport) {
+        return logisticsCompanyRepository.existsLogisticsCompanyByNumberPassport(numberPassport);
+    }
+
+    @Override
+    public Boolean existsLogisticsCompanyByPhone(Long phone) {
+        return logisticsCompanyRepository.existsLogisticsCompanyByPhone(phone);
+    }
+
+    @Override
+    public List<LogisticsCompany> findAllLogisticsCompanyById(Iterable<Long> entityList) {
+        return logisticsCompanyRepository.findAllById(entityList);
+    }
+
+    @Override
+    public Optional<LogisticsCompany> findLogisticsCompanyByEmail(String email) {
+        return logisticsCompanyRepository.findLogisticsCompanyByEmail(email);
+    }
+
+    @Override
+    public Optional<LogisticsCompany> findLogisticsCompanyByToken(String token) {
+        return logisticsCompanyRepository.findLogisticsCompanyByToken(token);
+    }
+
+    @Override
+    public void saveLogisticsCompany(LogisticsCompany logisticsCompany) {
+        logisticsCompanyRepository.save(logisticsCompany);
+    }
+
+    @Override
+    public void updateLogisticsCompanyPasswordTokenByEmail(String token, String password, String email) {
+        logisticsCompanyRepository.updateLogisticsCompanyPasswordTokenByEmail(token, password, email);
+    }
+
+    @Override
+    public void updateLogisticsCompanyTokenByEmail(String token, String email) {
+        logisticsCompanyRepository.updateLogisticsCompanyTokenByEmail(token, email);
+    }
 
 }

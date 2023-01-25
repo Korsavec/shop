@@ -64,21 +64,36 @@ public class SecurityConfig {
             .exceptionHandling().accessDeniedHandler(jwtAccessDeniedHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeHttpRequests()
-            .requestMatchers(API_USER).permitAll()
+
+
 
             .requestMatchers(API_GENERAL).permitAll()
 
-            .requestMatchers(API_SELLER).permitAll()
+
 
             .requestMatchers(API_GUARD_PASSPORT).permitAll()
 
+
+
+            .requestMatchers(API_USER).permitAll()
             .requestMatchers(API_ACCOUNT_GUARD_USER).permitAll()
 
+
+
+            .requestMatchers(API_SELLER).permitAll()
             .requestMatchers(API_ACCOUNT_GUARD_SELLER).permitAll()
 
-            .requestMatchers(API_ADMIN).permitAll()
 
+
+            .requestMatchers(API_ADMIN).permitAll()
             .requestMatchers(API_ACCOUNT_GUARD_ADMIN).permitAll()
+
+
+
+            .requestMatchers(LOGISTICS_COMPANY).permitAll()
+            .requestMatchers(API_ACCOUNT_GUARD_LOGISTICS_COMPANY).permitAll()
+
+
 
             .anyRequest().authenticated();
 

@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/AccountGuard")
 public class SecurityController {
 
+
   @GetMapping("/all")
   public String allAccess() {
-    return "Public Content.";
+    return "Public Content all.";
   }
 
   @GetMapping(value = "/user", produces = "application/json")
@@ -24,13 +25,19 @@ public class SecurityController {
   @GetMapping(value = "/seller", produces = "application/json")
   @PreAuthorize("hasRole('SELLER')")
   public String sellerAccess() {
-    return "{\"PERSON\":\"PERSON текст\" } ";
+    return "{\"PERSON\":\"SELLER текст\" } ";
   }
 
   @GetMapping(value = "/admin", produces = "application/json")
   @PreAuthorize("hasRole('ADMIN')")
   public String adminAccess() {
-    return "{\"PERSON\":\"PERSON текст\" } ";
+    return "{\"PERSON\":\"ADMIN текст\" } ";
+  }
+
+  @GetMapping(value = "/logisticsCompany", produces = "application/json")
+  @PreAuthorize("hasRole('LOGISTICS_COMPANY')")
+  public String logisticsCompanyAccess() {
+    return "{\"PERSON\":\"ADMIN текст\" } ";
   }
 
 

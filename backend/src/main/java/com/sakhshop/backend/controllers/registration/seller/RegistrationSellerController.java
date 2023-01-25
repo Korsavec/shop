@@ -86,7 +86,7 @@ public class RegistrationSellerController {
         String temporaryFileTame = UUID.randomUUID().toString();
 
         // Создаём путь к файлу у которого временное имя
-        String pathFileTmp = FILE_SYSTEM_PATH_TMP_PASSPORT + SLASH + temporaryFileTame + DOT + extension;
+        String pathFileTmp = ENVIRONMENT_PATH_TMP_PASSPORT_SELLER + SLASH + temporaryFileTame + DOT + extension;
 
         // Сохраняем этот файл с временным именем
         Path sourcePathFileTmp = get(pathFileTmp);
@@ -98,7 +98,7 @@ public class RegistrationSellerController {
 
         // Сжимаем изображение + конвертируем в jpg если это png + очищаем метаданные
         // После конвертации получаются два файла, один оригинал png и второй на выходе jpg, при условии, что исходный был png
-        boolean compressed = compressionAndConversion(FILE_SYSTEM_PATH_TMP_PASSPORT, temporaryFileTame, extension);
+        boolean compressed = compressionAndConversion(ENVIRONMENT_PATH_TMP_PASSPORT_SELLER, temporaryFileTame, extension);
 
         if (!compressed) {
             // Ошибка сжатия файла
@@ -107,7 +107,7 @@ public class RegistrationSellerController {
 
 
         // Строим временный путь к файлу jpg.
-        String pathFileTmpJpg = FILE_SYSTEM_PATH_TMP_PASSPORT + SLASH + temporaryFileTame + DOT + EXTENSION_JPG;
+        String pathFileTmpJpg = ENVIRONMENT_PATH_TMP_PASSPORT_SELLER + SLASH + temporaryFileTame + DOT + EXTENSION_JPG;
 
 
         // Генерируем имя (хеша md5) для уже сжатого файла
@@ -143,7 +143,7 @@ public class RegistrationSellerController {
 
                 || value.phone().toString().length() != 10
                 || validationRegExp.onlyNumbersRegExp(value.phone().toString())
-                || serviceJpa.existsByPhone(value.phone())
+                || serviceJpa.existsSellerByPhone(value.phone())
 
                 || value.email().length() < 8
                 || value.email().length() > 58
@@ -171,16 +171,16 @@ public class RegistrationSellerController {
 
                 || value.numberPassport().toString().length() != 10
                 || validationRegExp.onlyNumbersRegExp(value.numberPassport().toString())
-                || serviceJpa.existsByNumberPassportSeller(value.numberPassport())
+                || serviceJpa.existsSellerByNumberPassport(value.numberPassport())
 
                 || value.inn().toString().length() != 12
                 || validationRegExp.onlyNumbersRegExp(value.inn().toString())
-                || serviceJpa.existsByInnSeller(value.inn())
+                || serviceJpa.existsSellerByInn(value.inn())
 
                 || value.shopName().length() < 3
                 || value.shopName().length() > 30
                 || validationRegExp.onlyLettersCyrillicAndNumbersRegExp(value.shopName())
-                || serviceJpa.existsByShopNameSeller(value.shopName())
+                || serviceJpa.existsSellerByShopName(value.shopName())
 
                 || value.region().length() != 7
                 || validationRegExp.onlyLettersCyrillic(value.region())
@@ -207,11 +207,11 @@ public class RegistrationSellerController {
 
                 || value.bankAccount().length() != 20
                 || validationRegExp.onlyNumbersRegExp(value.bankAccount())
-                || serviceJpa.existsByBankAccount(value.bankAccount())
+                || serviceJpa.existsSellerByBankAccount(value.bankAccount())
 
                 || String.valueOf(value.beakBank()).length() != 9
                 || validationRegExp.onlyNumbersRegExp(String.valueOf(value.beakBank()))
-                || serviceJpa.existsByBeakBank(value.beakBank())
+                || serviceJpa.existsSellerByBeakBank(value.beakBank())
 
                 || value.bankName().length() < 1
                 || value.bankName().length() > 50
@@ -236,7 +236,7 @@ public class RegistrationSellerController {
         }
 
 
-        if (Boolean.TRUE.equals(serviceJpa.existsByEmailSeller(value.email()))) {
+        if (Boolean.TRUE.equals(serviceJpa.existsSellerByEmail(value.email()))) {
             return new ResponseEntity<>(new MessageResponse(HttpStatus.BAD_REQUEST.value(),
                     "Seller exist"),
                     HttpStatus.BAD_REQUEST);
@@ -244,10 +244,10 @@ public class RegistrationSellerController {
 
 
         // Строим пути для сохранения файла в конечную точку
-        String pathFileEndPointJpg = FILE_SYSTEM_PATH_RESOURCES_PASSPORT + SLASH + group3 + SLASH + imageNameHash + DOT + EXTENSION_JPG;
+        String pathFileEndPointJpg = ENVIRONMENT_PATH_PASSPORT_SELLER + SLASH + group3 + SLASH + imageNameHash + DOT + EXTENSION_JPG;
 
         // Строим конечный путь где должен хранится файл
-        String pathEndPoint = FILE_SYSTEM_PATH_RESOURCES_PASSPORT + SLASH + group3;
+        String pathEndPoint = ENVIRONMENT_PATH_PASSPORT_SELLER + SLASH + group3;
 
         // Относительный путь до файла. Для сохранения в БД
         String distPath = group3 + SLASH + imageNameHash + DOT + EXTENSION_JPG;
@@ -293,7 +293,7 @@ public class RegistrationSellerController {
         }
 
 
-        if (Boolean.TRUE.equals(serviceJpa.existsByImgPassport(path.toString()))) {
+        if (Boolean.TRUE.equals(serviceJpa.existsSellerByImgPassport(path.toString()))) {
             return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), STATIC_OK));
         }
 
@@ -346,7 +346,7 @@ public class RegistrationSellerController {
         notActivatedSeller.setSeller(seller);
 
         Set<RoleSeller> roleSellerPeople = new LinkedHashSet<>();
-        RoleSeller roleSeller = serviceJpa.findByRoleEnumSeller(RoleEnum.ROLE_SELLER);
+        RoleSeller roleSeller = serviceJpa.findRoleSellerByRoleEnum(RoleEnum.ROLE_SELLER);
         roleSellerPeople.add(roleSeller);
         seller.setSellerRoles(roleSellerPeople);
 

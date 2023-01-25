@@ -5,7 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/admin.iml" filepath="$PROJECT_DIR$/admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/backend/backend.iml" filepath="$PROJECT_DIR$/backend/backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/frontend/frontend.iml" filepath="$PROJECT_DIR$/frontend/frontend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/logistics.iml" filepath="$PROJECT_DIR$/logistics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/logistics-company/logistics-company.iml" filepath="$PROJECT_DIR$/logistics-company/logistics-company.iml" />
+      <module fileurl="file://$PROJECT_DIR$/logistics-person/logistics-person.iml" filepath="$PROJECT_DIR$/logistics-person/logistics-person.iml" />
       <module fileurl="file://$PROJECT_DIR$/seller/seller.iml" filepath="$PROJECT_DIR$/seller/seller.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/shop.iml" filepath="$PROJECT_DIR$/.idea/shop.iml" />
     </modules>

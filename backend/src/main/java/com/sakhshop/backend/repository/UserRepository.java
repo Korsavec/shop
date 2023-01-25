@@ -14,23 +14,23 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
+  Boolean existsUserByEmail(String email);
+
   Optional<User> findUserByEmail(String email);
 
   Optional<User> findUserByToken (String token);
 
-  Boolean existsByEmail(String email);
 
-
-
-  @Transactional
-  @Modifying
-  @Query("UPDATE User u SET u.token = :token where u.email = :email")
-  void updateTokenByEmail(@Param("token") String token, @Param("email") String email);
 
   @Transactional
   @Modifying
   @Query("UPDATE User u SET u.token = :token, u.password = :password where u.email = :email")
-  void updatePasswordTokenByEmail(@Param("token") String token, @Param("password") String password, @Param("email") String email);
+  void updateUserPasswordTokenByEmail(@Param("token") String token, @Param("password") String password, @Param("email") String email);
+
+  @Transactional
+  @Modifying
+  @Query("UPDATE User u SET u.token = :token where u.email = :email")
+  void updateUserTokenByEmail(@Param("token") String token, @Param("email") String email);
 
 
 }

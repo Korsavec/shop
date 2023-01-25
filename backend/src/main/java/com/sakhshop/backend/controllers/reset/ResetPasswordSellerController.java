@@ -65,13 +65,13 @@ public class ResetPasswordSellerController {
                 && resetSellerRequest.email().length() <= 58
                 && !validationRegExp.emailValidationRegExp(resetSellerRequest.email())
                 && !limitLogin.isBlocked(request.getRemoteAddr())
-                && Boolean.TRUE.equals(serviceJpa.existsByEmailSeller(resetSellerRequest.email()))) {
+                && Boolean.TRUE.equals(serviceJpa.existsSellerByEmail(resetSellerRequest.email()))) {
 
             // Создаём token для ссылки
             String token = UUID.randomUUID().toString();
 
 
-            serviceJpa.updateTokenByEmailSeller(token, resetSellerRequest.email());
+            serviceJpa.updateSellerTokenByEmail(token, resetSellerRequest.email());
 
             String urlResetPasswordSeller = siteDomain + "/resetPassword/newPassword/" + token;
             sendEmail.resetPasswordSeller(request.getServerName(), urlResetPasswordSeller);
@@ -149,7 +149,7 @@ public class ResetPasswordSellerController {
 
             if (seller.getToken() != null && !seller.getToken().isEmpty()) {
 
-                serviceJpa.updatePasswordTokenByEmailSeller(null, encoder.encode(resetSellerRequest.password()), seller.getEmail());
+                serviceJpa.updateSellerPasswordTokenByEmail(null, encoder.encode(resetSellerRequest.password()), seller.getEmail());
             }
 
 

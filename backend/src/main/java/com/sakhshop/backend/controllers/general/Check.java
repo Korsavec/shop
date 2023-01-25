@@ -36,7 +36,7 @@ public class Check {
                 || validationRegExp.onlyLettersCyrillicAndNumbersRegExp(checkShopName.shopName())) {
             return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),"no"), HttpStatus.OK);
 
-        } else if (Boolean.FALSE.equals(serviceJpa.existsByShopNameSeller(checkShopName.shopName()))) {
+        } else if (Boolean.FALSE.equals(serviceJpa.existsSellerByShopName(checkShopName.shopName()))) {
             return new ResponseEntity<>(new MessageResponse(HttpStatus.OK.value(),"no"), HttpStatus.OK);
 
         } else {

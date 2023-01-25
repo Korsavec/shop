@@ -52,7 +52,7 @@ public class SchedulerNotActivatedUser {
         entities2.forEach(notActivatedUser -> longList.add(notActivatedUser.getUser().getId()));
 
         // Сюда присваиваем все аккаунты которые нужно удалить
-        List<User> userList =  serviceJpa.findAllByIdUser(longList);
+        List<User> userList =  serviceJpa.findAllUserById(longList);
 
 
         if (!entities1.isEmpty()){

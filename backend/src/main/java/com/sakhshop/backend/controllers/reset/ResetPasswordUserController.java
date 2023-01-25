@@ -65,12 +65,12 @@ public class ResetPasswordUserController {
             && resetUserRequest.email().length() <= 58
             && !validationRegExp.emailValidationRegExp(resetUserRequest.email())
             && !limitLogin.isBlocked(request.getRemoteAddr())
-            && Boolean.TRUE.equals(serviceJpa.existsByEmailUser(resetUserRequest.email()))) {
+            && Boolean.TRUE.equals(serviceJpa.existsUserByEmail(resetUserRequest.email()))) {
 
       // Создаём token для ссылки
       String token = UUID.randomUUID().toString();
 
-      serviceJpa.updateTokenByEmailUser(token, resetUserRequest.email());
+      serviceJpa.updateUserTokenByEmail(token, resetUserRequest.email());
 
       String urlResetPasswordUser = siteDomain + "/resetPassword/newPassword/" + token;
       sendEmail.resetPasswordUser(request.getServerName(), urlResetPasswordUser);
@@ -146,7 +146,7 @@ public class ResetPasswordUserController {
 
       if (user.getToken() != null && !user.getToken().isEmpty()) {
 
-        serviceJpa.updatePasswordTokenByEmailUser(null, encoder.encode(resetUserRequest.password()), user.getEmail());
+        serviceJpa.updateUserPasswordTokenByEmail(null, encoder.encode(resetUserRequest.password()), user.getEmail());
       }
 
 

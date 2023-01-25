@@ -14,22 +14,21 @@ import java.util.Optional;
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Long> {
 
+    Boolean existsAdminByEmail(String email);
+
     Optional<Admin> findAdminByEmail(String email);
 
     Optional<Admin> findAdminByToken (String token);
 
-    Boolean existsByEmail(String email);
-
-
+    @Transactional
+    @Modifying
+    @Query("UPDATE Admin a SET a.token = :token, a.password = :password where a.email = :email")
+    void updateAdminPasswordTokenByEmail(@Param("token") String token, @Param("password") String password, @Param("email") String email);
 
     @Transactional
     @Modifying
-    @Query("UPDATE Admin u SET u.token = :token where u.email = :email")
-    void updateTokenByEmail(@Param("token") String token, @Param("email") String email);
+    @Query("UPDATE Admin a SET a.token = :token where a.email = :email")
+    void updateAdminTokenByEmail(@Param("token") String token, @Param("email") String email);
 
-    @Transactional
-    @Modifying
-    @Query("UPDATE Admin u SET u.token = :token, u.password = :password where u.email = :email")
-    void updatePasswordTokenByEmail(@Param("token") String token, @Param("password") String password, @Param("email") String email);
 
 }

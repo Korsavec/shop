@@ -8,14 +8,17 @@ import {HeadComponent} from './head/head.component';
 
 
 @NgModule({
-  declarations: [
-    ModDashboardComponent,
-    DashboardComponent,
-    HeadComponent
-  ],
-  imports: [
-    CommonModule,
-    ModDashboardRoutingModule
-  ]
+    declarations: [
+        ModDashboardComponent,
+        DashboardComponent,
+        HeadComponent
+    ],
+    exports: [
+        HeadComponent
+    ],
+    imports: [
+        CommonModule,
+        ModDashboardRoutingModule
+    ]
 })
 export class ModDashboardModule { }

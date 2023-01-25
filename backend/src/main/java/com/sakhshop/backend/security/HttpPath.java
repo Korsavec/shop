@@ -16,6 +16,10 @@ public class HttpPath {
     public static final String API_SINGLETON_GUARD_ADMIN = "/api/AccountGuard/admin";
 
 
+    public static final String API_SINGLETON_LOGIN_LOGISTICS_COMPANY = "/api/auth/loginLogisticsCompany";
+    public static final String API_SINGLETON_GUARD_LOGISTICS_COMPANY = "/api/AccountGuard/logisticsCompany";
+
+
 
 
     private HttpPath() {
@@ -30,6 +34,12 @@ public class HttpPath {
             API_SINGLETON_LOGIN_USER
     };
 
+    protected static final String[] API_ACCOUNT_GUARD_USER = {
+            API_SINGLETON_GUARD_USER
+    };
+
+    //---
+
     protected static final String[] API_SELLER = {
             "/api/auth/registrationSeller",
             "/api/auth/confirmEmailSeller",
@@ -39,6 +49,12 @@ public class HttpPath {
             API_SINGLETON_LOGIN_SELLER,
     };
 
+    protected static final String[] API_ACCOUNT_GUARD_SELLER = {
+            API_SINGLETON_GUARD_SELLER,
+    };
+
+    //---
+
     protected static final String[] API_ADMIN = {
             "/api/auth/resetPasswordAdmin",
             "/api/auth/checkTokenAdminResetPassword",
@@ -46,26 +62,36 @@ public class HttpPath {
             API_SINGLETON_LOGIN_ADMIN
     };
 
+    protected static final String[] API_ACCOUNT_GUARD_ADMIN = {
+            API_SINGLETON_GUARD_ADMIN,
+    };
+
+    //---
+
+    protected static final String[] LOGISTICS_COMPANY = {
+            "/api/auth/registrationLogisticsCompany",
+            "/api/auth/confirmEmailLogisticsCompany",
+            "/api/auth/resetPasswordLogisticsCompany",
+            "/api/auth/checkTokenLogisticsCompanyResetPassword",
+            "/api/auth/newPasswordLogisticsCompany",
+            API_SINGLETON_LOGIN_LOGISTICS_COMPANY
+    };
+
+    protected static final String[] API_ACCOUNT_GUARD_LOGISTICS_COMPANY = {
+            API_SINGLETON_GUARD_LOGISTICS_COMPANY,
+    };
+
+    //---
 
     protected static final String[] API_GENERAL = {
             "/api/checkShopName",
             "/api/all"
     };
 
-    protected static final String[] API_ACCOUNT_GUARD_USER = {
-            API_SINGLETON_GUARD_USER
-    };
-
-    protected static final String[] API_ACCOUNT_GUARD_SELLER = {
-            API_SINGLETON_GUARD_SELLER,
-    };
-
-    protected static final String[] API_ACCOUNT_GUARD_ADMIN = {
-            API_SINGLETON_GUARD_ADMIN,
-    };
+    //---
 
     protected static final String[] API_GUARD_PASSPORT = {
-            "/resources/ResourcesGuard/passport/image/**"
+            "/resources/Guard/image/passport/**"
     };
 
 

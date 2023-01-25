@@ -13,15 +13,15 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (request.url.includes(`${this.host}/api/auth/registrationSeller`) //+
-      || request.url.includes(`${this.host}/api/auth/confirmEmailSeller`) //+
-      || request.url.includes(`${this.host}/api/auth/resetPasswordSeller`) //+
-      || request.url.includes(`${this.host}/api/auth/checkTokenSellerResetPassword`) //+
-      || request.url.includes(`${this.host}/api/auth/newPasswordSeller`) //+
-      || request.url.includes(`${this.host}/api/auth/loginSeller`) //+
-      || request.url.includes(`${this.host}/api/auth/checkShopName`) //+
-      || request.url.includes(`${this.host}/api/all`) //+
-      || request.url.includes(`${this.host}/resources/all`) //+
+    if (request.url.includes(`${this.host}/api/auth/registrationSeller`)
+      || request.url.includes(`${this.host}/api/auth/confirmEmailSeller`)
+      || request.url.includes(`${this.host}/api/auth/resetPasswordSeller`)
+      || request.url.includes(`${this.host}/api/auth/checkTokenSellerResetPassword`)
+      || request.url.includes(`${this.host}/api/auth/newPasswordSeller`)
+      || request.url.includes(`${this.host}/api/auth/loginSeller`)
+      || request.url.includes(`${this.host}/api/auth/checkShopName`)
+      || request.url.includes(`${this.host}/api/all`)
+      || request.url.includes(`${this.host}/resources/all`)
       || request.url.includes(`${this.host}/resources/ResourcesGuard/image/**`)) {
       return next.handle(request);
     }

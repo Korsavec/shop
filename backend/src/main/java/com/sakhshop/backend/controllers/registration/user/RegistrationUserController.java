@@ -80,7 +80,7 @@ public class RegistrationUserController {
                     HttpStatus.OK);
         }
 
-        if (Boolean.TRUE.equals(serviceJpa.existsByEmailUser(registrationUserRequest.email()))) {
+        if (Boolean.TRUE.equals(serviceJpa.existsUserByEmail(registrationUserRequest.email()))) {
 
             return new ResponseEntity<>(new MessageResponse(HttpStatus.BAD_REQUEST.value(),
                     "User exist"),
@@ -111,7 +111,7 @@ public class RegistrationUserController {
 
 
         Set<RoleUser> roleUsers = new LinkedHashSet<>();
-        RoleUser roleUser = serviceJpa.findByRoleEnumUser(RoleEnum.ROLE_USER);
+        RoleUser roleUser = serviceJpa.findRoleUserByRoleEnum(RoleEnum.ROLE_USER);
         roleUsers.add(roleUser);
         user.setRoleUsers(roleUsers);
         serviceJpa.saveUser(user);

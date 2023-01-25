@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 public class ValidationRegExp {
 
     private static final Pattern onlyLettersCyrillic = Pattern.compile("^[а-яА-Я]+$");
+
     private static final Pattern onlyNumbers = Pattern.compile("^\\d+$");
 
     private static final Pattern onlyLettersCyrillicAndNumbers = Pattern.compile("^[0-9а-яА-Я]+$");

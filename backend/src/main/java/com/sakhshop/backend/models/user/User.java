@@ -93,6 +93,7 @@ public class User implements Serializable {
   private String ipAddressFirstEntrance;
 
 
+  // Это ip адрес с которого был осуществлён последний вход в учётную запись пользователя
   @Column(name = "ip_address_last_entrance", length = 39)
   private String ipAddressLastEntrance;
 
@@ -101,7 +102,7 @@ public class User implements Serializable {
   @ManyToMany(cascade = {CascadeType.MERGE})
   @JoinTable(name = "join_a_user_and_role_user",
           joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-          inverseJoinColumns = @JoinColumn(name = "role_users_id", referencedColumnName = "id"))
+          inverseJoinColumns = @JoinColumn(name = "role_user_id", referencedColumnName = "id"))
   private Set<RoleUser> roleUsers = new LinkedHashSet<>();
 
 

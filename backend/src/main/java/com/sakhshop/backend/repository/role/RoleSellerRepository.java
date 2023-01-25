@@ -10,5 +10,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface RoleSellerRepository extends JpaRepository<RoleSeller, Long> {
 
-    RoleSeller findByRoleEnum(RoleEnum roleEnum);
+    RoleSeller findRoleSellerByRoleEnum(RoleEnum roleEnum);
 }
