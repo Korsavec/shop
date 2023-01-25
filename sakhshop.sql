@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Янв 22 2023 г., 21:16
+-- Время создания: Янв 25 2023 г., 08:11
 -- Версия сервера: 8.0.29
 -- Версия PHP: 8.1.11
 
@@ -42,6 +42,28 @@ INSERT INTO `join_a_admin_and_role_admin` (`admin_id`, `role_admin_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `join_a_logistics_company_and_role_logistics_company`
+--
+
+CREATE TABLE `join_a_logistics_company_and_role_logistics_company` (
+  `logistics_company_id` bigint NOT NULL,
+  `role_logistics_company_id` bigint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `join_a_logistics_person_and_role_logistics_person`
+--
+
+CREATE TABLE `join_a_logistics_person_and_role_logistics_person` (
+  `logistics_person_id` bigint NOT NULL,
+  `role_logistics_person_id` bigint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `join_a_seller_and_role_seller`
 --
 
@@ -49,13 +71,6 @@ CREATE TABLE `join_a_seller_and_role_seller` (
   `seller_id` bigint NOT NULL,
   `role_seller_id` bigint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Дамп данных таблицы `join_a_seller_and_role_seller`
---
-
-INSERT INTO `join_a_seller_and_role_seller` (`seller_id`, `role_seller_id`) VALUES
-(1, 1);
 
 -- --------------------------------------------------------
 
@@ -65,16 +80,8 @@ INSERT INTO `join_a_seller_and_role_seller` (`seller_id`, `role_seller_id`) VALU
 
 CREATE TABLE `join_a_user_and_role_user` (
   `user_id` bigint NOT NULL,
-  `role_users_id` bigint NOT NULL
+  `role_user_id` bigint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Дамп данных таблицы `join_a_user_and_role_user`
---
-
-INSERT INTO `join_a_user_and_role_user` (`user_id`, `role_users_id`) VALUES
-(1, 1),
-(2, 1);
 
 -- --------------------------------------------------------
 
@@ -106,12 +113,12 @@ CREATE TABLE `join_product_users` (
 
 CREATE TABLE `model_admin` (
   `id` bigint NOT NULL,
+  `account_non_locked` bit(1) NOT NULL,
   `email` varchar(58) NOT NULL,
+  `enabled` bit(1) NOT NULL,
   `name` varchar(25) DEFAULT NULL,
   `password` varchar(65) NOT NULL,
   `phone` bigint DEFAULT NULL,
-  `account_non_locked` bit(1) NOT NULL,
-  `enabled` bit(1) NOT NULL,
   `token` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -119,8 +126,96 @@ CREATE TABLE `model_admin` (
 -- Дамп данных таблицы `model_admin`
 --
 
-INSERT INTO `model_admin` (`id`, `email`, `name`, `password`, `phone`, `account_non_locked`, `enabled`, `token`) VALUES
-(1, 'gennadij.777@gmail.com', 'genSakh', '$2a$10$u.k5t7XQgrC5r39MqmcWtuNurji9d2umB6CP.0Kp7v7ZtfOvLwmZ.', 79242852535, b'1', b'1', NULL);
+INSERT INTO `model_admin` (`id`, `account_non_locked`, `email`, `enabled`, `name`, `password`, `phone`, `token`) VALUES
+(1, b'1', 'ddd@dd.dd', b'1', 'Геннадий', '$2a$10$Nq0fThbckgprYc5zc3Dx1.AlcqxvR/N1F/2ci2/MvOGZzeOfo.Lk6', 79242852535, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `model_logistics_company`
+--
+
+CREATE TABLE `model_logistics_company` (
+  `id` bigint NOT NULL,
+  `account_non_locked` bit(1) NOT NULL,
+  `apartment` smallint DEFAULT NULL,
+  `approval` bit(1) NOT NULL,
+  `balance` decimal(12,2) DEFAULT '0.00',
+  `bank_account` varchar(20) NOT NULL,
+  `bank_name` varchar(50) NOT NULL,
+  `beak_bank` int NOT NULL,
+  `building` varchar(11) DEFAULT NULL,
+  `city` varchar(25) NOT NULL,
+  `company_name` varchar(30) NOT NULL,
+  `correspondent_account` varchar(20) NOT NULL,
+  `date_birth` date NOT NULL,
+  `date_created_logistics_company` datetime(6) NOT NULL,
+  `email` varchar(58) NOT NULL,
+  `enabled` bit(1) NOT NULL,
+  `house` varchar(11) NOT NULL,
+  `img_passport` varchar(150) NOT NULL,
+  `inn` bigint NOT NULL,
+  `inn_bank` bigint NOT NULL,
+  `ip_address_first_entrance` varchar(39) DEFAULT NULL,
+  `ip_address_last_entrance` varchar(39) DEFAULT NULL,
+  `ip_address_reg_confirm` varchar(39) DEFAULT NULL,
+  `ip_address_registration` varchar(39) NOT NULL,
+  `kpp` int NOT NULL,
+  `kpp_bank` int NOT NULL,
+  `middle_name` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `number_passport` bigint NOT NULL,
+  `ogrn` bigint NOT NULL,
+  `password` varchar(65) NOT NULL,
+  `phone` bigint NOT NULL,
+  `region` varchar(7) NOT NULL,
+  `street` varchar(50) NOT NULL,
+  `surname` varchar(45) NOT NULL,
+  `token` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `model_logistics_person`
+--
+
+CREATE TABLE `model_logistics_person` (
+  `id` bigint NOT NULL,
+  `account_non_locked` bit(1) NOT NULL,
+  `apartment` smallint DEFAULT NULL,
+  `approval` bit(1) NOT NULL,
+  `balance` decimal(12,2) DEFAULT '0.00',
+  `bank_account` varchar(20) NOT NULL,
+  `bank_name` varchar(50) NOT NULL,
+  `beak_bank` int NOT NULL,
+  `building` varchar(11) DEFAULT NULL,
+  `city` varchar(25) NOT NULL,
+  `correspondent_account` varchar(20) NOT NULL,
+  `date_birth` date NOT NULL,
+  `date_created_seller` datetime(6) NOT NULL,
+  `email` varchar(58) NOT NULL,
+  `enabled` bit(1) NOT NULL,
+  `house` varchar(11) NOT NULL,
+  `img_passport` varchar(150) NOT NULL,
+  `inn_bank` bigint NOT NULL,
+  `ip_address_first_entrance` varchar(39) DEFAULT NULL,
+  `ip_address_last_entrance` varchar(39) DEFAULT NULL,
+  `ip_address_reg_confirm` varchar(39) DEFAULT NULL,
+  `ip_address_registration` varchar(39) NOT NULL,
+  `kpp_bank` int NOT NULL,
+  `middle_name` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `number_passport` bigint NOT NULL,
+  `password` varchar(65) NOT NULL,
+  `phone` bigint NOT NULL,
+  `region` varchar(7) NOT NULL,
+  `shop_name` varchar(30) NOT NULL,
+  `street` varchar(50) NOT NULL,
+  `surname` varchar(45) NOT NULL,
+  `token` varchar(45) DEFAULT NULL,
+  `username` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -202,13 +297,6 @@ CREATE TABLE `model_seller` (
   `username` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
---
--- Дамп данных таблицы `model_seller`
---
-
-INSERT INTO `model_seller` (`id`, `account_non_locked`, `apartment`, `approval`, `balance`, `bank_account`, `bank_name`, `beak_bank`, `building`, `city`, `correspondent_account`, `date_birth`, `date_created_seller`, `email`, `enabled`, `house`, `img_passport`, `inn`, `inn_bank`, `ip_address_first_entrance`, `ip_address_last_entrance`, `ip_address_reg_confirm`, `ip_address_registration`, `kpp_bank`, `middle_name`, `name`, `number_passport`, `password`, `phone`, `region`, `shop_name`, `street`, `surname`, `token`, `username`) VALUES
-(1, b'1', 4, b'0', '0.00', '11111111111111111111', 'аывавы', 111111111, '4', 'вап', '11111111111111111111', '2023-01-20', '2023-01-22 20:37:54.981865', 'fsdfs@fs.sd', b'1', '4', 'f/59/35/24/f593524d2163e29d18a28e189ce08977.jpg', 111111111111, 1111111111, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', 111111111, 'ыыпа', 'впа', 1111111111, '$2a$10$pLmwreMXDrbPhfJLudG4l.uHezl6zppQ7Ri.I82PFfQ8.FmMCjYaa', 1111111111, 'Сахалин', 'аваыа', 'вап', 'вап', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -235,13 +323,18 @@ CREATE TABLE `model_users` (
   `username` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- --------------------------------------------------------
+
 --
--- Дамп данных таблицы `model_users`
+-- Структура таблицы `not_activated_logistics_company`
 --
 
-INSERT INTO `model_users` (`id`, `account_non_locked`, `date_birth`, `date_created_user`, `email`, `enabled`, `ip_address_first_entrance`, `ip_address_last_entrance`, `ip_address_reg_confirm`, `ip_address_registration`, `middle_name`, `name`, `password`, `phone`, `surname`, `token`, `username`) VALUES
-(1, b'1', NULL, '2023-01-22 20:35:15.064832', 'fddfsfds@sfsdf.df', b'1', NULL, NULL, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', NULL, NULL, '$2a$10$I.t7rQ/qnv8cE1dST.KZkewEYPg3RFnyjJvMHODWMyxsJ/8Nb2Ka.', NULL, NULL, NULL, NULL),
-(2, b'1', NULL, '2023-01-22 20:59:50.459678', 'ggsdg@sdf.df', b'1', NULL, NULL, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', NULL, NULL, '$2a$10$jBo/pLTlRut4Zxm1MOb2aOq3R1VHKIlepzeiBVYyut5/EVumTNs0a', NULL, NULL, NULL, NULL);
+CREATE TABLE `not_activated_logistics_company` (
+  `id` bigint NOT NULL,
+  `active` bit(1) NOT NULL,
+  `date_deletion_logistics_company` datetime(6) DEFAULT NULL,
+  `logistics_company_id` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -256,13 +349,6 @@ CREATE TABLE `not_activated_seller` (
   `seller_id` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
---
--- Дамп данных таблицы `not_activated_seller`
---
-
-INSERT INTO `not_activated_seller` (`id`, `active`, `date_deletion_seller`, `seller_id`) VALUES
-(1, b'1', '2023-01-23 20:37:54.981865', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -275,14 +361,6 @@ CREATE TABLE `not_activated_user` (
   `date_deletion_user` datetime(6) DEFAULT NULL,
   `user_id` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Дамп данных таблицы `not_activated_user`
---
-
-INSERT INTO `not_activated_user` (`id`, `active`, `date_deletion_user`, `user_id`) VALUES
-(1, b'1', '2023-01-23 20:35:15.064832', 1),
-(2, b'1', '2023-01-23 20:59:50.459678', 2);
 
 -- --------------------------------------------------------
 
@@ -301,6 +379,42 @@ CREATE TABLE `role_admin` (
 
 INSERT INTO `role_admin` (`id`, `name`) VALUES
 (1, 'ROLE_ADMIN');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `role_logistics_company`
+--
+
+CREATE TABLE `role_logistics_company` (
+  `id` bigint NOT NULL,
+  `name` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `role_logistics_company`
+--
+
+INSERT INTO `role_logistics_company` (`id`, `name`) VALUES
+(1, 'ROLE_LOGISTICS_COMPANY');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `role_logistics_person`
+--
+
+CREATE TABLE `role_logistics_person` (
+  `id` bigint NOT NULL,
+  `name` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `role_logistics_person`
+--
+
+INSERT INTO `role_logistics_person` (`id`, `name`) VALUES
+(1, 'ROLE_LOGISTICS_PERSON');
 
 -- --------------------------------------------------------
 
@@ -358,6 +472,40 @@ INSERT INTO `seq_a_admin` (`next_val`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `seq_a_logistics_company`
+--
+
+CREATE TABLE `seq_a_logistics_company` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `seq_a_logistics_company`
+--
+
+INSERT INTO `seq_a_logistics_company` (`next_val`) VALUES
+(13);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `seq_a_logistics_person`
+--
+
+CREATE TABLE `seq_a_logistics_person` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `seq_a_logistics_person`
+--
+
+INSERT INTO `seq_a_logistics_person` (`next_val`) VALUES
+(1);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `seq_a_product`
 --
 
@@ -387,7 +535,7 @@ CREATE TABLE `seq_a_seller` (
 --
 
 INSERT INTO `seq_a_seller` (`next_val`) VALUES
-(2);
+(4);
 
 -- --------------------------------------------------------
 
@@ -409,6 +557,23 @@ INSERT INTO `seq_a_user` (`next_val`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `seq_not_activated_logistics_company`
+--
+
+CREATE TABLE `seq_not_activated_logistics_company` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `seq_not_activated_logistics_company`
+--
+
+INSERT INTO `seq_not_activated_logistics_company` (`next_val`) VALUES
+(13);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `seq_not_activated_seller`
 --
 
@@ -421,7 +586,7 @@ CREATE TABLE `seq_not_activated_seller` (
 --
 
 INSERT INTO `seq_not_activated_seller` (`next_val`) VALUES
-(2);
+(4);
 
 -- --------------------------------------------------------
 
@@ -455,6 +620,40 @@ CREATE TABLE `seq_role_admin` (
 --
 
 INSERT INTO `seq_role_admin` (`next_val`) VALUES
+(1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `seq_role_logistics_company`
+--
+
+CREATE TABLE `seq_role_logistics_company` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `seq_role_logistics_company`
+--
+
+INSERT INTO `seq_role_logistics_company` (`next_val`) VALUES
+(1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `seq_role_logistics_person`
+--
+
+CREATE TABLE `seq_role_logistics_person` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `seq_role_logistics_person`
+--
+
+INSERT INTO `seq_role_logistics_person` (`next_val`) VALUES
 (1);
 
 -- --------------------------------------------------------
@@ -503,6 +702,20 @@ ALTER TABLE `join_a_admin_and_role_admin`
   ADD KEY `FKet0lqfx6kkl2jv0e8eci5pxvc` (`role_admin_id`);
 
 --
+-- Индексы таблицы `join_a_logistics_company_and_role_logistics_company`
+--
+ALTER TABLE `join_a_logistics_company_and_role_logistics_company`
+  ADD PRIMARY KEY (`logistics_company_id`,`role_logistics_company_id`),
+  ADD KEY `FKhuss54o7jg9yxc5jac46a5mj7` (`role_logistics_company_id`);
+
+--
+-- Индексы таблицы `join_a_logistics_person_and_role_logistics_person`
+--
+ALTER TABLE `join_a_logistics_person_and_role_logistics_person`
+  ADD PRIMARY KEY (`logistics_person_id`,`role_logistics_person_id`),
+  ADD KEY `FKdpf2fcwrifdg8lmbeik040y13` (`role_logistics_person_id`);
+
+--
 -- Индексы таблицы `join_a_seller_and_role_seller`
 --
 ALTER TABLE `join_a_seller_and_role_seller`
@@ -513,8 +726,8 @@ ALTER TABLE `join_a_seller_and_role_seller`
 -- Индексы таблицы `join_a_user_and_role_user`
 --
 ALTER TABLE `join_a_user_and_role_user`
-  ADD PRIMARY KEY (`user_id`,`role_users_id`),
-  ADD KEY `FKgqokruma1y09emkcc9klhgft7` (`role_users_id`);
+  ADD PRIMARY KEY (`user_id`,`role_user_id`),
+  ADD KEY `FK6ij71oulwk0p1m33thf44d11c` (`role_user_id`);
 
 --
 -- Индексы таблицы `join_product_sellers`
@@ -540,6 +753,37 @@ ALTER TABLE `model_admin`
   ADD UNIQUE KEY `UK_nh9cvnuv8o4ddmfnxvc5vocdp` (`name`),
   ADD UNIQUE KEY `UK_lvl2v1degmvosnxu2qf6vxidj` (`phone`),
   ADD UNIQUE KEY `UK_9kvi70khfdn1bw4hqa0eot90i` (`token`);
+
+--
+-- Индексы таблицы `model_logistics_company`
+--
+ALTER TABLE `model_logistics_company`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UK_1h79v3a60c96yhoof5m1991fo` (`email`,`inn`,`inn_bank`,`kpp`,`kpp_bank`,`number_passport`,`ogrn`,`phone`),
+  ADD UNIQUE KEY `UK_4oln28brwhhmngejwaf9qtrom` (`bank_account`),
+  ADD UNIQUE KEY `UK_2o9mm02n9vbaqr8aqxoc1uncc` (`email`),
+  ADD UNIQUE KEY `UK_k37gs7n5io1glh9x98ihvc2p8` (`img_passport`),
+  ADD UNIQUE KEY `UK_eam98wxylbc2r26nb8do1h1pg` (`inn`),
+  ADD UNIQUE KEY `UK_g3tm6kinm3ve1d92frtyuu2bs` (`kpp`),
+  ADD UNIQUE KEY `UK_9970bss1gq8cn7l5pled08qj2` (`number_passport`),
+  ADD UNIQUE KEY `UK_o6j988398533fuomrypuhu22y` (`ogrn`),
+  ADD UNIQUE KEY `UK_ks96epibiru7qfbtyjt1vfamv` (`phone`),
+  ADD UNIQUE KEY `UK_k4u34ogywoyttndwrv50gf6wn` (`token`);
+
+--
+-- Индексы таблицы `model_logistics_person`
+--
+ALTER TABLE `model_logistics_person`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UK_kburri74cl7qsnuravbfr34ha` (`email`,`inn_bank`,`kpp_bank`,`number_passport`,`phone`,`shop_name`),
+  ADD UNIQUE KEY `UK_ld4ek8ut1l0hfxcr5bvylrauh` (`bank_account`),
+  ADD UNIQUE KEY `UK_kk1oswxspomtajy5cal1hwmml` (`email`),
+  ADD UNIQUE KEY `UK_5ux2ovy5ff5pc7dnyptynles8` (`img_passport`),
+  ADD UNIQUE KEY `UK_h4d36i1md6tmrfs0syx0ms0qa` (`number_passport`),
+  ADD UNIQUE KEY `UK_2o7npg39fbdw2iir97skylf39` (`phone`),
+  ADD UNIQUE KEY `UK_sbnu8e494h8ax3j4icpwqbrh1` (`shop_name`),
+  ADD UNIQUE KEY `UK_ipfus2rgqxpqliyfq7ndgcag0` (`token`),
+  ADD UNIQUE KEY `UK_58r5yqbdhjx9c3o7lb93e2ua6` (`username`);
 
 --
 -- Индексы таблицы `model_product`
@@ -575,6 +819,13 @@ ALTER TABLE `model_users`
   ADD UNIQUE KEY `UK_k112tgo0tkcx1krqb71uv3k24` (`username`);
 
 --
+-- Индексы таблицы `not_activated_logistics_company`
+--
+ALTER TABLE `not_activated_logistics_company`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK38qy7ciqvmbaqgp8jehihcitb` (`logistics_company_id`);
+
+--
 -- Индексы таблицы `not_activated_seller`
 --
 ALTER TABLE `not_activated_seller`
@@ -594,6 +845,20 @@ ALTER TABLE `not_activated_user`
 ALTER TABLE `role_admin`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UK_ly8tds7h2m1bfstn7yb5592gs` (`name`);
+
+--
+-- Индексы таблицы `role_logistics_company`
+--
+ALTER TABLE `role_logistics_company`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UK_ok21anwt6j8e13i4ant7df2rj` (`name`);
+
+--
+-- Индексы таблицы `role_logistics_person`
+--
+ALTER TABLE `role_logistics_person`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UK_7tixeefksr67cbb2w18j3a0m` (`name`);
 
 --
 -- Индексы таблицы `role_seller`
@@ -621,6 +886,20 @@ ALTER TABLE `join_a_admin_and_role_admin`
   ADD CONSTRAINT `FKpr7sd7bvusj4y5ioc1m1e2wvu` FOREIGN KEY (`admin_id`) REFERENCES `model_admin` (`id`);
 
 --
+-- Ограничения внешнего ключа таблицы `join_a_logistics_company_and_role_logistics_company`
+--
+ALTER TABLE `join_a_logistics_company_and_role_logistics_company`
+  ADD CONSTRAINT `FK8sar505uit38g1ec4g939186y` FOREIGN KEY (`logistics_company_id`) REFERENCES `model_logistics_company` (`id`),
+  ADD CONSTRAINT `FKhuss54o7jg9yxc5jac46a5mj7` FOREIGN KEY (`role_logistics_company_id`) REFERENCES `role_logistics_company` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `join_a_logistics_person_and_role_logistics_person`
+--
+ALTER TABLE `join_a_logistics_person_and_role_logistics_person`
+  ADD CONSTRAINT `FKdpf2fcwrifdg8lmbeik040y13` FOREIGN KEY (`role_logistics_person_id`) REFERENCES `role_logistics_person` (`id`),
+  ADD CONSTRAINT `FKq41k72uvbr5vn45g9wtdgyum8` FOREIGN KEY (`logistics_person_id`) REFERENCES `model_logistics_person` (`id`);
+
+--
 -- Ограничения внешнего ключа таблицы `join_a_seller_and_role_seller`
 --
 ALTER TABLE `join_a_seller_and_role_seller`
@@ -631,7 +910,7 @@ ALTER TABLE `join_a_seller_and_role_seller`
 -- Ограничения внешнего ключа таблицы `join_a_user_and_role_user`
 --
 ALTER TABLE `join_a_user_and_role_user`
-  ADD CONSTRAINT `FKgqokruma1y09emkcc9klhgft7` FOREIGN KEY (`role_users_id`) REFERENCES `role_user` (`id`),
+  ADD CONSTRAINT `FK6ij71oulwk0p1m33thf44d11c` FOREIGN KEY (`role_user_id`) REFERENCES `role_user` (`id`),
   ADD CONSTRAINT `FKny11orpqklrfvgcbktcwgul0n` FOREIGN KEY (`user_id`) REFERENCES `model_users` (`id`);
 
 --
@@ -647,6 +926,12 @@ ALTER TABLE `join_product_sellers`
 ALTER TABLE `join_product_users`
   ADD CONSTRAINT `FK17n1nljcfhk9ibjxtytdq674u` FOREIGN KEY (`product_id`) REFERENCES `model_product` (`id`),
   ADD CONSTRAINT `FKb6e1q4cvqmgyr309x2anll6y0` FOREIGN KEY (`users_id`) REFERENCES `model_users` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `not_activated_logistics_company`
+--
+ALTER TABLE `not_activated_logistics_company`
+  ADD CONSTRAINT `FK38qy7ciqvmbaqgp8jehihcitb` FOREIGN KEY (`logistics_company_id`) REFERENCES `model_logistics_company` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `not_activated_seller`
