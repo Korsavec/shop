@@ -286,6 +286,7 @@ public class RegistrationLogisticsPersonController {
         ) {
             // Так как не прошли фильтр/валидацию то, удаляем временный файл и возвращаем "OK"
             Files.deleteIfExists(ofPassport);
+            Files.deleteIfExists(ofMedical);
             return ResponseEntity.ok(new MessageResponse(HttpStatus.OK.value(), STATIC_OK));
 
         }
