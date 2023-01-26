@@ -212,12 +212,12 @@ public class LogisticsCompany implements Serializable {
     private String ipAddressLastEntrance;
 
 
-    // Это таблица связей ManyToMany PrivatePerson и RoleUser
+    // Это таблица связей ManyToMany LogisticsCompany и RoleLogisticsCompany
     @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(name = "join_a_logistics_company_and_role_logistics_company",
             joinColumns = @JoinColumn(name = "logistics_company_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_logistics_company_id", referencedColumnName = "id"))
-    private Set<RoleLogisticsCompany> logisticsCompaniesRoles = new LinkedHashSet<>();
+    private Set<RoleLogisticsCompany> logisticsCompanyRoles = new LinkedHashSet<>();
 
 
     // Сущность активации аккаунта
@@ -513,12 +513,12 @@ public class LogisticsCompany implements Serializable {
         this.ipAddressLastEntrance = ipAddressLastEntrance;
     }
 
-    public Set<RoleLogisticsCompany> getLogisticsCompaniesRoles() {
-        return logisticsCompaniesRoles;
+    public Set<RoleLogisticsCompany> getLogisticsCompanyRoles() {
+        return logisticsCompanyRoles;
     }
 
-    public void setLogisticsCompaniesRoles(Set<RoleLogisticsCompany> logisticsCompaniesRoles) {
-        this.logisticsCompaniesRoles = logisticsCompaniesRoles;
+    public void setLogisticsCompanyRoles(Set<RoleLogisticsCompany> logisticsCompanyRoles) {
+        this.logisticsCompanyRoles = logisticsCompanyRoles;
     }
 
     public NotActivatedLogisticsCompany getNotActivatedLogisticsCompany() {
@@ -571,7 +571,7 @@ public class LogisticsCompany implements Serializable {
         if (!getIpAddressRegConfirm().equals(that.getIpAddressRegConfirm())) return false;
         if (!getIpAddressFirstEntrance().equals(that.getIpAddressFirstEntrance())) return false;
         if (!getIpAddressLastEntrance().equals(that.getIpAddressLastEntrance())) return false;
-        if (!getLogisticsCompaniesRoles().equals(that.getLogisticsCompaniesRoles())) return false;
+        if (!getLogisticsCompanyRoles().equals(that.getLogisticsCompanyRoles())) return false;
         return getNotActivatedLogisticsCompany().equals(that.getNotActivatedLogisticsCompany());
     }
 
@@ -616,7 +616,7 @@ public class LogisticsCompany implements Serializable {
         result = 31 * result + getIpAddressRegConfirm().hashCode();
         result = 31 * result + getIpAddressFirstEntrance().hashCode();
         result = 31 * result + getIpAddressLastEntrance().hashCode();
-        result = 31 * result + getLogisticsCompaniesRoles().hashCode();
+        result = 31 * result + getLogisticsCompanyRoles().hashCode();
         result = 31 * result + getNotActivatedLogisticsCompany().hashCode();
         return result;
     }

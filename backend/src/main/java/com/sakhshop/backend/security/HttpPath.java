@@ -20,6 +20,10 @@ public class HttpPath {
     public static final String API_SINGLETON_GUARD_LOGISTICS_COMPANY = "/api/AccountGuard/logisticsCompany";
 
 
+    public static final String API_SINGLETON_LOGIN_LOGISTICS_PERSON = "/api/auth/loginLogisticsPerson";
+    public static final String API_SINGLETON_GUARD_LOGISTICS_PERSON = "/api/AccountGuard/logisticsPerson";
+
+
 
 
     private HttpPath() {
@@ -79,6 +83,21 @@ public class HttpPath {
 
     protected static final String[] API_ACCOUNT_GUARD_LOGISTICS_COMPANY = {
             API_SINGLETON_GUARD_LOGISTICS_COMPANY,
+    };
+
+    //---
+
+    protected static final String[] LOGISTICS_PERSON = {
+            "/api/auth/registrationLogisticsPerson",
+            "/api/auth/confirmEmailLogisticsPerson",
+            "/api/auth/resetPasswordLogisticsPerson",
+            "/api/auth/checkTokenLogisticsPersonResetPassword",
+            "/api/auth/newPasswordLogisticsPerson",
+            API_SINGLETON_LOGIN_LOGISTICS_PERSON
+    };
+
+    protected static final String[] API_ACCOUNT_GUARD_LOGISTICS_PERSON = {
+            API_SINGLETON_GUARD_LOGISTICS_PERSON,
     };
 
     //---

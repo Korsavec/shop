@@ -28,7 +28,7 @@ public class RoleLogisticsCompany implements Serializable {
 
 
     // Ссылка на сущность пользователя LogisticsPerson
-    @ManyToMany(mappedBy = "logisticsCompaniesRoles", cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "logisticsCompanyRoles", cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
     private Set<LogisticsCompany> logisticsCompanies = new LinkedHashSet<>();
 
     // Это Enum перечисление ролей.

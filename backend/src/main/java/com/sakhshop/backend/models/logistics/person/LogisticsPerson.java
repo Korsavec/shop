@@ -1,5 +1,6 @@
 package com.sakhshop.backend.models.logistics.person;
 
+import com.sakhshop.backend.models.activation.NotActivatedLogisticsPerson;
 import com.sakhshop.backend.models.role.RoleLogisticsPerson;
 import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
@@ -77,39 +78,42 @@ public class LogisticsPerson implements Serializable {
     private String imgPassport;
 
 
+    // Имеется или не имеется медицинская комиссия
+    @Column(name = "medical_checkup", nullable = false, length = 1)
+    private boolean medicalCheckup;
+
+    // Это ссылка на изображение медицинского осмотра пользователя. Полный путь.
+    @Column(name = "img_medical_checkup", nullable = false, unique = true, length = 150)
+    private String imgMedicalCheckup;
 
 
 
-    // Это название магазина в системе
-    @NaturalId
-    @Column(name = "shop_name", nullable = false, unique = true, length = 30)
-    private String shopName;
 
 
-
-
-
-    // Это регион продавца
+    // Это регион пользователя
     @Column(name = "region", nullable = false, length = 7)
     private String region;
 
-    // Это город продавца
+    // Это город пользователя
     @Column(name = "city", nullable = false, length = 25)
     private String city;
 
-    // Это улица продавца
+    // Это улица пользователя
     @Column(name = "street", nullable = false, length = 50)
     private String street;
 
-    // Это дом продавца. Пример 12/4
-    @Column(name = "house", nullable = false, length = 11)
-    private String house;
 
-    // Это корпус продавца. Пример 9999a/9999a
+    // Это корпус пользователя. Пример 9999a/9999a
     @Column(name = "building", length = 11)
     private String building;
 
-    // Это квартира/офис персоны продавца
+
+    // Это дом пользователя. Пример 12/4
+    @Column(name = "house", nullable = false, length = 11)
+    private String house;
+
+
+    // Это квартира/офис пользователя
     @Column(name="apartment", columnDefinition = "smallint", length = 4)
     private int apartment;
 
@@ -171,9 +175,9 @@ public class LogisticsPerson implements Serializable {
 
 
 
-    // Это дата создания учётной записи пользователя
-    @Column(name = "date_created_seller", nullable = false)
-    private Instant dateCreatedSeller;
+    // Это дата создания учётной записи
+    @Column(name = "date_created_logistics_person", nullable = false)
+    private Instant dateCreatedLogisticsPerson;
 
     // Это ip адрес с которого была зарегистрирована учётная запись пользователя
     @Column(name = "ip_address_registration", nullable = false, length = 39)
@@ -199,7 +203,11 @@ public class LogisticsPerson implements Serializable {
     @JoinTable(name = "join_a_logistics_person_and_role_logistics_person",
             joinColumns = @JoinColumn(name = "logistics_person_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_logistics_person_id", referencedColumnName = "id"))
-    private Set<RoleLogisticsPerson> roleLogisticsPersons = new LinkedHashSet<>();
+    private Set<RoleLogisticsPerson> logisticsPersonRoles = new LinkedHashSet<>();
+
+    // Сущность активации аккаунта
+    @OneToOne(mappedBy = "logisticsPerson", cascade = CascadeType.ALL, orphanRemoval = true)
+    private NotActivatedLogisticsPerson notActivatedLogisticsPerson;
 
 
     public Long getId() {
@@ -290,12 +298,20 @@ public class LogisticsPerson implements Serializable {
         this.imgPassport = imgPassport;
     }
 
-    public String getShopName() {
-        return shopName;
+    public boolean isMedicalCheckup() {
+        return medicalCheckup;
     }
 
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
+    public void setMedicalCheckup(boolean medicalCheckup) {
+        this.medicalCheckup = medicalCheckup;
+    }
+
+    public String getImgMedicalCheckup() {
+        return imgMedicalCheckup;
+    }
+
+    public void setImgMedicalCheckup(String imgMedicalCheckup) {
+        this.imgMedicalCheckup = imgMedicalCheckup;
     }
 
     public String getRegion() {
@@ -322,20 +338,20 @@ public class LogisticsPerson implements Serializable {
         this.street = street;
     }
 
-    public String getHouse() {
-        return house;
-    }
-
-    public void setHouse(String house) {
-        this.house = house;
-    }
-
     public String getBuilding() {
         return building;
     }
 
     public void setBuilding(String building) {
         this.building = building;
+    }
+
+    public String getHouse() {
+        return house;
+    }
+
+    public void setHouse(String house) {
+        this.house = house;
     }
 
     public int getApartment() {
@@ -434,12 +450,12 @@ public class LogisticsPerson implements Serializable {
         this.accountNonLocked = accountNonLocked;
     }
 
-    public Instant getDateCreatedSeller() {
-        return dateCreatedSeller;
+    public Instant getDateCreatedLogisticsPerson() {
+        return dateCreatedLogisticsPerson;
     }
 
-    public void setDateCreatedSeller(Instant dateCreatedSeller) {
-        this.dateCreatedSeller = dateCreatedSeller;
+    public void setDateCreatedLogisticsPerson(Instant dateCreatedLogisticsPerson) {
+        this.dateCreatedLogisticsPerson = dateCreatedLogisticsPerson;
     }
 
     public String getIpAddressRegistration() {
@@ -474,19 +490,29 @@ public class LogisticsPerson implements Serializable {
         this.ipAddressLastEntrance = ipAddressLastEntrance;
     }
 
-    public Set<RoleLogisticsPerson> getRoleLogisticsPersons() {
-        return roleLogisticsPersons;
+    public Set<RoleLogisticsPerson> getLogisticsPersonRoles() {
+        return logisticsPersonRoles;
     }
 
-    public void setRoleLogisticsPersons(Set<RoleLogisticsPerson> roleLogisticsPersons) {
-        this.roleLogisticsPersons = roleLogisticsPersons;
+    public void setLogisticsPersonRoles(Set<RoleLogisticsPerson> logisticsPersonRoles) {
+        this.logisticsPersonRoles = logisticsPersonRoles;
     }
+
+    public NotActivatedLogisticsPerson getNotActivatedLogisticsPerson() {
+        return notActivatedLogisticsPerson;
+    }
+
+    public void setNotActivatedLogisticsPerson(NotActivatedLogisticsPerson notActivatedLogisticsPerson) {
+        this.notActivatedLogisticsPerson = notActivatedLogisticsPerson;
+    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof LogisticsPerson that)) return false;
 
+        if (isMedicalCheckup() != that.isMedicalCheckup()) return false;
         if (getApartment() != that.getApartment()) return false;
         if (Double.compare(that.getBalance(), getBalance()) != 0) return false;
         if (getBeakBank() != that.getBeakBank()) return false;
@@ -505,23 +531,24 @@ public class LogisticsPerson implements Serializable {
         if (!getDateBirth().equals(that.getDateBirth())) return false;
         if (!getNumberPassport().equals(that.getNumberPassport())) return false;
         if (!getImgPassport().equals(that.getImgPassport())) return false;
-        if (!getShopName().equals(that.getShopName())) return false;
+        if (!getImgMedicalCheckup().equals(that.getImgMedicalCheckup())) return false;
         if (!getRegion().equals(that.getRegion())) return false;
         if (!getCity().equals(that.getCity())) return false;
         if (!getStreet().equals(that.getStreet())) return false;
-        if (!getHouse().equals(that.getHouse())) return false;
         if (!getBuilding().equals(that.getBuilding())) return false;
+        if (!getHouse().equals(that.getHouse())) return false;
         if (!getBankAccount().equals(that.getBankAccount())) return false;
         if (!getBankName().equals(that.getBankName())) return false;
         if (!getCorrespondentAccount().equals(that.getCorrespondentAccount())) return false;
         if (!getInnBank().equals(that.getInnBank())) return false;
         if (!getToken().equals(that.getToken())) return false;
-        if (!getDateCreatedSeller().equals(that.getDateCreatedSeller())) return false;
+        if (!getDateCreatedLogisticsPerson().equals(that.getDateCreatedLogisticsPerson())) return false;
         if (!getIpAddressRegistration().equals(that.getIpAddressRegistration())) return false;
         if (!getIpAddressRegConfirm().equals(that.getIpAddressRegConfirm())) return false;
         if (!getIpAddressFirstEntrance().equals(that.getIpAddressFirstEntrance())) return false;
         if (!getIpAddressLastEntrance().equals(that.getIpAddressLastEntrance())) return false;
-        return getRoleLogisticsPersons().equals(that.getRoleLogisticsPersons());
+        if (!getLogisticsPersonRoles().equals(that.getLogisticsPersonRoles())) return false;
+        return getNotActivatedLogisticsPerson().equals(that.getNotActivatedLogisticsPerson());
     }
 
     @Override
@@ -539,12 +566,13 @@ public class LogisticsPerson implements Serializable {
         result = 31 * result + getDateBirth().hashCode();
         result = 31 * result + getNumberPassport().hashCode();
         result = 31 * result + getImgPassport().hashCode();
-        result = 31 * result + getShopName().hashCode();
+        result = 31 * result + (isMedicalCheckup() ? 1 : 0);
+        result = 31 * result + getImgMedicalCheckup().hashCode();
         result = 31 * result + getRegion().hashCode();
         result = 31 * result + getCity().hashCode();
         result = 31 * result + getStreet().hashCode();
-        result = 31 * result + getHouse().hashCode();
         result = 31 * result + getBuilding().hashCode();
+        result = 31 * result + getHouse().hashCode();
         result = 31 * result + getApartment();
         temp = Double.doubleToLongBits(getBalance());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
@@ -558,12 +586,13 @@ public class LogisticsPerson implements Serializable {
         result = 31 * result + (isApproval() ? 1 : 0);
         result = 31 * result + getToken().hashCode();
         result = 31 * result + (isAccountNonLocked() ? 1 : 0);
-        result = 31 * result + getDateCreatedSeller().hashCode();
+        result = 31 * result + getDateCreatedLogisticsPerson().hashCode();
         result = 31 * result + getIpAddressRegistration().hashCode();
         result = 31 * result + getIpAddressRegConfirm().hashCode();
         result = 31 * result + getIpAddressFirstEntrance().hashCode();
         result = 31 * result + getIpAddressLastEntrance().hashCode();
-        result = 31 * result + getRoleLogisticsPersons().hashCode();
+        result = 31 * result + getLogisticsPersonRoles().hashCode();
+        result = 31 * result + getNotActivatedLogisticsPerson().hashCode();
         return result;
     }
 }

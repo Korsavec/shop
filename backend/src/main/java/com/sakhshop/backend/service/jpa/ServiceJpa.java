@@ -2,14 +2,13 @@ package com.sakhshop.backend.service.jpa;
 
 import com.sakhshop.backend.enam.RoleEnum;
 import com.sakhshop.backend.models.activation.NotActivatedLogisticsCompany;
+import com.sakhshop.backend.models.activation.NotActivatedLogisticsPerson;
 import com.sakhshop.backend.models.activation.NotActivatedSeller;
 import com.sakhshop.backend.models.activation.NotActivatedUser;
 import com.sakhshop.backend.models.admin.Admin;
 import com.sakhshop.backend.models.logistics.company.LogisticsCompany;
-import com.sakhshop.backend.models.role.RoleAdmin;
-import com.sakhshop.backend.models.role.RoleLogisticsCompany;
-import com.sakhshop.backend.models.role.RoleSeller;
-import com.sakhshop.backend.models.role.RoleUser;
+import com.sakhshop.backend.models.logistics.person.LogisticsPerson;
+import com.sakhshop.backend.models.role.*;
 import com.sakhshop.backend.models.seller.Seller;
 import com.sakhshop.backend.models.user.User;
 import org.springframework.stereotype.Service;
@@ -200,5 +199,59 @@ public interface ServiceJpa {
 
     @Transactional
     void updateLogisticsCompanyTokenByEmail(String token, String email);
+
+
+
+
+
+    // >>>>>>>>>>>>>>>>>>>> LogisticsCompany <<<<<<<<<<<<<<<<<<<<
+
+
+
+
+
+    // NotActivatedUser >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Transactional
+    void deleteAllLogisticsPerson(Iterable<NotActivatedLogisticsPerson> entityList);
+    Iterable<NotActivatedLogisticsPerson> findAllDateDeletionLogisticsPerson();
+
+    // RoleLogisticsPerson >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    RoleLogisticsPerson findRoleLogisticsPersonByRoleEnum(RoleEnum roleEnum);
+
+    // LogisticsPerson >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Transactional
+    void deleteListLogisticsPerson(Iterable<LogisticsPerson> entityList);
+
+    Boolean existsLogisticsPersonByBankAccount(String bankAccount);
+
+    Boolean existsLogisticsPersonByBeakBank(int beakBank);
+
+    Boolean existsLogisticsPersonByEmail(String email);
+
+    Boolean existsLogisticsPersonByImgMedicalCheckup(String imgMedical);
+
+    Boolean existsLogisticsPersonByImgPassport(String imgPassport);
+
+    Boolean existsLogisticsPersonByNumberPassport(Long numberPassport);
+
+    Boolean existsLogisticsPersonByPhone(Long phone);
+
+    List<LogisticsPerson> findAllLogisticsPersonById(Iterable<Long> entityList);
+
+    Optional<LogisticsPerson> findLogisticsPersonByEmail(String email);
+
+    Optional<LogisticsPerson> findLogisticsPersonByToken (String token);
+
+    @Transactional
+    void saveLogisticsPerson(LogisticsPerson logisticsPerson);
+
+    @Transactional
+    void updateLogisticsPersonPasswordTokenByEmail(String token, String password, String email);
+
+    @Transactional
+    void updateLogisticsPersonTokenByEmail(String token, String email);
 
 }

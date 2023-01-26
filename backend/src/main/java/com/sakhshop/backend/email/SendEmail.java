@@ -19,6 +19,9 @@ public class SendEmail {
     @Value("${sakhshop.app.main.site.domain.logistics.company}")
     String siteDomainLogisticsCompany;
 
+    @Value("${sakhshop.app.main.site.domain.logistics.person}")
+    String siteDomainLogisticsPerson;
+
     private final
     JavaMailSender javaMailSender;
 
@@ -78,6 +81,29 @@ public class SendEmail {
     }
 
 
+    public final void confirmEmailLogisticsPerson(String serverName, final String token){
+
+        String path = siteDomainLogisticsPerson + CONFIRM_EMAIL + token;
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+
+        msg.setTo(email); // Кому
+        msg.setFrom(email); // от кого
+
+        msg.setSubject("Регистрация пользователя на сайте логистики " + serverName);
+        msg.setText("Для подтверждения электронно почты и активации аккаунта логистики, вам необходимо пройти по ссылке " + path);
+
+        javaMailSender.send(msg);
+    }
+
+
+
+
+
+
+
+
+
 
     public final void resetPasswordUser(String serverName, final String urlResetPasswordUserAccount){
 
@@ -92,7 +118,7 @@ public class SendEmail {
         javaMailSender.send(msg);
     }
 
-    public final void resetPasswordSeller(String serverName, final String urlResetPasswordUserAccount){
+    public final void resetPasswordSeller(String serverName, final String urlResetPasswordSellerAccount){
 
         SimpleMailMessage msg = new SimpleMailMessage();
 
@@ -100,12 +126,12 @@ public class SendEmail {
         msg.setFrom(email); // от кого
 
         msg.setSubject("Сброс пароля продавца на сайте " + serverName);
-        msg.setText("Для сброса пароля продавца пройдите по ссылке "+ urlResetPasswordUserAccount);
+        msg.setText("Для сброса пароля продавца пройдите по ссылке "+ urlResetPasswordSellerAccount);
 
         javaMailSender.send(msg);
     }
 
-    public final void resetPasswordAdmin(String serverName, final String urlResetPasswordUserAccount){
+    public final void resetPasswordAdmin(String serverName, final String urlResetPasswordAdminAccount){
 
         SimpleMailMessage msg = new SimpleMailMessage();
 
@@ -113,7 +139,7 @@ public class SendEmail {
         msg.setFrom(email); // от кого
 
         msg.setSubject("Сброс пароля администратора на сайте " + serverName);
-        msg.setText("Для сброса пароля администратора пройдите по ссылке "+ urlResetPasswordUserAccount);
+        msg.setText("Для сброса пароля администратора пройдите по ссылке "+ urlResetPasswordAdminAccount);
 
         javaMailSender.send(msg);
     }
@@ -127,6 +153,20 @@ public class SendEmail {
 
         msg.setSubject("Сброс пароля на сайте логистики " + serverName);
         msg.setText("Для сброса пароля пройдите по ссылке "+ urlResetPasswordLogisticsCompanyAccount);
+
+        javaMailSender.send(msg);
+    }
+
+
+    public final void resetPasswordLogisticsPerson(String serverName, final String urlResetPasswordLogisticsPersonAccount){
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+
+        msg.setTo(email); // Кому
+        msg.setFrom(email); // от кого
+
+        msg.setSubject("Сброс пароля пользователя на сайте логистики " + serverName);
+        msg.setText("Для сброса пароля пройдите по ссылке "+ urlResetPasswordLogisticsPersonAccount);
 
         javaMailSender.send(msg);
     }

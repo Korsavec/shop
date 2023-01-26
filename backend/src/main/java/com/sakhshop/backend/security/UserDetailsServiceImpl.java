@@ -2,6 +2,7 @@ package com.sakhshop.backend.security;
 
 import com.sakhshop.backend.models.admin.Admin;
 import com.sakhshop.backend.models.logistics.company.LogisticsCompany;
+import com.sakhshop.backend.models.logistics.person.LogisticsPerson;
 import com.sakhshop.backend.models.seller.Seller;
 import com.sakhshop.backend.models.user.User;
 import com.sakhshop.backend.service.jpa.ServiceJpa;
@@ -54,6 +55,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
       LogisticsCompany logisticsCompany = serviceJpa.findLogisticsCompanyByEmail(email).orElseThrow(() -> new UsernameNotFoundException("no"));
 
       return UserDetailsImpl.build(logisticsCompany);
+
+    } else if (request.getRequestURI().equals(API_SINGLETON_LOGIN_LOGISTICS_PERSON) || request.getRequestURI().equals(API_SINGLETON_GUARD_LOGISTICS_PERSON)) {
+
+      LogisticsPerson logisticsPerson = serviceJpa.findLogisticsPersonByEmail(email).orElseThrow(() -> new UsernameNotFoundException("no"));
+
+      return UserDetailsImpl.build(logisticsPerson);
 
     } else {
 

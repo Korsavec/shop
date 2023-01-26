@@ -2,6 +2,7 @@ package com.sakhshop.backend.security;
 
 import com.sakhshop.backend.models.admin.Admin;
 import com.sakhshop.backend.models.logistics.company.LogisticsCompany;
+import com.sakhshop.backend.models.logistics.person.LogisticsPerson;
 import com.sakhshop.backend.models.seller.Seller;
 import com.sakhshop.backend.models.user.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -88,7 +89,7 @@ public class UserDetailsImpl implements UserDetails, Serializable {
 
   public static UserDetailsImpl build(LogisticsCompany logisticsCompany) {
 
-    List<SimpleGrantedAuthority> authorities = logisticsCompany.getLogisticsCompaniesRoles().stream()
+    List<SimpleGrantedAuthority> authorities = logisticsCompany.getLogisticsCompanyRoles().stream()
             .map(role -> new SimpleGrantedAuthority(role.getRoleEnum().name())).toList();
 
     return new UserDetailsImpl(
@@ -97,6 +98,21 @@ public class UserDetailsImpl implements UserDetails, Serializable {
             logisticsCompany.getPassword(),
             logisticsCompany.isAccountNonLocked(),
             logisticsCompany.isEnabled(),
+            authorities);
+
+  }
+
+  public static UserDetailsImpl build(LogisticsPerson logisticsPerson) {
+
+    List<SimpleGrantedAuthority> authorities = logisticsPerson.getLogisticsPersonRoles().stream()
+            .map(role -> new SimpleGrantedAuthority(role.getRoleEnum().name())).toList();
+
+    return new UserDetailsImpl(
+            logisticsPerson.getId(),
+            logisticsPerson.getEmail(),
+            logisticsPerson.getPassword(),
+            logisticsPerson.isAccountNonLocked(),
+            logisticsPerson.isEnabled(),
             authorities);
 
   }

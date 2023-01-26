@@ -95,6 +95,11 @@ public class SecurityConfig {
 
 
 
+            .requestMatchers(LOGISTICS_PERSON).permitAll()
+            .requestMatchers(API_ACCOUNT_GUARD_LOGISTICS_PERSON).permitAll()
+
+
+
             .anyRequest().authenticated();
 
     return http.build();

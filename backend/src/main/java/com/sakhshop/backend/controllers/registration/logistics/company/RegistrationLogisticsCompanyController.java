@@ -363,7 +363,7 @@ public class RegistrationLogisticsCompanyController {
         Set<RoleLogisticsCompany> roleLogisticsCompanyPeople = new LinkedHashSet<>();
         RoleLogisticsCompany roleLogisticsCompany = serviceJpa.findRoleLogisticsCompanyByRoleEnum(RoleEnum.ROLE_LOGISTICS_COMPANY);
         roleLogisticsCompanyPeople.add(roleLogisticsCompany);
-        logisticsCompany.setLogisticsCompaniesRoles(roleLogisticsCompanyPeople);
+        logisticsCompany.setLogisticsCompanyRoles(roleLogisticsCompanyPeople);
 
         serviceJpa.saveLogisticsCompany(logisticsCompany);
 

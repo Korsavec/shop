@@ -40,5 +40,11 @@ public class SecurityController {
     return "{\"PERSON\":\"ADMIN текст\" } ";
   }
 
+  @GetMapping(value = "/logisticsPerson", produces = "application/json")
+  @PreAuthorize("hasRole('LOGISTICS_PERSON')")
+  public String logisticsPersonAccess() {
+    return "{\"PERSON\":\"PERSON текст\" } ";
+  }
+
 
 }

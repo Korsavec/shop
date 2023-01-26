@@ -1,0 +1,29 @@
+
+
+
+<div class="align-middle items-center flex justify-between bg-purple-800 px-3">
+
+  <div class="font-Mochiy-Pop-One text-[24px] text-white"><a routerLink="/">SakhShop</a></div>
+
+
+
+  <div class="align-middle text-white font-bold text-center hover:cursor-pointer">
+
+
+    <div class="grid grid-cols-2 gap-4" *ngIf="closeLogin">
+      <a routerLink="/login" >Войти</a>
+      <a routerLink="/registration" >Регистрация</a>
+    </div>
+
+
+    <div class="grid grid-cols-2 gap-4" *ngIf="isShowLogisticsPersonAccount">
+      <a routerLink="/" (click)="logOut()" >Выход</a>
+    </div>
+
+
+
+  </div>
+</div>
+
+
+
